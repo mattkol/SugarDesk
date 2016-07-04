@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="SugarDesk.Views.Home"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <FlowDocumentScrollViewer>
+            <FlowDocument>
+                <Paragraph>
+                    <Image Source="/Assets/1462131504_MB__back.ico" Width="90" Height="80" Margin="0,30,30,0" />
+                    <Run FontSize="60">SugarDesk</Run>
+                </Paragraph>
+
+                <Paragraph>
+                    <Bold>SugarDesk</Bold> is a Sugar CRM .NET integration studio built with WPF Modern UI (mui) framework. It highlights different Modern UI MVVM implementation.
+                        It uses SugarCrm database schema and REST API as input sources. 
+                </Paragraph>
+
+
+                <Paragraph>
+                    <Bold>WPF MVVM feautures:</Bold>
+                </Paragraph>
+                
+                <List>
+                    <ListItem>
+                        <Paragraph>
+                           Prism 6 - integrating Unity Prism 6 with Modern UI - using Prism 6 modularity, view model location and IOC using Unity.
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Fody.PropertyChanged - for automatic PropertyChangedEvents and model-to-viewmodel communication.
+                        </Paragraph>
+                    </ListItem>
+                </List>
+
+                <Paragraph>
+                    <Bold>Sugar CRM implementations include:</Bold>
+                </Paragraph>
+                
+                <List>
+                    <ListItem>
+                        <Paragraph>
+                            C# POCO generator - generates C# based models with a Json serialization feauture. This uses the poco generator modules created in Sugar CRM Restful CRUD.
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Sugar CRM Restful CRUD demonstration - user Sugar CRM Restful CRUD implemented previously @  ...
+                        </Paragraph>
+                    </ListItem>
+                    <ListItem>
+                        <Paragraph>
+                            Sugar CRM reporting - different .NET reporting options.
+                        </Paragraph>
+                    </ListItem>
+                </List>
+                
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+    </Grid>
+</UserControl>

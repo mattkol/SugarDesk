@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="SugarDesk.Restful.Views.RestfulView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:st="clr-namespace:AutoGrid;assembly=SpicyTaco.AutoGrid"
+             xmlns:mui="clr-namespace:FirstFloor.ModernUI.Windows.Controls;assembly=FirstFloor.ModernUI"
+             xmlns:presentation="clr-namespace:FirstFloor.ModernUI.Presentation;assembly=FirstFloor.ModernUI"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
+             xmlns:interactivity="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+   
+    <Grid Margin="20">
+
+        <!-- Main grid-->
+        <st:AutoGrid Rows="Auto,30,*" Columns="*">
+
+            <st:AutoGrid Rows="Auto" Columns="800,30,300,*" ChildMargin="3">
+
+                <!-- Url/Credential-->
+                <st:AutoGrid Rows="Auto" Columns="*" ChildMargin="3">
+
+                    <!-- Url-->
+                    <st:AutoGrid Rows="Auto" Columns="Auto,*,Auto,Auto">
+                        <Label Content="Url:"/>
+                        <ComboBox ItemsSource="{Binding Path=UrlItems}"  DisplayMemberPath="Format" SelectedIndex="{Binding Path=SelectedIndexUrl}" SelectedItem="{Binding Path=UrlItemSelected}" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <interactivity:InvokeCommandAction Command="{Binding Mode=OneWay, Path=UrlSelectionChangedCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                        <Button Content="Del" ToolTip="Delete url" Command="{Binding Path=DeleteUrlCommand}" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
+                        <Button Content="Add" ToolTip="Add url" Command="{Binding Path=AddUrlCommand}" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
+                    </st:AutoGrid>
+
+
+                    <st:AutoGrid Rows="Auto" Columns="Auto,*,*,*,Auto,Auto">
+                        <Label Content="Credentials:"/>
+                        <ComboBox ItemsSource="{Binding Path=CredentialItems}"  DisplayMemberPath="Name" SelectedIndex="{Binding Path=SelectedIndexCredential}" SelectedItem="{Binding Path=CredentialItemSelected}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <interactivity:InvokeCommandAction Command="{Binding Mode=OneWay, Path=CredentialSelectionChangedCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                        <TextBox Text="{Binding Path=Username,  Mode=TwoWay}"/>
+                        <TextBox Text="{Binding Path=Password,  Mode=TwoWay}"/>
+                        <Button Content="Del" ToolTip="Delete credential" Command="{Binding Path=DeleteCredentialCommand}" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
+                        <Button Content="Add" ToolTip="Add credential" Command="{Binding Path=AddCredentialCommand}" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
+                    </st:AutoGrid>
+
+                </st:AutoGrid>
+                <!-- End url/Credential-->
+
+                <!-- Spacer -->
+                <Label />
+
+                <!-- Informational? Logs .. -->
+                <st:AutoGrid Rows="*" Columns="*">
+                </st:AutoGrid>
+                <!-- End Informational? Logs .. -->
+
+            </st:AutoGrid>
+
+
+            <!-- Spacer -->
+            <Label />
+
+            <!-- Request/Response-->
+            <st:AutoGrid Rows="*" Columns="*" ChildMargin="3">
+                <mui:ModernTab SelectedSource="/SugarDesk.Restful;component/Views/ReadAllView.xaml"   Layout="List">
+                    <mui:ModernTab.Links>
+                        <presentation:Link DisplayName="Create" Source="/SugarDesk.Restful;component/Views/CreateView.xaml" />
+                        <presentation:Link DisplayName="Read By Id" Source="/SugarDesk.Restful;component/Views/ReadByIdView.xaml" />
+                        <presentation:Link DisplayName="Read All" Source="/SugarDesk.Restful;component/Views/ReadAllView.xaml" />
+                        <presentation:Link DisplayName="Read By Page" Source="/SugarDesk.Restful;component/Views/ReadByPageView.xaml" />
+                        <presentation:Link DisplayName="Update" Source="/SugarDesk.Restful;component/Views/UpdateView.xaml" />
+                        <presentation:Link DisplayName="Delete" Source="/SugarDesk.Restful;component/Views/DeleteView.xaml" />
+                    </mui:ModernTab.Links>
+                </mui:ModernTab>
+            </st:AutoGrid>
+            <!-- End request/Response-->
+
+        </st:AutoGrid>
+        <!-- End main grid-->
+
+    </Grid>
+</UserControl>

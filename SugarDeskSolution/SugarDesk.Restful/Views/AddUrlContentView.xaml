@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="SugarDesk.Restful.Views.AddUrlContentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:st="clr-namespace:AutoGrid;assembly=SpicyTaco.AutoGrid"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <Grid Margin="5">
+        <st:AutoGrid Rows="Auto, Auto" Columns="Auto,300" ChildMargin="3">
+            <Label Content="Name:"/>
+            <TextBox Text="{Binding Path=Name,  Mode=TwoWay}"/>
+            <Label Content="Url:"/>
+            <TextBox Text="{Binding Path=Url,  Mode=TwoWay}"/>
+        </st:AutoGrid>
+    </Grid>
+</UserControl>
