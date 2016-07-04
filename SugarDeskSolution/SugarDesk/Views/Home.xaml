@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <FlowDocumentScrollViewer>
+        <FlowDocumentScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <FlowDocument>
                 <Paragraph>
                     <Image Source="/Assets/1462131504_MB__back.ico" Width="90" Height="80" Margin="0,30,30,0" />

@@ -7,7 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <Grid>
-        <FlowDocumentScrollViewer>
+        <FlowDocumentScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <FlowDocument>
                 <Paragraph>
                     <Run FontSize="30">Coming soon ...</Run>
