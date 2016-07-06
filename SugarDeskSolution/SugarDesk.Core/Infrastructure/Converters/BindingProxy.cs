@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="WebBrowserSourceBehaviour.cs" company="SugarDesk WPF MVVM Studio">
+// <copyright file="BindingProxy.cs" company="SugarDesk WPF MVVM Studio">
 // Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
 // </copyright>
 // -----------------------------------------------------------------------
@@ -7,22 +7,34 @@
 namespace SugarDesk.Core.Infrastructure.Converters
 {
     using System.Windows;
-
-    // From: http://www.thomaslevesque.com/2011/03/21/wpf-how-to-bind-to-data-when-the-datacontext-is-not-inherited/
+    
+    /// <summary>
+    /// This class represents BindingProxy class.
+    /// From: http://www.thomaslevesque.com/2011/03/21/wpf-how-to-bind-to-data-when-the-datacontext-is-not-inherited/
+    /// </summary>
     public class BindingProxy : Freezable
     {
+        /// <summary>
+        /// When implemented in a derived class, creates a new instance of the <see cref="T:System.Windows.Freezable"/> derived class. 
+        /// </summary>
+        /// <returns>The new Freezable instance.</returns>T
         protected override Freezable CreateInstanceCore()
         {
             return new BindingProxy();
         }
 
+        /// <summary>
+        /// Gets or sets the data.
+        /// </summary>
         public object Data
         {
             get { return (object)GetValue(DataProperty); }
             set { SetValue(DataProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Data.  This enables animation, styling, binding, etc...
+        /// <summary>
+        /// DependencyProperty as the backing store for Data.  This enables animation, styling, binding, etc...
+        /// </summary>
         public static readonly DependencyProperty DataProperty = DependencyProperty.Register("Data", typeof(object), typeof(BindingProxy), new UIPropertyMetadata(null));
     }
 }

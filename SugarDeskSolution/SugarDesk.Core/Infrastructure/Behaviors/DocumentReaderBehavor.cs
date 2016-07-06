@@ -9,24 +9,33 @@ namespace SugarDesk.Core.Infrastructure.Behaviors
     using System.Windows;
     using System.Windows.Documents;
 
+    /// <summary>
+    /// This class represents DocumentReaderBehavor class.
+    /// </summary>
     public static class DocumentReaderBehavor
     {
+        /// <summary>
+        /// Create the document reader attached property.
+        /// </summary>
         public static readonly DependencyProperty DocumentReaderProperty =
-            DependencyProperty.RegisterAttached(
-            "DocumentReader",
-            typeof(object),
-            typeof(DocumentReaderBehavor),
-            new PropertyMetadata(DocumentReaderChanged)
-            );
+                                                DependencyProperty.RegisterAttached(
+                                                "DocumentReader",
+                                                typeof(object),
+                                                typeof(DocumentReaderBehavor),
+                                                new PropertyMetadata(DocumentReaderChanged)
+                                                );
 
-        private static void DocumentReaderChanged(
-            DependencyObject d,
-            DependencyPropertyChangedEventArgs e)
+        /// <summary>
+        /// The document reader changed function.
+        /// <param name="dependencyObject">DependencyObject object</param>
+        /// <param name="eventArgs">DependencyPropertyChangedEventArgs argument</param>
+        /// </summary>
+        private static void DocumentReaderChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
-            var documentReader = d as FlowDocument;
+            var documentReader = dependencyObject as FlowDocument;
             if (documentReader != null)
             {
-                var content = e.NewValue as string;
+                var content = eventArgs.NewValue as string;
                 if (content != null) 
                 {
                     var paragraph = new Paragraph();
@@ -36,11 +45,20 @@ namespace SugarDesk.Core.Infrastructure.Behaviors
             }
         }
 
+        /// <summary>
+        /// Set the document reader object.
+        /// <param name="target">DependencyObject target object</param>
+        /// <param name="value">New document object to set.</param>
+        /// </summary>
         public static void SetDocumentReader(DependencyObject target, object value)
         {
             target.SetValue(DocumentReaderProperty, value);
         }
 
+        /// <summary>
+        /// Get the document reader object.
+        /// <param name="target">DependencyObject target object</param>
+        /// </summary>
         public static object GetDocumentReader(DependencyObject target)
         {
             return target.GetValue(DocumentReaderProperty);
