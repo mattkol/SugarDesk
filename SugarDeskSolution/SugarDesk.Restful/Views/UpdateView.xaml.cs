@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿// -----------------------------------------------------------------------
+// <copyright file="UpdateView.xaml.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.Restful.Views
 {
     /// <summary>
     /// Interaction logic for UpdateView.xaml
     /// </summary>
-    public partial class UpdateView : UserControl
+    public partial class UpdateView 
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateView"/> class.
+        /// </summary>
         public UpdateView()
         {
             InitializeComponent();

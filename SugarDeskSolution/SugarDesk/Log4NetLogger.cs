@@ -18,57 +18,57 @@ namespace SugarDesk
 
         public Log4NetLogger(Type type)
         {
-            this._log4NetAdapter = LogManager.GetLogger(type);
+            _log4NetAdapter = LogManager.GetLogger(type);
         }
 
         public void Debug(string message)
         {
-            this._log4NetAdapter.Debug(message);
+            _log4NetAdapter.Debug(message);
         }
 
         public void Debug(string message, Exception exception)
         {
-            this._log4NetAdapter.Debug(message, exception);
+            _log4NetAdapter.Debug(message, exception);
         }
 
         public void Error(string message)
         {
-            this._log4NetAdapter.Error(message);
+            _log4NetAdapter.Error(message);
         }
 
         public void Error(string message, Exception exception)
         {
-            this._log4NetAdapter.Error(message, exception);
+            _log4NetAdapter.Error(message, exception);
         }
 
         public void Fatal(string message)
         {
-            this._log4NetAdapter.Fatal(message);
+            _log4NetAdapter.Fatal(message);
         }
 
         public void Fatal(string message, Exception exception)
         {
-            this._log4NetAdapter.Fatal(message, exception);
+            _log4NetAdapter.Fatal(message, exception);
         }
 
         public void Info(string message)
         {
-            this._log4NetAdapter.Info(message);
+            _log4NetAdapter.Info(message);
         }
 
         public void Info(string message, Exception exception)
         {
-            this._log4NetAdapter.Info(message, exception);
+            _log4NetAdapter.Info(message, exception);
         }
 
         public void Warning(string message)
         {
-            this._log4NetAdapter.Warn(message);
+            _log4NetAdapter.Warn(message);
         }
 
         public void Warning(string message, Exception exception)
         {
-            this._log4NetAdapter.Warn(message, exception);
+            _log4NetAdapter.Warn(message, exception);
         }
     }
 }

@@ -14,7 +14,7 @@
                 </Paragraph>
 
                 <Paragraph>
-                    C# POCO generator - generates C# based models with a Json serialization feauture. This uses the poco generator modules created in Sugar CRM Restful CRUD.
+                    C# POCO generator - generates C# based models with a Json serialization feauture. This uses the poco generator modules created in SugarCRM Restful CRUD.
                 </Paragraph>
 
             </FlowDocument>

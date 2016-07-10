@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ReadAllViewModel.cs" company="SugarDesk WPF MVVM Studio">
+// <copyright file="BaseViewModel.cs" company="SugarDesk WPF MVVM Studio">
 // Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
 // </copyright>
 // -----------------------------------------------------------------------
@@ -22,7 +22,7 @@ namespace SugarDesk.Restful.ViewModels
     using Core.Infrastructure.Converters;
 
     /// <summary>
-    /// This class represents RestViewModel classs.
+    /// This class represents RestViewModel class.
     /// </summary>
     public abstract class BaseViewModel : BindableBase
     {
@@ -42,7 +42,7 @@ namespace SugarDesk.Restful.ViewModels
             object sugarCrmAccountObj = Application.Current.Properties["SugarCrmAccount"];
             if (sugarCrmAccountObj != null)
             {
-                CurrentSugarCrmAccount = (SugarCrmAccount) sugarCrmAccountObj;
+                CurrentSugarCrmAccount = (SugarCrmAccount)sugarCrmAccountObj;
             }
 
             RequestViewOption = EnumOptionType.One;
@@ -90,7 +90,7 @@ namespace SugarDesk.Restful.ViewModels
         
         public EnumOptionType RequestViewOption { get; set; }
         public EnumOptionType ResponseViewOption { get; set; }
-        public EnumOptionType CreateOrUpdateEntriesOption  { get; set; }
+        public EnumOptionType CreateOrUpdateEntriesOption { get; set; }
         public GridPercentType RequestRowGridPercent { get; set; }
         public GridPercentType ResponseRowGridPercent { get; set; }
 
@@ -128,11 +128,11 @@ namespace SugarDesk.Restful.ViewModels
             {
                 ModelInfo modelInfo = _modelInfos.FirstOrDefault(x => x.ModelName == ModelInfoSelected.ModelName);
 
-                if(modelInfo != null)
+                if (modelInfo != null)
                 {
                     List<ModelProperty> properties = modelInfo.ModelProperties;
 
-                    if(properties != null)
+                    if (properties != null)
                     {
                         FieldItems = new ObservableCollection<ModelProperty>(properties);
                     }
@@ -171,12 +171,14 @@ namespace SugarDesk.Restful.ViewModels
         {
             if (SelectedFieldItem != null)
             {
-                var itemToAddd = _moduleDataItems.FirstOrDefault(item => string.Equals(item.FieldName, SelectedFieldItem.Name, StringComparison.OrdinalIgnoreCase));
+                var itemToAddd = _moduleDataItems.FirstOrDefault(
+                    item => string.Equals(item.FieldName, SelectedFieldItem.Name, StringComparison.OrdinalIgnoreCase));
+
                 if (itemToAddd == null)
                 {
                     var moduleData = new ModuleData();
                     moduleData.FieldName = SelectedFieldItem.Name;
-                    moduleData.Type =(Nullable.GetUnderlyingType(SelectedFieldItem.Type) ?? SelectedFieldItem.Type).Name;
+                    moduleData.Type = (Nullable.GetUnderlyingType(SelectedFieldItem.Type) ?? SelectedFieldItem.Type).Name;
 
                     _moduleDataItems.Add(moduleData);
                     ModuleDataItems = new ObservableCollection<ModuleData>(_moduleDataItems);
@@ -212,7 +214,7 @@ namespace SugarDesk.Restful.ViewModels
 
         protected bool CanSend()
         {
-            EnableSingleDataEntryControls = (ModelInfoSelected != null);
+            EnableSingleDataEntryControls = ModelInfoSelected != null;
 
             if ((CurrentSugarCrmAccount == null) || !CurrentSugarCrmAccount.IsValid)
             {

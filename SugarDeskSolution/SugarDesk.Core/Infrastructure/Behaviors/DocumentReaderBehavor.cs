@@ -22,34 +22,13 @@ namespace SugarDesk.Core.Infrastructure.Behaviors
                                                 "DocumentReader",
                                                 typeof(object),
                                                 typeof(DocumentReaderBehavor),
-                                                new PropertyMetadata(DocumentReaderChanged)
-                                                );
-
-        /// <summary>
-        /// The document reader changed function.
-        /// <param name="dependencyObject">DependencyObject object</param>
-        /// <param name="eventArgs">DependencyPropertyChangedEventArgs argument</param>
-        /// </summary>
-        private static void DocumentReaderChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
-        {
-            var documentReader = dependencyObject as FlowDocument;
-            if (documentReader != null)
-            {
-                var content = eventArgs.NewValue as string;
-                if (content != null) 
-                {
-                    var paragraph = new Paragraph();
-                    paragraph.Inlines.Add(content);
-                    documentReader.Blocks.Add(paragraph);
-                }
-            }
-        }
+                                                new PropertyMetadata(DocumentReaderChanged));
 
         /// <summary>
         /// Set the document reader object.
+        /// </summary>
         /// <param name="target">DependencyObject target object</param>
         /// <param name="value">New document object to set.</param>
-        /// </summary>
         public static void SetDocumentReader(DependencyObject target, object value)
         {
             target.SetValue(DocumentReaderProperty, value);
@@ -57,12 +36,32 @@ namespace SugarDesk.Core.Infrastructure.Behaviors
 
         /// <summary>
         /// Get the document reader object.
-        /// <param name="target">DependencyObject target object</param>
         /// </summary>
+        /// <param name="target">DependencyObject target object</param>
+        /// <returns>Document reader object</returns>
         public static object GetDocumentReader(DependencyObject target)
         {
             return target.GetValue(DocumentReaderProperty);
         }
 
+        /// <summary>
+        /// The document reader changed function.
+        /// </summary>
+        /// <param name="dependencyObject">DependencyObject object</param>
+        /// <param name="eventArgs">DependencyPropertyChangedEventArgs argument</param>
+        private static void DocumentReaderChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
+        {
+            var documentReader = dependencyObject as FlowDocument;
+            if (documentReader != null)
+            {
+                var content = eventArgs.NewValue as string;
+                if (content != null)
+                {
+                    var paragraph = new Paragraph();
+                    paragraph.Inlines.Add(content);
+                    documentReader.Blocks.Add(paragraph);
+                }
+            }
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace SugarDesk.Restful.ViewModels
     using Core.Infrastructure.Converters;
 
     /// <summary>
-    /// This class represents ReadByPageViewModel classs.
+    /// This class represents ReadByPageViewModel class.
     /// </summary>
     public class ReadByPageViewModel : BaseViewModel
     {

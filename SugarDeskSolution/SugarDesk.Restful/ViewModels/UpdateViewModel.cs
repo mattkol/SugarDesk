@@ -4,19 +4,19 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System.Linq;
-using FirstFloor.ModernUI.Presentation;
-using Prism.Events;
-using SugarDesk.Restful.Helpers;
-using SugarDesk.Restful.Models;
-
 namespace SugarDesk.Restful.ViewModels
 {
-    using Microsoft.Practices.Unity;
+    using System.Linq;
     using Core.Infrastructure.Converters;
+    using FirstFloor.ModernUI.Presentation;
+    using Helpers;
+    using Microsoft.Practices.Unity;
+    using Models;
+    using Prism.Events;
+
 
     /// <summary>
-    /// This class represents UpdateViewModel classs.
+    /// This class represents UpdateViewModel class.
     /// </summary>
     public class UpdateViewModel : BaseViewModel
     {

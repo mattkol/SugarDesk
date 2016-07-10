@@ -13,7 +13,7 @@ namespace SugarDesk
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App 
     {
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -22,25 +22,24 @@ namespace SugarDesk
 
             base.OnStartup(e);
 
-            Bootstrapper bootstrapper = new Bootstrapper();
+            var bootstrapper = new Bootstrapper();
             bootstrapper.Run();
         }
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            Exception ex = e.ExceptionObject as Exception;
-            MessageBox.Show(ex.Message, "Uncaught Thread Exception",
-                            MessageBoxButton.OK, MessageBoxImage.Error);
+            var exception = e.ExceptionObject as Exception;
+            MessageBox.Show(exception.Message, "Uncaught Thread Exception", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs eventArgs)
         {
             string message = "An error as occured!";
-            Exception exception = new Exception(message);
+            var exception = new Exception(message);
 
-            if (e.Exception != null)
+            if (eventArgs.Exception != null)
             {
-                exception = e.Exception.GetBaseException();
+                exception = eventArgs.Exception.GetBaseException();
                 if (!string.IsNullOrEmpty(exception.Message))
                 {
                     message = exception.Message;
@@ -49,7 +48,7 @@ namespace SugarDesk
             }
 
             MessageBox.Show(message, "Application Error");
-            e.Handled = true;
+            eventArgs.Handled = true;
 
             var logger = new Log4NetLogger(typeof(App));
             logger.Error(message, exception);

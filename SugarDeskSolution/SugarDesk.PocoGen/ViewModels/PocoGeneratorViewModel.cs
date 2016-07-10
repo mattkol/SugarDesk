@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// -----------------------------------------------------------------------
+// <copyright file="PocoGeneratorViewModel.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.PocoGen.ViewModels
 {
-    class PocoGeneratorViewModel
+    using Prism.Mvvm;
+
+    /// <summary>
+    /// This class represents PocoGeneratorViewModel class.
+    /// </summary>
+    public class PocoGeneratorViewModel : BindableBase
     {
     }
 }

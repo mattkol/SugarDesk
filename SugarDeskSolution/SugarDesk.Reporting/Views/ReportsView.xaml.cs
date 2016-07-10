@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿// -----------------------------------------------------------------------
+// <copyright file="ReportsView.xaml.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.Reporting.Views
 {
     /// <summary>
     /// Interaction logic for ReportsView.xaml
     /// </summary>
-    public partial class ReportsView : UserControl
+    public partial class ReportsView
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReportsView"/> class.
+        /// </summary>
         public ReportsView()
         {
             InitializeComponent();

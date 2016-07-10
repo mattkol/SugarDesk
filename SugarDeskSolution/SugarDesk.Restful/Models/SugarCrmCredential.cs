@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Biggy.Core;
+﻿// -----------------------------------------------------------------------
+// <copyright file="SugarCrmCredential.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.Restful.Models
 {
+    using System;
+    using Biggy.Core;
+
     public class SugarCrmCredential
     {
         [PrimaryKey(Auto: false)]
@@ -18,10 +21,10 @@ namespace SugarDesk.Restful.Models
         {
             get
             {
-                return (!string.IsNullOrEmpty(Name) &&
-                        !string.IsNullOrEmpty(Username) &&
-                        !string.IsNullOrEmpty(Password) &&
-                        !string.IsNullOrEmpty(UrlName));
+                return !string.IsNullOrEmpty(Name) &&
+                       !string.IsNullOrEmpty(Username) &&
+                       !string.IsNullOrEmpty(Password) &&
+                       !string.IsNullOrEmpty(UrlName);
             }
         }
 
@@ -37,8 +40,8 @@ namespace SugarDesk.Restful.Models
                 return false;
             }
 
-            return (string.Equals(Name, credential.Name, StringComparison.OrdinalIgnoreCase) &&
-                    string.Equals(UrlName, credential.UrlName, StringComparison.OrdinalIgnoreCase));
+            return string.Equals(Name, credential.Name, StringComparison.OrdinalIgnoreCase) &&
+                   string.Equals(UrlName, credential.UrlName, StringComparison.OrdinalIgnoreCase);
         }
 
         public bool SameUrlGroup(SugarCrmCredential credential)

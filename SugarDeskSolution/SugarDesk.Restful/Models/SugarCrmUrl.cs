@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Biggy.Core;
+﻿// -----------------------------------------------------------------------
+// <copyright file="SugarCrmUrl.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.Restful.Models
 {
+    using Biggy.Core;
+
     public class SugarCrmUrl
     {
         [PrimaryKey(Auto: false)]

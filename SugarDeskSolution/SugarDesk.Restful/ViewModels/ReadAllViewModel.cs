@@ -4,24 +4,18 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Text;
-using CsvHelper;
-using FirstFloor.ModernUI.Presentation;
-using Prism.Events;
-using SugarDesk.Restful.Helpers;
-using SugarDesk.Restful.Models;
-
 namespace SugarDesk.Restful.ViewModels
 {
-    using Microsoft.Practices.Unity;
+    using System.Linq;
     using Core.Infrastructure.Converters;
-
+    using FirstFloor.ModernUI.Presentation;
+    using Helpers;
+    using Microsoft.Practices.Unity;
+    using Models;
+    using Prism.Events;
+    
     /// <summary>
-    /// This class represents RestViewModel classs.
+    /// This class represents RestViewModel class.
     /// </summary>
     public class ReadAllViewModel : BaseViewModel
     {

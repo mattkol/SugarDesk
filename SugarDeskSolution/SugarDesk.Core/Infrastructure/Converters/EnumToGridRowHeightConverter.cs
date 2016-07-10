@@ -16,6 +16,14 @@ namespace SugarDesk.Core.Infrastructure.Converters
     /// </summary>
     public class EnumToGridRowHeightConverter : IMultiValueConverter
     {
+        /// <summary>
+        /// The converting function.
+        /// </summary>
+        /// <param name="values">List of object values to convert.</param>
+        /// <param name="targetType">The target type.</param>
+        /// <param name="parameter">The parameter.</param>
+        /// <param name="culture">The culture info.</param>
+        /// <returns>Converted object.</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var gridOptionSouce = (EnumOptionType)values[1];
@@ -28,7 +36,14 @@ namespace SugarDesk.Core.Infrastructure.Converters
             return (gridOptionValue == gridOptionSouce) ? new GridLength(1, GridUnitType.Star) : new GridLength(0);
         }
 
-
+        /// <summary>
+        /// The converting back function.
+        /// </summary>
+        /// <param name="value">Object to convert.</param>
+        /// <param name="targetTypes">List of target types.</param>
+        /// <param name="parameter">The parameter.</param>
+        /// <param name="culture">The culture info.</param>
+        /// <returns>List of converted objects.</returns>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException(GetType().Name + "Convert not implemented.");

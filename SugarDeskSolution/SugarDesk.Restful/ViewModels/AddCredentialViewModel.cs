@@ -1,12 +1,22 @@
-﻿using SugarDesk.Restful.Models;
+﻿// -----------------------------------------------------------------------
+// <copyright file="AddCredentialViewModel.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.Restful.ViewModels
 {
-    using Prism.Mvvm;
     using System.Collections.ObjectModel;
+    using Models;
+    using Prism.Mvvm;
 
     public class AddCredentialViewModel : BindableBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddCredentialViewModel"/> class.
+        /// </summary>
+        /// <param name="urlItems">The url items.</param>
+        /// <param name="urlItemSelected">The currently selected url object.</param>
         public AddCredentialViewModel(ObservableCollection<SugarCrmUrl> urlItems, SugarCrmUrl urlItemSelected)
         {
             UrlItems = urlItems;

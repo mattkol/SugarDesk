@@ -24,10 +24,15 @@ namespace SugarDesk.Restful.ViewModels
     using Core.Infrastructure.Converters;
 
     /// <summary>
-    /// This class represents CreateViewModel classs.
+    /// This class represents CreateViewModel class.
     /// </summary>
     public class CreateViewModel : BaseViewModel
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateViewModel"/> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="container">The Prism Unity container.</param>
         public CreateViewModel(IEventAggregator eventAggregator, IUnityContainer container)
             : base(eventAggregator, container)
         {
@@ -46,7 +51,7 @@ namespace SugarDesk.Restful.ViewModels
         private void GetTemplate(object parameter)
         {
             List<string> properties = ModelInfoSelected.ModelProperties.Select(x => x.Name).ToList();
-            string csvString = String.Join(",", properties);
+            string csvString = string.Join(",", properties);
 
             var dialog = new SaveFileDialog()
             {
@@ -95,10 +100,13 @@ namespace SugarDesk.Restful.ViewModels
                             headers = csv.FieldHeaders;
                             foreach (var header in headers)
                             {
-                                ModelProperty modelProperty = ModelInfoSelected.ModelProperties.FirstOrDefault(x => (string.Compare(x.Name, header, StringComparison.CurrentCultureIgnoreCase) == 0));
+                                ModelProperty modelProperty = ModelInfoSelected.ModelProperties.FirstOrDefault(
+                                    x => (string.Compare(x.Name, header, StringComparison.CurrentCultureIgnoreCase) == 0));
+
                                 if (modelProperty != null)
                                 {
-                                    dataTable.Columns.Add(modelProperty.Name, Nullable.GetUnderlyingType(modelProperty.Type) ?? modelProperty.Type);
+                                    dataTable.Columns.Add(
+                                        modelProperty.Name, Nullable.GetUnderlyingType(modelProperty.Type) ?? modelProperty.Type);
                                 }
                             }
                             headerIsRead = true;

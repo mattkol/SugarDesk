@@ -1,24 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.ComponentModel;
-using System.Dynamic;
-using System.Windows.Documents;
-using Newtonsoft.Json.Linq;
-using SugarDesk.Restful.Models;
+﻿// -----------------------------------------------------------------------
+// <copyright file="JsonStringExtensions.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.Restful.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.ComponentModel;
+    using Newtonsoft.Json.Linq;
+
     internal static class JsonStringExtensions 
     {
         /// <summary>
-        /// Gets enity by id
+        /// Converts json string to dynamic object collections datatable.
         /// </summary>
-        /// <param name="json"></param>
-        /// <param name="type"></param>
-        /// <param name="selectedFields"></param>
-        /// <param name="selectFieldsOnly"></param>
+        /// <param name="json">Json string to extend.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="selectedFields">Selected fields.</param>
+        /// <param name="selectFieldsOnly">Whether to use select fields only.</param>
         /// <returns>DataTable object</returns>
         public static DataTable ToDynamicObjects(this string json, Type type, List<string> selectedFields, bool selectFieldsOnly)
         {
@@ -34,7 +37,9 @@ namespace SugarDesk.Restful.Helpers
                 {
                     if (selectedFields != null && selectedFields.Count > 0)
                     {
-                        propertyDescriptors.AddRange(TypeDescriptor.GetProperties(tempObject.GetType()).Cast<PropertyDescriptor>().Where(property => selectedFields.Contains(property.Name)));
+                        propertyDescriptors.AddRange(
+                            TypeDescriptor.GetProperties(
+                            tempObject.GetType()).Cast<PropertyDescriptor>().Where(property => selectedFields.Contains(property.Name)));
                     }
                 }
                 else
@@ -66,12 +71,12 @@ namespace SugarDesk.Restful.Helpers
         }
 
         /// <summary>
-        /// Gets enity by id
+        /// Converts json string to dynamic object datatable.
         /// </summary>
-        /// <param name="json"></param>
-        /// <param name="type"></param>
-        /// <param name="selectedFields"></param>
-        /// <param name="selectFieldsOnly"></param>
+        /// <param name="json">Json string to extend.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="selectedFields">Selected fields.</param>
+        /// <param name="selectFieldsOnly">Whether to use select fields only.</param>
         /// <returns>DataTable object</returns>
         public static DataTable ToDynamicObject(this string json, Type type, List<string> selectedFields, bool selectFieldsOnly)
         {
@@ -85,7 +90,9 @@ namespace SugarDesk.Restful.Helpers
             {
                 if (selectedFields != null && selectedFields.Count > 0)
                 {
-                    propertyDescriptors.AddRange(TypeDescriptor.GetProperties(tempObject.GetType()).Cast<PropertyDescriptor>().Where(property => selectedFields.Contains(property.Name)));
+                    propertyDescriptors.AddRange(
+                        TypeDescriptor.GetProperties(
+                        tempObject.GetType()).Cast<PropertyDescriptor>().Where(property => selectedFields.Contains(property.Name)));
                 }
             }
             else

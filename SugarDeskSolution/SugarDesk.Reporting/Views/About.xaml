@@ -7,14 +7,14 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <Grid>
-        <FlowDocumentScrollViewer>
+        <FlowDocumentScrollViewer  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <FlowDocument>
                 <Paragraph>
                     <Run FontSize="30">SugarDesk - Reporting</Run>
                 </Paragraph>
 
                 <Paragraph>
-                    Sugar CRM reporting - different .NET reporting options.
+                   SugarCRM reporting - different .NET reporting options.
                 </Paragraph>
 
             </FlowDocument>

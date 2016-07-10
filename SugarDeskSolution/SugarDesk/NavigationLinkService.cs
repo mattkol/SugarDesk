@@ -12,18 +12,34 @@ namespace SugarDesk
     using Core.Interfaces;
     using FirstFloor.ModernUI.Presentation;
     using Interfaces;
-    
+
+    /// <summary>
+    /// This class represents NavigationLinkService class, extends INavigationLinkService.
+    /// </summary>
     public class NavigationLinkService : INavigationLinkService
     {
+        /// <summary>
+        /// The home relative url.
+        /// </summary>
         private const string HomeRelUrl = "/Views/Home.xaml";
+
+        /// <summary>
+        /// The assembly name of the module.
+        /// </summary>
         private readonly string _assemblyName = string.Empty;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NavigationLinkService"/> class.
+        /// </summary>
         public NavigationLinkService()
         {
             _assemblyName = GetType().Assembly.GetName().Name;
             NavigationLinkGroups = new List<INavigationLinksGroup>(); 
         }
 
+        /// <summary>
+        /// Gets the start source url.
+        /// </summary>
         public Uri StartSoureUrl 
         { 
             get
@@ -32,7 +48,14 @@ namespace SugarDesk
             }
         }
 
+        /// <summary>
+        /// Gets or sets the navigation link groups.
+        /// </summary>
         public List<INavigationLinksGroup> NavigationLinkGroups { get; set; }
+
+        /// <summary>
+        /// Gets the menu link groups collection.
+        /// </summary>
         public LinkGroupCollection LinkGroupCollection
         {
             get

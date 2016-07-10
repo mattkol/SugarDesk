@@ -1,14 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// -----------------------------------------------------------------------
+// <copyright file="RestResponse.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.Restful.Models
 {
+    using System.Data;
+
+    /// <summary>
+    /// This class represents RestResponse class.
+    /// </summary>
     public class RestResponse
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RestResponse"/> class.
+        /// </summary>
         public RestResponse()
         {
             Data = new DataTable();
@@ -16,9 +23,24 @@ namespace SugarDesk.Restful.Models
             JsonRawResponse = "No valid data returned!";
         }
 
+        /// <summary>
+        /// Gets or sets data.
+        /// </summary>
         public DataTable Data { get; set; }
+
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets json raw request.
+        /// </summary>
         public string JsonRawRequest { get; set; }
+
+        /// <summary>
+        /// Gets or sets json raw response.
+        /// </summary>
         public string JsonRawResponse { get; set; } 
     }
 }

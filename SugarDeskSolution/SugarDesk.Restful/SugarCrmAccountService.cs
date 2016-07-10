@@ -1,7 +1,12 @@
-﻿using System;
+﻿// -----------------------------------------------------------------------
+// <copyright file="SugarCrmAccountService.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.Restful
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -9,6 +14,9 @@ namespace SugarDesk.Restful
     using Biggy.Data.Json;
     using Models;
 
+    /// <summary>
+    /// This class represents SugarCrmAccountService class.
+    /// </summary>
     sealed class SugarCrmAccountService
     {
         static readonly SugarCrmAccountService _instance = new SugarCrmAccountService();
@@ -17,6 +25,9 @@ namespace SugarDesk.Restful
         private const string SugarCrmUrlsFile = "sugarcrm_url_list.txt";
         private const string SugarCrmCredentialsFile = "sugarcrm_credential_list.txt";
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="SugarCrmAccountService" /> class from being created.
+        /// </summary>
         SugarCrmAccountService()
         {
             var urlStore = new JsonStore<SugarCrmUrl>();
@@ -37,7 +48,7 @@ namespace SugarDesk.Restful
 
                 foreach (var url in urlList)
                 {
-                    _sugarCrmUrlsList.Add(new SugarCrmUrl { Name = url.Name, Url = url.Url}); 
+                    _sugarCrmUrlsList.Add(new SugarCrmUrl { Name = url.Name, Url = url.Url }); 
                 }
             }
 
@@ -56,7 +67,10 @@ namespace SugarDesk.Restful
 
                 foreach (var cred in credentialList)
                 {
-                    _sugarCrmCredentialList.Add(new SugarCrmCredential { Name = cred.Name, Username = cred.Username, Password = cred.Password, UrlName = cred.UrlName });
+                    _sugarCrmCredentialList.Add(new SugarCrmCredential
+                    {
+                        Name = cred.Name, Username = cred.Username, Password = cred.Password, UrlName = cred.UrlName
+                    });
                 }
             }
         }
@@ -77,7 +91,7 @@ namespace SugarDesk.Restful
             }
         }
 
-        public List<SugarCrmCredential> GetCredntialList(string urlName)
+        public List<SugarCrmCredential> GetCredentialList(string urlName)
         {
             if (string.IsNullOrEmpty(urlName))
             {
@@ -110,7 +124,8 @@ namespace SugarDesk.Restful
                 return;
             }
 
-            var credentialAlreadyAdded = _sugarCrmCredentialList.FirstOrDefault(x => string.Equals(x.Name, credential.Name, StringComparison.OrdinalIgnoreCase));
+            var credentialAlreadyAdded = _sugarCrmCredentialList.FirstOrDefault(
+                x => string.Equals(x.Name, credential.Name, StringComparison.OrdinalIgnoreCase));
 
             if (credentialAlreadyAdded == null)
             {

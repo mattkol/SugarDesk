@@ -135,7 +135,7 @@
 
                                     <Label />
 
-                                    <Button Content="Send" ToolTip="Send request to SugarCrm." Command="{Binding Path=SendCommand}" Height="30" Width="70" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Style="{StaticResource SendButton}" />
+                                    <Button Content="Send" ToolTip="Send request toSugarCRM." Command="{Binding Path=SendCommand}" Height="30" Width="70" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Style="{StaticResource SendButton}" />
 
                                 </st:AutoGrid>
 
@@ -210,7 +210,7 @@
                                 <Grid Grid.Row="0" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Center" >
                                     <st:AutoGrid Rows="Auto,Auto" Columns="*">
                                         <ProgressBar Minimum="0" Maximum="1" Height="50" IsIndeterminate="True" Foreground="{DynamicResource Accent}" />
-                                        <TextBlock Text="Requesting data from SugarCrm ..." FontSize="20"  Foreground="{DynamicResource Accent}"/>
+                                        <TextBlock Text="Requesting data from SugarCRM ..." FontSize="20"  Foreground="{DynamicResource Accent}"/>
                                     </st:AutoGrid>
                                 </Grid>
                                 <!--  End: Grid view -->

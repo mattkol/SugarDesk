@@ -73,7 +73,7 @@
 
                                 <st:AutoGrid Rows="*" Columns="*,50,250" ChildMargin="3">
                                     <st:AutoGrid Rows="Auto" Columns="120,*" ChildMargin="3">
-                                        <Label Content="SugarCrm Module:" HorizontalAlignment="Right"/>
+                                        <Label Content="SugarCRM Module:" HorizontalAlignment="Right"/>
                                         <ComboBox ItemsSource="{Binding Path=ModelInfoItems}"  Width="280" DisplayMemberPath="ModelName" SelectedIndex="{Binding Path=SelectedIndexModelName}" SelectedItem="{Binding Path=ModelInfoSelected}" HorizontalAlignment="Left" >
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="SelectionChanged">
@@ -115,7 +115,7 @@
                                                     <st:AutoGrid Rows="Auto" Columns="Auto,Auto" ChildMargin="3">
                                                         <Button Content="Get Template" ToolTip="Download sample template. &#x0a;Template will have only headers (field names)." 
                                                             Command="{Binding Path=GetTemplateCommand}" Width="Auto" HorizontalAlignment="Left"/>
-                                                        <Button Content="Import File" ToolTip="Import comma-value separated (cvs) data file &#x0a;for single or multiple SugarCrm module entries.&#x0a;First row must be the headers(field names)." 
+                                                        <Button Content="Import File" ToolTip="Import comma-value separated (cvs) data file &#x0a;for single or multiple SugarCRM module entries.&#x0a;First row must be the headers(field names)." 
                                                             Command="{Binding Path=ImportCvsFileCommand}" Width="Auto" HorizontalAlignment="Left"/>
                                                     </st:AutoGrid>
                                                     <DataGrid 
@@ -189,7 +189,7 @@
 
                                     <Label />
 
-                                    <Button Content="Send" ToolTip="Send request to SugarCrm." Command="{Binding Path=SendCommand}" Height="30" Width="70" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Style="{StaticResource SendButton}" />
+                                    <Button Content="Send" ToolTip="Send request toSugarCRM." Command="{Binding Path=SendCommand}" Height="30" Width="70" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Style="{StaticResource SendButton}" />
 
                                 </st:AutoGrid>
 
@@ -264,7 +264,7 @@
                                 <Grid Grid.Row="0" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Center" >
                                     <st:AutoGrid Rows="Auto,Auto" Columns="*">
                                         <ProgressBar Minimum="0" Maximum="1" Height="50" IsIndeterminate="True" Foreground="{DynamicResource Accent}" />
-                                        <TextBlock Text="Requesting data from SugarCrm ..." FontSize="20"  Foreground="{DynamicResource Accent}"/>
+                                        <TextBlock Text="Requesting data from SugarCRM ..." FontSize="20"  Foreground="{DynamicResource Accent}"/>
                                     </st:AutoGrid>
                                 </Grid>
                                 <!--  End: Grid view -->

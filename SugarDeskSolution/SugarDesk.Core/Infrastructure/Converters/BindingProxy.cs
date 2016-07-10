@@ -15,6 +15,20 @@ namespace SugarDesk.Core.Infrastructure.Converters
     public class BindingProxy : Freezable
     {
         /// <summary>
+        /// DependencyProperty as the backing store for Data.  This enables animation, styling, binding, etc...
+        /// </summary>
+        public static readonly DependencyProperty DataProperty = DependencyProperty.Register("Data", typeof(object), typeof(BindingProxy), new UIPropertyMetadata(null));
+
+        /// <summary>
+        /// Gets or sets the data.
+        /// </summary>
+        public object Data
+        {
+            get { return GetValue(DataProperty); }
+            set { SetValue(DataProperty, value); }
+        }
+
+        /// <summary>
         /// When implemented in a derived class, creates a new instance of the <see cref="T:System.Windows.Freezable"/> derived class. 
         /// </summary>
         /// <returns>The new Freezable instance.</returns>T
@@ -22,19 +36,5 @@ namespace SugarDesk.Core.Infrastructure.Converters
         {
             return new BindingProxy();
         }
-
-        /// <summary>
-        /// Gets or sets the data.
-        /// </summary>
-        public object Data
-        {
-            get { return (object)GetValue(DataProperty); }
-            set { SetValue(DataProperty, value); }
-        }
-
-        /// <summary>
-        /// DependencyProperty as the backing store for Data.  This enables animation, styling, binding, etc...
-        /// </summary>
-        public static readonly DependencyProperty DataProperty = DependencyProperty.Register("Data", typeof(object), typeof(BindingProxy), new UIPropertyMetadata(null));
     }
 }

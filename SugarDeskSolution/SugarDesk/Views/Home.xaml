@@ -14,8 +14,8 @@
                 </Paragraph>
 
                 <Paragraph>
-                    <Bold>SugarDesk</Bold> is a Sugar CRM .NET integration studio built with WPF Modern UI (mui) framework. It highlights different Modern UI MVVM implementation.
-                        It uses SugarCrm database schema and REST API as input sources. 
+                    <Bold>SugarDesk</Bold> is a SugarCRM .NET integration studio built with WPF Modern UI (mui) framework. It highlights different Modern UI MVVM implementation.
+                        It uses SugarCRM database schema and REST API as input sources. 
                 </Paragraph>
 
 
@@ -37,23 +37,23 @@
                 </List>
 
                 <Paragraph>
-                    <Bold>Sugar CRM implementations include:</Bold>
+                    <Bold>SugarCRM implementations include:</Bold>
                 </Paragraph>
                 
                 <List>
                     <ListItem>
                         <Paragraph>
-                            C# POCO generator - generates C# based models with a Json serialization feauture. This uses the poco generator modules created in Sugar CRM Restful CRUD.
+                            C# POCO generator - generates C# based models with a Json serialization feauture. This uses the poco generator modules created in SugarCRM Restful CRUD.
                         </Paragraph>
                     </ListItem>
                     <ListItem>
                         <Paragraph>
-                            Sugar CRM Restful CRUD demonstration - user Sugar CRM Restful CRUD implemented previously @  ...
+                           SugarCRM Restful CRUD demonstration - userSugarCRM Restful CRUD implemented previously @  ...
                         </Paragraph>
                     </ListItem>
                     <ListItem>
                         <Paragraph>
-                            Sugar CRM reporting - different .NET reporting options.
+                           SugarCRM reporting - different .NET reporting options.
                         </Paragraph>
                     </ListItem>
                 </List>

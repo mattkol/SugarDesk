@@ -10,7 +10,7 @@ namespace SugarDesk.Restful.ViewModels
     using Core.Infrastructure.Converters;
 
     /// <summary>
-    /// This class represents ReadViewModel classs.
+    /// This class represents ReadViewModel class.
     /// </summary>
     public class ReadViewModel : BindableBase
     {

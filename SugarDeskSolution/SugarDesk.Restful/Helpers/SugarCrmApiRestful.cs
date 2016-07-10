@@ -1,20 +1,19 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ReadAllViewModel.cs" company="SugarDesk WPF MVVM Studio">
+// <copyright file="SugarCrmApiRestful.cs" company="SugarDesk WPF MVVM Studio">
 // Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using Newtonsoft.Json.Linq;
-using SugarCrm.RestfulCRUD;
-using SugarDesk.Restful.Models;
-using SugarDesk.Restful.ViewModels;
-using System.Threading.Tasks;
-
 namespace SugarDesk.Restful.Helpers
 {
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using Newtonsoft.Json.Linq;
+    using SugarCrm.RestfulCRUD;
+    using Models;
+    using System.Threading.Tasks;
+    
     /// <summary>
     /// This class represents GeneratePocoModels class.
     /// </summary>
@@ -66,9 +65,14 @@ namespace SugarDesk.Restful.Helpers
                             selectedProperties = properties.Select(x => x.Name).ToList();
                         }
 
-                        response.Data = sugarRestResponse.Content.ToDynamicObjects(restRequest.Type, selectedProperties, selectedFieldsOnly);
-                        response.JsonRawRequest = JToken.Parse(sugarRestResponse.JsonRawRequest).ToString(Newtonsoft.Json.Formatting.Indented);
-                        response.JsonRawResponse = JToken.Parse(sugarRestResponse.JsonRawResponse).ToString(Newtonsoft.Json.Formatting.Indented);
+                        response.Data = sugarRestResponse.Content.ToDynamicObjects(
+                            restRequest.Type, selectedProperties, selectedFieldsOnly);
+
+                        response.JsonRawRequest = JToken.Parse(
+                            sugarRestResponse.JsonRawRequest).ToString(Newtonsoft.Json.Formatting.Indented);
+
+                        response.JsonRawResponse = JToken.Parse(
+                            sugarRestResponse.JsonRawResponse).ToString(Newtonsoft.Json.Formatting.Indented);
                     }
 
                     return response;

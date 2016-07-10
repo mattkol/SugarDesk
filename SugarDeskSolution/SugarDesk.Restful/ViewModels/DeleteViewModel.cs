@@ -16,7 +16,7 @@ namespace SugarDesk.Restful.ViewModels
     using Core.Infrastructure.Converters;
 
     /// <summary>
-    /// This class represents DeleteViewModel classs.
+    /// This class represents DeleteViewModel class.
     /// </summary>
     public class DeleteViewModel : BaseViewModel
     {

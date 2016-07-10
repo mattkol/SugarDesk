@@ -34,7 +34,7 @@ namespace SugarDesk
                 // Register the link collection that is required in ShellViewModel constructor
                 Container.RegisterInstance(_navigationLinkService);
             }
-            this.RegisterTypeIfMissing(typeof(ShellViewModel), typeof(ShellViewModel), true);
+            RegisterTypeIfMissing(typeof(ShellViewModel), typeof(ShellViewModel), true);
         }
 
         protected override void InitializeShell()
@@ -93,7 +93,7 @@ namespace SugarDesk
             //  moduleCatalog.AddModule(typeof(Local Module ));
         }
 
-        private bool InterfaceFilter(Type typeObj, Object criteriaObj)
+        private bool InterfaceFilter(Type typeObj, object criteriaObj)
         {
             return typeObj.ToString() == criteriaObj.ToString();
         }

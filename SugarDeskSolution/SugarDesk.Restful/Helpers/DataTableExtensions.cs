@@ -1,25 +1,29 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.ComponentModel;
-using System.Dynamic;
-using System.Windows.Documents;
-using Newtonsoft.Json.Linq;
-using SugarDesk.Restful.Models;
+﻿// -----------------------------------------------------------------------
+// <copyright file="DataTableExtensions.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.Restful.Helpers
 {
-    internal static class DataTableExtensions 
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.IO;
+    using System.Linq;
+    using Models;
+    
+    /// <summary>
+    /// This class represents DataTableExtensions class.
+    /// </summary>
+    static class DataTableExtensions 
     {
         /// <summary>
-        /// Convert csv string to DataTable object
+        /// Convert csv string to DataTable object.
         /// </summary>
-        /// <param name="dataTable"></param>
-        /// <param name="properties"></param>
-        /// <param name="csvFile"></param>
+        /// <param name="dataTable">Datatabe object to be extended.</param>
+        /// <param name="properties">Model properties.</param>
+        /// <param name="csvFile">The csv input.</param>
         /// <returns>DataTable object</returns>
         public static DataTable FromCsVFile(this DataTable dataTable, List<ModelProperty> properties, string csvFile)
         {
@@ -30,7 +34,9 @@ namespace SugarDesk.Restful.Helpers
 
             foreach (string header in headers)
             {
-                ModelProperty modelProperty = properties.FirstOrDefault(x => (string.Compare(x.Name, header, StringComparison.CurrentCultureIgnoreCase) == 0));
+                ModelProperty modelProperty = properties.FirstOrDefault(
+                    x => (string.Compare(x.Name, header, StringComparison.CurrentCultureIgnoreCase) == 0));
+
                 if (modelProperty != null)
                 {
                     dataTable.Columns.Add(header, Nullable.GetUnderlyingType(modelProperty.Type) ?? modelProperty.Type);
@@ -47,7 +53,6 @@ namespace SugarDesk.Restful.Helpers
 
             return dataTable;
         }
-
     }
 }
 

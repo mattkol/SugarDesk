@@ -76,7 +76,7 @@
                                 <st:AutoGrid Rows="*" Columns="*,50,250" ChildMargin="3">
 
                                     <st:AutoGrid Rows="Auto" Columns="120,*" ChildMargin="3">
-                                        <Label Content="SugarCrm Module:" HorizontalAlignment="Right"/>
+                                        <Label Content="SugarCRM Module:" HorizontalAlignment="Right"/>
                                         <ComboBox ItemsSource="{Binding Path=ModelInfoItems}"  Width="280" DisplayMemberPath="ModelName" SelectedIndex="{Binding Path=SelectedIndexModelName}" SelectedItem="{Binding Path=ModelInfoSelected}" HorizontalAlignment="Left" >
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="SelectionChanged">
@@ -136,7 +136,7 @@
 
                                     <Label />
 
-                                    <Button Content="Send" ToolTip="Send request to SugarCrm." Command="{Binding Path=SendCommand}" Height="30" Width="70" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Style="{StaticResource SendButton}" />
+                                    <Button Content="Send" ToolTip="Send request toSugarCRM." Command="{Binding Path=SendCommand}" Height="30" Width="70" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Style="{StaticResource SendButton}" />
 
                                 </st:AutoGrid>
 
@@ -211,7 +211,7 @@
                                 <Grid Grid.Row="0" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Center" >
                                     <st:AutoGrid Rows="Auto,Auto" Columns="*">
                                         <ProgressBar Minimum="0" Maximum="1" Height="50" IsIndeterminate="True" Foreground="{DynamicResource Accent}" />
-                                        <TextBlock Text="Requesting data from SugarCrm ..." FontSize="20"  Foreground="{DynamicResource Accent}"/>
+                                        <TextBlock Text="Requesting data from SugarCRM ..." FontSize="20"  Foreground="{DynamicResource Accent}"/>
                                     </st:AutoGrid>
                                 </Grid>
                                 <!--  End: Grid view -->

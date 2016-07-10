@@ -1,35 +1,31 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="RestViewModel.cs" company="SugarDesk WPF MVVM Studio">
+// <copyright file="RestfulViewModel.cs" company="SugarDesk WPF MVVM Studio">
 // Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
 // </copyright>
 // -----------------------------------------------------------------------
 
-
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using System.Windows;
-using Microsoft.Practices.Unity;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Prism.Events;
-using SugarCrm.RestApiCalls;
-using SugarCrm.RestApiCalls.Models;
-using SugarDesk.Restful.Dialogs;
-using SugarDesk.Restful.Messages;
-using SugarDesk.Restful.Models;
-
 namespace SugarDesk.Restful.ViewModels
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Reflection;
+    using System.Windows;
     using Core.Infrastructure.Converters;
+    using Dialogs;
     using FirstFloor.ModernUI.Presentation;
     using FirstFloor.ModernUI.Windows.Controls;
+    using Messages;
+    using Microsoft.Practices.Unity;
+    using Models;
+    using Newtonsoft.Json;
+    using Prism.Events;
     using Prism.Mvvm;
+    using SugarCrm.RestApiCalls;
 
     /// <summary>
-    /// This class represents RestfulViewModel classs.
+    /// This class represents RestfulViewModel class.
     /// </summary>
     public class RestfulViewModel : BindableBase
     {
@@ -74,14 +70,13 @@ namespace SugarDesk.Restful.ViewModels
         public string Username { get; set; }
         public string Password { get; set; }
 
-
         private void UrlSelectionChanged(object parameter)
         {
             var selectedUrl = UrlItemSelected;
             if (selectedUrl != null && selectedUrl.IsValid)
             {
                 UpdateUrl(UrlItemSelected);
-                var sugarCrmCredentials = SugarCrmAccountService.Instance.GetCredntialList(UrlItemSelected.Name);
+                var sugarCrmCredentials = SugarCrmAccountService.Instance.GetCredentialList(UrlItemSelected.Name);
 
                 if (sugarCrmCredentials != null)
                 {
@@ -126,7 +121,7 @@ namespace SugarDesk.Restful.ViewModels
                         UrlItems = new ObservableCollection<SugarCrmUrl>(sugarCrmList);
                         UrlItemSelected = sugarCrmList[0];
                         UpdateUrl(UrlItemSelected);
-                        var sugarCrmCredentials = SugarCrmAccountService.Instance.GetCredntialList(UrlItemSelected.Name);
+                        var sugarCrmCredentials = SugarCrmAccountService.Instance.GetCredentialList(UrlItemSelected.Name);
 
                         if (sugarCrmCredentials != null)
                         {
@@ -172,7 +167,7 @@ namespace SugarDesk.Restful.ViewModels
                 var name = addUrlViewModel.Name;
                 var url = addUrlViewModel.Url;
 
-                var sugarCrmUrl = new SugarCrmUrl {Name = name, Url = url};
+                var sugarCrmUrl = new SugarCrmUrl { Name = name, Url = url };
 
                 if (sugarCrmUrl.IsValid)
                 {
@@ -193,7 +188,7 @@ namespace SugarDesk.Restful.ViewModels
             {
                 if (SugarCrmAccountService.Instance.RemoveCredntial(CredentialItemSelected))
                 {
-                    var sugarCrmCredentials = SugarCrmAccountService.Instance.GetCredntialList(UrlItemSelected.Name);
+                    var sugarCrmCredentials = SugarCrmAccountService.Instance.GetCredentialList(UrlItemSelected.Name);
 
                     if (sugarCrmCredentials != null)
                     {
@@ -244,7 +239,7 @@ namespace SugarDesk.Restful.ViewModels
 
                 if (sugarCrmCredential.IsValid)
                 {
-                    SugarCrmAccountService.Instance.AddCredntial(sugarCrmCredential);
+                   SugarCrmAccountService.Instance.AddCredntial(sugarCrmCredential);
                 }
 
                 if ((CredentialItemSelected == null) || !CredentialItemSelected.SameUrlGroup(sugarCrmCredential))
@@ -309,7 +304,7 @@ namespace SugarDesk.Restful.ViewModels
             _currentSugarCrmAccount.Url = string.Empty;
             if ((sugarCrmUrl != null) && sugarCrmUrl.IsValid)
             {
-                _currentSugarCrmAccount.Url = sugarCrmUrl.Url;
+                _currentSugarCrmAccount.Url =sugarCrmUrl.Url;
             }
 
             _eventAggregator.GetEvent<AccountMessage>().Publish(_currentSugarCrmAccount);
@@ -344,7 +339,7 @@ namespace SugarDesk.Restful.ViewModels
             {
                 UrlItemSelected = sugarCrmUrls[0];
                 _currentSugarCrmAccount.Url = UrlItemSelected.Url;
-                var sugarCrmCredentials = SugarCrmAccountService.Instance.GetCredntialList(UrlItemSelected.Name);
+                var sugarCrmCredentials = SugarCrmAccountService.Instance.GetCredentialList(UrlItemSelected.Name);
 
                 if (sugarCrmCredentials != null)
                 {

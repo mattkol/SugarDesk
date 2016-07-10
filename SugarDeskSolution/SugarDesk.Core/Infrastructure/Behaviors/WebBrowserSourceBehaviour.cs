@@ -15,19 +15,41 @@ namespace SugarDesk.Core.Infrastructure.Behaviors
     /// </summary>
     public static class WebBrowserSourceBehaviour
     {
+        /// <summary>
+        /// Create the web browser source attached property.
+        /// </summary>
         public static readonly DependencyProperty WebBrowserSourceProperty =
                                                     DependencyProperty.RegisterAttached(
                                                     "WebBrowserSource",
                                                     typeof(object),
                                                     typeof(WebBrowserSourceBehaviour),
-                                                    new PropertyMetadata(WebBrowserSourceChanged)
-                                                    );
+                                                    new PropertyMetadata(WebBrowserSourceChanged));
+
+        /// <summary>
+        /// Set web browser source.
+        /// </summary>
+        /// <param name="target">DependencyObject target object</param>
+        /// <param name="value">New document object to set.</param>
+        public static void SetWebBrowserSource(DependencyObject target, object value)
+        {
+            target.SetValue(WebBrowserSourceProperty, value);
+        }
+
+        /// <summary>
+        /// Get web browser source.
+        /// </summary>
+        /// <param name="target">DependencyObject target object</param>
+        /// <returns>Web browser source object</returns>
+        public static object GetWebBrowserSource(DependencyObject target)
+        {
+            return target.GetValue(WebBrowserSourceProperty);
+        }
 
         /// <summary>
         /// The web browser source changed function.
+        /// </summary>
         /// <param name="dependencyObject">DependencyObject object</param>
         /// <param name="eventArgs">DependencyPropertyChangedEventArgs argument</param>
-        /// </summary>
         private static void WebBrowserSourceChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
             var browser = dependencyObject as WebBrowser;
@@ -37,26 +59,5 @@ namespace SugarDesk.Core.Infrastructure.Behaviors
                 browser.Source = !string.IsNullOrEmpty(uri) ? new Uri(uri, UriKind.Absolute) : null;
             }
         }
-
-        /// <summary>
-        /// Set web browser source.
-        /// <param name="target">DependencyObject target object</param>
-        /// <param name="value">New document object to set.</param>
-        /// </summary>
-        public static void SetWebBrowserSource(DependencyObject target, object value)
-        {
-            target.SetValue(WebBrowserSourceProperty, value);
-        }
-
-
-        /// <summary>
-        /// Get web browser source.
-        /// <param name="target">DependencyObject target object</param>
-        /// </summary>
-        public static object GetWebBrowserSource(DependencyObject target)
-        {
-            return target.GetValue(WebBrowserSourceProperty);
-        }
-
     }
 }

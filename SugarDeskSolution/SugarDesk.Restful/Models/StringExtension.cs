@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// -----------------------------------------------------------------------
+// <copyright file="StringExtension.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.Restful.Models
 {
+    using System;
+
     public static class StringExtension
     {
         public static string ListBoxBbCodeItemFormat(this string itemText,  string parameter)
@@ -26,7 +28,7 @@ namespace SugarDesk.Restful.Models
             }
             char[] charArray = itemText.ToCharArray();
 
-            charArray = Array.FindAll(charArray, (c => (char.IsLetterOrDigit(c))));
+            charArray = Array.FindAll(charArray, c => (char.IsLetterOrDigit(c)));
             return new string(charArray);
         }
 

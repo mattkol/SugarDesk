@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Events;
-using SugarDesk.Restful.Models;
+﻿// -----------------------------------------------------------------------
+// <copyright file="AccountMessage.cs" company="SugarDesk WPF MVVM Studio">
+// Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace SugarDesk.Restful.Messages
 {
+    using Prism.Events;
+    using Models;
+
     public class AccountMessage : PubSubEvent<SugarCrmAccount>
     {
     }
