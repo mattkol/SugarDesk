@@ -7,7 +7,7 @@ It highlights different Modern UI MVVM implementations.It uses SugarCRM database
 * Fody.PropertyChanged - for automatic PropertyChangedEvents and model-to-viewmodel communication.
 
 #### SugarCRM Implementations
-* C# POCO generator - generates C# based models with a Json serialization feauture. This uses the poco generator modules created in SugarCRM Restful CRUD.
+* C# POCO generator - generates C# based models with a Json serialization feauture. This uses the poco generator modules created in [SugarCRM Restful CRUD](https://github.com/mattkol/SugarSharpClient).
 *  SugarCRM Restful CRUD demonstration - uses SugarCRM Restful CRUD implementation: [SugarSharpClient](https://github.com/mattkol/SugarSharpClient)
 * SugarCRM reporting - different .NET reporting options.
 
