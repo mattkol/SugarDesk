@@ -13,3 +13,15 @@ It highlights different Modern UI MVVM implementations.It uses SugarCRM database
 
 #### Screenshots
 ![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
+![](https://github.com/mattkol/SugarDesk/blob/master/Screenshots/SugarDesk01.png)
