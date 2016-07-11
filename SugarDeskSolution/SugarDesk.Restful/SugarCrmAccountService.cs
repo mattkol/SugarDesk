@@ -17,18 +17,37 @@ namespace SugarDesk.Restful
     /// <summary>
     /// This class represents SugarCrmAccountService class.
     /// </summary>
-    sealed class SugarCrmAccountService
+    public sealed class SugarCrmAccountService
     {
-        static readonly SugarCrmAccountService _instance = new SugarCrmAccountService();
-        private readonly BiggyList<SugarCrmUrl> _sugarCrmUrlsList = null; 
-        private readonly BiggyList<SugarCrmCredential> _sugarCrmCredentialList = null;
+        /// <summary>
+        /// The csv file name containing SugarCRM urls data.
+        /// </summary>
         private const string SugarCrmUrlsFile = "sugarcrm_url_list.txt";
+
+        /// <summary>
+        /// The csv file name containing SugarCRM credentials data.
+        /// </summary>
         private const string SugarCrmCredentialsFile = "sugarcrm_credential_list.txt";
 
         /// <summary>
+        /// The singleton private instance of SugarCrmAccountService.
+        /// </summary>
+        private static readonly SugarCrmAccountService AccountInstance = new SugarCrmAccountService();
+
+        /// <summary>
+        /// The list that holds SugarCrmUrl json objects.
+        /// </summary>
+        private readonly BiggyList<SugarCrmUrl> _sugarCrmUrlsList;
+
+        /// <summary>
+        /// The list that holds SugarCrmCredential json objects.
+        /// </summary>
+        private readonly BiggyList<SugarCrmCredential> _sugarCrmCredentialList;
+        
+        /// <summary>
         /// Prevents a default instance of the <see cref="SugarCrmAccountService" /> class from being created.
         /// </summary>
-        SugarCrmAccountService()
+        private SugarCrmAccountService()
         {
             var urlStore = new JsonStore<SugarCrmUrl>();
             var credentialStore = new JsonStore<SugarCrmCredential>();
@@ -75,14 +94,20 @@ namespace SugarDesk.Restful
             }
         }
 
+        /// <summary>
+        /// Gets the static instance of SugarCrmAccountService.
+        /// </summary>
         public static SugarCrmAccountService Instance
         {
             get
             {
-                return _instance;
+                return AccountInstance;
             }
         }
 
+        /// <summary>
+        /// Gets all url's available.
+        /// </summary>
         public List<SugarCrmUrl> UrlList
         {
             get
@@ -91,6 +116,11 @@ namespace SugarDesk.Restful
             }
         }
 
+        /// <summary>
+        /// Gets all credential associated with a specific url name.
+        /// </summary>
+        /// <param name="urlName">The group credentials url name.</param>
+        /// <returns>The SugarCrmCredential collection objects.</returns>
         public List<SugarCrmCredential> GetCredentialList(string urlName)
         {
             if (string.IsNullOrEmpty(urlName))
@@ -98,10 +128,13 @@ namespace SugarDesk.Restful
                 return new List<SugarCrmCredential>();
             }
 
-
             return _sugarCrmCredentialList.Where(x => string.Equals(x.UrlName, urlName, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
+        /// <summary>
+        /// Adds SugarCrmUrl object to the url list.
+        /// </summary>
+        /// <param name="url">The SugarCrmUrl object to add.</param>
         public void AddUrl(SugarCrmUrl url)
         {
             if (url == null || !url.IsValid)
@@ -117,6 +150,10 @@ namespace SugarDesk.Restful
             }
         }
 
+        /// <summary>
+        /// Adds SugarCrmCredential object to the credential list.
+        /// </summary>
+        /// <param name="credential">The SugarCrmCredential object to add.</param>
         public void AddCredntial(SugarCrmCredential credential)
         {
             if (credential == null || !credential.IsValid)
@@ -133,6 +170,11 @@ namespace SugarDesk.Restful
             }
         }
 
+        /// <summary>
+        /// Removes specified SugarCrmUrl object identified by url name.
+        /// </summary>
+        /// <param name="name">The url name.</param>
+        /// <returns>True or false (true - success, false - failure)</returns>
         public bool RemoveUrl(string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -149,6 +191,11 @@ namespace SugarDesk.Restful
             return false;
         }
 
+        /// <summary>
+        /// Removes specified SugarCrmCredential object identified by url name.
+        /// </summary>
+        /// <param name="credential">The SugarCrmCredential object to remove.</param>
+        /// <returns>True or false (true - success, false - failure)</returns>
         public bool RemoveCredntial(SugarCrmCredential credential)
         {
             if (credential == null || !credential.IsValid)

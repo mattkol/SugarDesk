@@ -19,14 +19,26 @@ namespace SugarDesk.Restful.ViewModels
     /// </summary>
     public class ReadByIdViewModel : BaseViewModel
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReadByIdViewModel"/> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="container">The Prism Unity container.</param>
         public ReadByIdViewModel(IEventAggregator eventAggregator, IUnityContainer container)
             : base(eventAggregator, container)
         {
             SendCommand = new RelayCommand(Send, CanSend);
         }
 
+        /// <summary>
+        /// Gets the send command.
+        /// </summary>
         public RelayCommand SendCommand { get; private set; }
-        
+
+        /// <summary>
+        /// Sends request to SugarCRM Rest API.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
         private async void Send(object parameter)
         {
             ExpandPaneOption = EnumOptionType.Two;
@@ -52,6 +64,11 @@ namespace SugarDesk.Restful.ViewModels
             EnableResponseControls = true;
         }
 
+        /// <summary>
+        /// Can send request to SugarCRM Rest API.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
+        /// <returns>True or false.</returns>
         private bool CanSend(object parameter)
         {
             if (ModelInfoSelected == null)

@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="RestfulView.cs" company="SugarDesk WPF MVVM Studio">
+// <copyright file="RestfulView.xaml.cs" company="SugarDesk WPF MVVM Studio">
 // Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
 // </copyright>
 // -----------------------------------------------------------------------

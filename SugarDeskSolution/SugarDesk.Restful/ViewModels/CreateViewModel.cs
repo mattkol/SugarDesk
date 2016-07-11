@@ -4,24 +4,22 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
-using System.IO;
-using System.Linq;
-using CsvHelper;
-using FirstFloor.ModernUI.Presentation;
-using Microsoft.Win32;
-using Prism.Events;
-using SugarDesk.Restful.Helpers;
-using SugarDesk.Restful.Models;
-using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
-
 namespace SugarDesk.Restful.ViewModels
 {
-    using Microsoft.Practices.Unity;
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.IO;
+    using System.Linq;
     using Core.Infrastructure.Converters;
+    using CsvHelper;
+    using FirstFloor.ModernUI.Presentation;
+    using FirstFloor.ModernUI.Windows.Controls;
+    using Microsoft.Practices.Unity;
+    using Microsoft.Win32;
+    using Models;
+    using Prism.Events;
+    using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
     /// <summary>
     /// This class represents CreateViewModel class.
@@ -38,16 +36,29 @@ namespace SugarDesk.Restful.ViewModels
         {
             GetTemplateCommand = new RelayCommand(GetTemplate, CanGetTemplate);
             ImportCvsFileCommand = new RelayCommand(ImportCvsFile, CanImportCvsFile);
-            ValidateCommand = new RelayCommand(Validate, CanValidate);
             SendCommand = new RelayCommand(Send, CanSend);
             CreateOrUpdateEntriesOption = EnumOptionType.One;
         }
 
+        /// <summary>
+        /// Gets the get template command.
+        /// </summary>
         public RelayCommand GetTemplateCommand { get; private set; }
+
+        /// <summary>
+        /// Gets the import csv file command.
+        /// </summary>
         public RelayCommand ImportCvsFileCommand { get; private set; }
-        public RelayCommand ValidateCommand { get; private set; }
+
+        /// <summary>
+        /// Gets the send command.
+        /// </summary>
         public RelayCommand SendCommand { get; private set; }
 
+        /// <summary>
+        /// Get template function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
         private void GetTemplate(object parameter)
         {
             List<string> properties = ModelInfoSelected.ModelProperties.Select(x => x.Name).ToList();
@@ -65,6 +76,11 @@ namespace SugarDesk.Restful.ViewModels
             }
         }
 
+        /// <summary>
+        /// Can get template function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
+        /// <returns>True or false.</returns>
         private bool CanGetTemplate(object parameter)
         {
             if ((ModelInfoSelected == null) || (ModelInfoSelected.ModelProperties == null))
@@ -75,6 +91,10 @@ namespace SugarDesk.Restful.ViewModels
             return true;
         }
 
+        /// <summary>
+        /// Imports the csv from file function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
         private void ImportCvsFile(object parameter)
         {
             var dialog = new OpenFileDialog()
@@ -83,7 +103,7 @@ namespace SugarDesk.Restful.ViewModels
                 Filter = "Text Files(*.txt)|*.txt|All(*.*)|*"
             };
 
-            DataTable dataTable = new DataTable();
+            var dataTable = new DataTable();
             if (dialog.ShowDialog() == true)
             {
                 using (TextReader reader = File.OpenText(dialog.FileName))
@@ -109,6 +129,7 @@ namespace SugarDesk.Restful.ViewModels
                                         modelProperty.Name, Nullable.GetUnderlyingType(modelProperty.Type) ?? modelProperty.Type);
                                 }
                             }
+
                             headerIsRead = true;
                         }
 
@@ -117,6 +138,7 @@ namespace SugarDesk.Restful.ViewModels
                         {
                             row[column.ColumnName] = csv.GetField(column.DataType, column.ColumnName);
                         }
+
                         dataTable.Rows.Add(row);
                     }
                 }
@@ -125,6 +147,11 @@ namespace SugarDesk.Restful.ViewModels
             ModuleFromCsvItems = dataTable;
         }
 
+        /// <summary>
+        /// Can import the csv from file function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
+        /// <returns>True or false.</returns>
         private bool CanImportCvsFile(object parameter)
         {
             if (ModelInfoSelected == null)
@@ -135,45 +162,26 @@ namespace SugarDesk.Restful.ViewModels
             return true;
         }
 
-        private void Validate(object parameter)
+        /// <summary>
+        /// Sends request to SugarCRM Rest API.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
+        private void Send(object parameter)
         {
-        }
-
-        private bool CanValidate(object parameter)
-        {
-            if (ModelInfoSelected == null)
+            var dlg = new ModernDialog
             {
-                return false;
-            }
-
-            return true;
+                Title = "Create Model",
+                Content = "Work in progress ..."
+            };
+            dlg.Buttons = new[] { dlg.OkButton, dlg.CancelButton };
+            dlg.ShowDialog();
         }
 
-        private async void Send(object parameter)
-        {
-            ExpandPaneOption = EnumOptionType.Two;
-            ResponseViewOption = EnumOptionType.One;
-            EnableResponseControls = false;
-
-            var restRequest = new RestRequest();
-            restRequest.Account = CurrentSugarCrmAccount;
-            restRequest.Type = ModelInfoSelected.Type;
-            restRequest.ModuleName = ModelInfoSelected.ModelName;
-            restRequest.MaxResult = MaxResultSelected;
-            restRequest.SelectFields = IsSelectFieldChecked;
-            restRequest.SelectedFields = SelectedFieldsItems.ToList();
-
-            var response = await SugarCrmApiRestful.GetAll(restRequest);
-
-            RequestJson = response.JsonRawRequest;
-            ResponseJson = response.JsonRawResponse;
-
-            ModuleItems = response.Data;
-
-            ResponseViewOption = EnumOptionType.Two;
-            EnableResponseControls = true;
-        }
-
+        /// <summary>
+        /// Can send request to SugarCRM Rest API.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
+        /// <returns>True or false.</returns>
         private bool CanSend(object parameter)
         {
             return CanSend();

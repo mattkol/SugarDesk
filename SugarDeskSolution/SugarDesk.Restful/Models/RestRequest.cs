@@ -28,7 +28,7 @@ namespace SugarDesk.Restful.Models
         public SugarCrmAccount Account { get; set; }
 
         /// <summary>
-        /// Gets or sets proeprty identifier of the model if required.
+        /// Gets or sets property identifier of the model if required.
         /// </summary>
         public string Id { get; set; }
 

@@ -11,6 +11,9 @@ namespace SugarDesk.Pages
     /// </summary>
     public partial class SettingsPage 
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SettingsPage"/> class.
+        /// </summary>
         public SettingsPage()
         {
             InitializeComponent();

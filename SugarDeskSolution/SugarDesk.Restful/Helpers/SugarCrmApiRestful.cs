@@ -9,16 +9,21 @@ namespace SugarDesk.Restful.Helpers
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
+    using System.Threading.Tasks;
+    using Models;
     using Newtonsoft.Json.Linq;
     using SugarCrm.RestfulCRUD;
-    using Models;
-    using System.Threading.Tasks;
     
     /// <summary>
-    /// This class represents GeneratePocoModels class.
+    /// This class represents SugarCrmApiRestful class.
     /// </summary>
     public static class SugarCrmApiRestful
     {
+        /// <summary>
+        /// This GetAll request.
+        /// </summary>
+        /// <param name="restRequest">SugarCRM Rest request parameters.</param>
+        /// <returns>The task response object.</returns>
         public static Task<RestResponse> GetAll(RestRequest restRequest)
         {
             return Task.Run(() =>
@@ -79,6 +84,11 @@ namespace SugarDesk.Restful.Helpers
             });
         }
 
+        /// <summary>
+        /// This GetByPage request.
+        /// </summary>
+        /// <param name="restRequest">SugarCRM Rest request parameters.</param>
+        /// <returns>The task response object.</returns>
         public static Task<RestResponse> GetByPage(RestRequest restRequest)
         {
             return Task.Run(() =>
@@ -136,6 +146,11 @@ namespace SugarDesk.Restful.Helpers
             });
         }
 
+        /// <summary>
+        /// This GetById request.
+        /// </summary>
+        /// <param name="restRequest">SugarCRM Rest request parameters.</param>
+        /// <returns>The task response object.</returns>
         public static Task<RestResponse> GetById(RestRequest restRequest)
         {
             return Task.Run(() =>
@@ -165,7 +180,6 @@ namespace SugarDesk.Restful.Helpers
                     }
                 }
 
-
                 var client = new SugarRestClient();
                 SugarRestResponse sugarRestResponse = client.GetById(request);
 
@@ -188,6 +202,11 @@ namespace SugarDesk.Restful.Helpers
             });
         }
 
+        /// <summary>
+        /// This Delete request.
+        /// </summary>
+        /// <param name="restRequest">SugarCRM Rest request parameters.</param>
+        /// <returns>The task response object.</returns>
         public static Task<RestResponse> Delete(RestRequest restRequest)
         {
             return Task.Run(() =>

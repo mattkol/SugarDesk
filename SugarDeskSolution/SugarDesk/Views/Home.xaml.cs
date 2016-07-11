@@ -11,6 +11,9 @@ namespace SugarDesk.Views
     /// </summary>
     public partial class Home 
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Home"/> class.
+        /// </summary>
         public Home()
         {
             InitializeComponent();

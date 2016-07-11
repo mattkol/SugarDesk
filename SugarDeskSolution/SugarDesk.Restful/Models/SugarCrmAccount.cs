@@ -27,7 +27,7 @@ namespace SugarDesk.Restful.Models
         public string Password { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whetherSugarCRMAccount object is valid.
+        /// Gets a value indicating whether SugarCRMAccount object is valid.
         /// </summary>
         public bool IsValid
         {

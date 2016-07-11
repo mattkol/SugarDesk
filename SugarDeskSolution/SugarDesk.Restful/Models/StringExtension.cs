@@ -6,10 +6,17 @@
 
 namespace SugarDesk.Restful.Models
 {
-    using System;
-
+    /// <summary>
+    /// This class represents StringExtension class.
+    /// </summary>
     public static class StringExtension
     {
+        /// <summary>
+        /// This converts command text and parameter to listbox BBCode string.
+        /// </summary>
+        /// <param name="itemText">Command text.</param>
+        /// <param name="parameter">The command parameter.</param>
+        /// <returns>The formatted string.</returns>
         public static string ListBoxBbCodeItemFormat(this string itemText,  string parameter)
         {
             if (string.IsNullOrEmpty(itemText))
@@ -19,18 +26,5 @@ namespace SugarDesk.Restful.Models
 
             return string.Format("{0}  [url=cmd://DeleteItemCommand|{1}]del[/url]", itemText, parameter);
         }
-
-        public static string ToAlphanumericOnly(this string itemText)
-        {
-            if (string.IsNullOrEmpty(itemText))
-            {
-                return string.Empty;
-            }
-            char[] charArray = itemText.ToCharArray();
-
-            charArray = Array.FindAll(charArray, c => (char.IsLetterOrDigit(c)));
-            return new string(charArray);
-        }
-
     }
 }

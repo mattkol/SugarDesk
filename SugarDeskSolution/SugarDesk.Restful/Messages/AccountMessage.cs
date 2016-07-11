@@ -6,9 +6,12 @@
 
 namespace SugarDesk.Restful.Messages
 {
-    using Prism.Events;
     using Models;
+    using Prism.Events;
 
+    /// <summary>
+    /// This class represents AccountMessage class, extends Prism PubSubEvent.
+    /// </summary>
     public class AccountMessage : PubSubEvent<SugarCrmAccount>
     {
     }

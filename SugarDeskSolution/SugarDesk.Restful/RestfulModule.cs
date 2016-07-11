@@ -15,8 +15,15 @@ namespace SugarDesk.Restful
     /// </summary>
     public class RestfulModule : IModule
     {
+        /// <summary>
+        /// The injected IOC container.
+        /// </summary>
         private readonly IUnityContainer _container;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RestfulModule"/> class.
+        /// </summary>
+        /// <param name="container">The injected IOC container.</param>
         public RestfulModule(IUnityContainer container)
         {
             if (container == null)
@@ -27,6 +34,9 @@ namespace SugarDesk.Restful
             _container = container;
         }
 
+        /// <summary>
+        /// Initializes a module.
+        /// </summary>
         public void Initialize()
         {
         }

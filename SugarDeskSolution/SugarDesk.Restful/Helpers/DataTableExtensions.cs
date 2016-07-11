@@ -16,7 +16,7 @@ namespace SugarDesk.Restful.Helpers
     /// <summary>
     /// This class represents DataTableExtensions class.
     /// </summary>
-    static class DataTableExtensions 
+    public static class DataTableExtensions 
     {
         /// <summary>
         /// Convert csv string to DataTable object.
@@ -48,11 +48,9 @@ namespace SugarDesk.Restful.Helpers
             {
                 object[] values = strLines[i].Split(',');
                 dataTable.Rows.Add(values);
-
             }
 
             return dataTable;
         }
     }
 }
-

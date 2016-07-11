@@ -29,13 +29,29 @@ namespace SugarDesk.Restful.ViewModels
     /// </summary>
     public class RestfulViewModel : BindableBase
     {
+        /// <summary>
+        /// The event aggregator
+        /// </summary>
         private readonly IEventAggregator _eventAggregator;
+
+        /// <summary>
+        /// The injected IOC container.
+        /// </summary>
         private readonly IUnityContainer _container;
+
+        /// <summary>
+        /// The current SugarCRM account.
+        /// </summary>
         private readonly SugarCrmAccount _currentSugarCrmAccount;
 
-        public RestfulViewModel(IEventAggregator eventaggregator, IUnityContainer container)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RestfulViewModel"/> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="container">The Prism Unity container.</param>
+        public RestfulViewModel(IEventAggregator eventAggregator, IUnityContainer container)
         {
-            _eventAggregator = eventaggregator;
+            _eventAggregator = eventAggregator;
             _container = container;
             _currentSugarCrmAccount = new SugarCrmAccount();
             Application.Current.Properties["SugarCrmAccount"] = _currentSugarCrmAccount;
@@ -52,24 +68,80 @@ namespace SugarDesk.Restful.ViewModels
             LoadDefaultSugarCrmAccounts();
         }
 
+        /// <summary>
+        /// Gets the url selection changed command.
+        /// </summary>
         public RelayCommand UrlSelectionChangedCommand { get; private set; }
+
+        /// <summary>
+        /// Gets the credential selection changed command.
+        /// </summary>
         public RelayCommand CredentialSelectionChangedCommand { get; private set; }
+
+        /// <summary>
+        /// Gets the delete url command.
+        /// </summary>
         public RelayCommand DeleteUrlCommand { get; private set; }
+
+        /// <summary>
+        /// Gets the add url command.
+        /// </summary>
         public RelayCommand AddUrlCommand { get; private set; }
+
+        /// <summary>
+        /// Gets the delete credential command.
+        /// </summary>
         public RelayCommand DeleteCredentialCommand { get; private set; }
+
+        /// <summary>
+        /// Gets the add credential command.
+        /// </summary>
         public RelayCommand AddCredentialCommand { get; private set; }
 
+        /// <summary>
+        /// Gets or sets row grid type.
+        /// </summary>
         public EnumOptionType GridRowType { get; set; }
+
+        /// <summary>
+        /// Gets or sets model info item collections.
+        /// </summary>
         public ObservableCollection<ModelInfo> ModelInfoItems { get; set; }
+
+        /// <summary>
+        /// Gets or sets url item collection.
+        /// </summary>
         public ObservableCollection<SugarCrmUrl> UrlItems { get; set; }
+
+        /// <summary>
+        /// Gets or sets credential items collection.
+        /// </summary>
         public ObservableCollection<SugarCrmCredential> CredentialItems { get; set; }
 
+        /// <summary>
+        /// Gets or sets url object currently selected.
+        /// </summary>
         public SugarCrmUrl UrlItemSelected { get; set; }
+
+        /// <summary>
+        /// Gets or sets credential object currently selected.
+        /// </summary>
         public SugarCrmCredential CredentialItemSelected { get; set; }
 
+        /// <summary>
+        /// Gets or sets the SugarCRM username.
+        /// </summary>
         public string Username { get; set; }
+
+        /// <summary>
+        /// Gets or sets the SugarCRM password.
+        /// </summary>
         public string Password { get; set; }
 
+        /// <summary>
+        /// Url selection changed function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
         private void UrlSelectionChanged(object parameter)
         {
             var selectedUrl = UrlItemSelected;
@@ -97,6 +169,10 @@ namespace SugarDesk.Restful.ViewModels
             }
         }
 
+        /// <summary>
+        /// Credential selection changed function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
         private void CredentialSelectionChanged(object parameter)
         {
             var credentialSelected = CredentialItemSelected;
@@ -108,6 +184,10 @@ namespace SugarDesk.Restful.ViewModels
             }
         }
 
+        /// <summary>
+        /// Delete url function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
         private void DeleteUrl(object parameter)
         {
             if (UrlItemSelected != null)
@@ -140,6 +220,11 @@ namespace SugarDesk.Restful.ViewModels
             }
         }
 
+        /// <summary>
+        /// Can delete url function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
+        /// <returns>True or false.</returns>
         private bool CanDeleteUrl(object parameter)
         {
             if (UrlItemSelected != null)
@@ -150,6 +235,10 @@ namespace SugarDesk.Restful.ViewModels
             return false;
         }
 
+        /// <summary>
+        /// Adds url function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
         private void AddUrl(object parameter)
         {
             var addUrlViewModel = new AddUrlViewModel();
@@ -182,6 +271,10 @@ namespace SugarDesk.Restful.ViewModels
             }
         }
 
+        /// <summary>
+        /// Delete credential function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
         private void DeleteCredential(object parameter)
         {
             if (CredentialItemSelected != null)
@@ -206,6 +299,11 @@ namespace SugarDesk.Restful.ViewModels
             }
         }
 
+        /// <summary>
+        /// Can delete credential function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
+        /// <returns>True or false.</returns>
         private bool CanDeleteCredential(object parameter)
         {
             if (CredentialItemSelected != null)
@@ -216,6 +314,10 @@ namespace SugarDesk.Restful.ViewModels
             return false;
         }
 
+        /// <summary>
+        /// Add credential function.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
         private void AddCredential(object parameter)
         {
             var addCredentialViewModel = new AddCredentialViewModel(UrlItems, UrlItemSelected);
@@ -252,6 +354,9 @@ namespace SugarDesk.Restful.ViewModels
             }
         }
 
+        /// <summary>
+        /// Get module info list.
+        /// </summary>
         private void GetModuleInfoList()
         {
             var modelInfos = new List<ModelInfo>();
@@ -299,17 +404,25 @@ namespace SugarDesk.Restful.ViewModels
             ModelInfoItems = new ObservableCollection<ModelInfo>(modelInfos);
         }
 
+        /// <summary>
+        /// Update SugarCrmUrl object.
+        /// </summary>
+        /// <param name="sugarCrmUrl">SugarCrmUrl object.</param>
         private void UpdateUrl(SugarCrmUrl sugarCrmUrl)
         {
             _currentSugarCrmAccount.Url = string.Empty;
             if ((sugarCrmUrl != null) && sugarCrmUrl.IsValid)
             {
-                _currentSugarCrmAccount.Url =sugarCrmUrl.Url;
+                _currentSugarCrmAccount.Url = sugarCrmUrl.Url;
             }
 
             _eventAggregator.GetEvent<AccountMessage>().Publish(_currentSugarCrmAccount);
         }
 
+        /// <summary>
+        /// Update SugarCrmCredential object.
+        /// </summary>
+        /// <param name="sugarCrmCredential">SugarCrmCredential object.</param>
         private void UpdateCredntial(SugarCrmCredential sugarCrmCredential)
         {
             _currentSugarCrmAccount.Username = string.Empty;
@@ -323,6 +436,9 @@ namespace SugarDesk.Restful.ViewModels
             _eventAggregator.GetEvent<AccountMessage>().Publish(_currentSugarCrmAccount);
         }
 
+        /// <summary>
+        /// Loads the default SugarCRM account.
+        /// </summary>
         private void LoadDefaultSugarCrmAccounts()
         {
             UrlItems = new ObservableCollection<SugarCrmUrl>();

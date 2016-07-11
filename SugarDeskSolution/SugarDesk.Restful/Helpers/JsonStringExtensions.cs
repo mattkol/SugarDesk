@@ -8,12 +8,15 @@ namespace SugarDesk.Restful.Helpers
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Data;
     using System.Linq;
-    using System.ComponentModel;
     using Newtonsoft.Json.Linq;
 
-    internal static class JsonStringExtensions 
+    /// <summary>
+    /// This class represents JsonStringExtensions class.
+    /// </summary>
+    public static class JsonStringExtensions 
     {
         /// <summary>
         /// Converts json string to dynamic object collections datatable.
@@ -28,9 +31,9 @@ namespace SugarDesk.Restful.Helpers
             var data = new DataTable();
             JArray jarr = JArray.Parse(json);
             bool columnsAdded = false;
-            foreach (JObject jObject in jarr.Children<JObject>())
+            foreach (JObject jobject in jarr.Children<JObject>())
             {
-                object tempObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jObject.ToString(), type);
+                object tempObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jobject.ToString(), type);
 
                 var propertyDescriptors = new List<PropertyDescriptor>();
                 if (selectFieldsOnly)
@@ -81,9 +84,9 @@ namespace SugarDesk.Restful.Helpers
         public static DataTable ToDynamicObject(this string json, Type type, List<string> selectedFields, bool selectFieldsOnly)
         {
             var data = new DataTable();
-            JObject jObject = JObject.Parse(json);
+            JObject jobject = JObject.Parse(json);
 
-            object tempObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jObject.ToString(), type);
+            object tempObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jobject.ToString(), type);
 
             var propertyDescriptors = new List<PropertyDescriptor>();
             if (selectFieldsOnly)
@@ -118,4 +121,3 @@ namespace SugarDesk.Restful.Helpers
         }
     }
 }
-

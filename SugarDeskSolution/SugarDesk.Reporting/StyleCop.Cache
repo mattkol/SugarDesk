@@ -99,7 +99,7 @@
   <sourcecode name="NavigationLinksGroup.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-08 23:24:53.367</settingsFile>
+      <settingsFile>2016-07-10 14:21:11.976</settingsFile>
       <sourceFile>2016-07-09 22:44:38.052</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -128,8 +128,8 @@
   <sourcecode name="ReportingModule.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-08 23:24:53.367</settingsFile>
-      <sourceFile>2016-07-09 22:46:06.341</sourceFile>
+      <settingsFile>2016-07-10 14:21:11.976</settingsFile>
+      <sourceFile>2016-07-10 21:24:45.078</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-855010722</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -146,18 +146,12 @@
       <StyleCop.CSharp.SpacingRules>2016-07-05 15:41:45.684</StyleCop.CSharp.SpacingRules>
       <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
     </timestamps>
-    <violations>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The field must have a documentation header.</context>
-        <line>18</line>
-        <warning>False</warning>
-      </violation>
-    </violations>
+    <violations />
   </sourcecode>
   <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-08 23:24:53.367</settingsFile>
+      <settingsFile>2016-07-10 14:21:11.976</settingsFile>
       <sourceFile>2016-07-08 23:13:13.603</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -180,7 +174,7 @@
   <sourcecode name="Resources.Designer.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-08 23:24:53.367</settingsFile>
+      <settingsFile>2016-07-10 14:21:11.976</settingsFile>
       <sourceFile>2016-04-30 07:57:11.406</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -203,7 +197,7 @@
   <sourcecode name=".NETFramework,Version=v4.5.AssemblyAttributes.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-08 23:24:53.367</settingsFile>
+      <settingsFile>2016-07-10 14:21:11.976</settingsFile>
       <sourceFile>2016-01-07 16:17:09.008</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -226,7 +220,7 @@
   <sourcecode name="About.xaml.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-08 23:24:53.367</settingsFile>
+      <settingsFile>2016-07-10 14:21:11.976</settingsFile>
       <sourceFile>2016-07-08 22:56:59.980</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -255,7 +249,7 @@
   <sourcecode name="ReportsView.xaml.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-08 23:24:53.367</settingsFile>
+      <settingsFile>2016-07-10 14:21:11.976</settingsFile>
       <sourceFile>2016-07-08 22:56:59.971</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -284,7 +278,7 @@
   <sourcecode name="Settings.Designer.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-08 23:24:53.367</settingsFile>
+      <settingsFile>2016-07-10 14:21:11.976</settingsFile>
       <sourceFile>2016-04-30 07:57:11.419</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>

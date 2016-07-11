@@ -8,12 +8,25 @@ namespace SugarDesk.Restful.Models
 {
     using Biggy.Core;
 
+    /// <summary>
+    /// This class represents SugarCrmUrl class.
+    /// </summary>
     public class SugarCrmUrl
     {
+        /// <summary>
+        /// Gets or sets the SugarCRM url name.
+        /// </summary>
         [PrimaryKey(Auto: false)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the SugarCRM url.
+        /// </summary>
         public string Url { get; set; }
 
+        /// <summary>
+        /// Gets the formatted SugarCRM name and url.
+        /// </summary>
         public string Format
         {
             get
@@ -21,13 +34,16 @@ namespace SugarDesk.Restful.Models
                 return string.Format("{0} - {1}", Name, Url);
             }
         }
-
+        
+        /// <summary>
+        /// Gets a value indicating whether SugarCrmUrl object is valid.
+        /// </summary>
         public bool IsValid
         {
             get
             {
-                return (!string.IsNullOrEmpty(Name) &&
-                        !string.IsNullOrEmpty(Url));
+                return !string.IsNullOrEmpty(Name) &&
+                       !string.IsNullOrEmpty(Url);
             }
         }
     }

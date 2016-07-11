@@ -15,6 +15,9 @@ namespace SugarDesk.Reporting
     /// </summary>
     public class ReportingModule : IModule
     {
+        /// <summary>
+        /// The injected IOC container.
+        /// </summary>
         private readonly IUnityContainer _container;
 
         /// <summary>

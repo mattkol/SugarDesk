@@ -53,4 +53,3 @@ namespace SugarDesk.PocoGen
         public List<MenuLinkInfo> MenuLinkInfos { get; set; }
     }
 }
-

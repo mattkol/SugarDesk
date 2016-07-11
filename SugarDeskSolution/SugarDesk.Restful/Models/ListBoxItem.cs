@@ -33,5 +33,4 @@ namespace SugarDesk.Restful.Models
         /// </summary>
         public ILinkNavigator LinkNavigator { get; set; }
     }
-}
- 
+} 

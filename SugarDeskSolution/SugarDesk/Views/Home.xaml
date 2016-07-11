@@ -14,7 +14,7 @@
                 </Paragraph>
 
                 <Paragraph>
-                    <Bold>SugarDesk</Bold> is a SugarCRM .NET integration studio built with WPF Modern UI (mui) framework. It highlights different Modern UI MVVM implementation.
+                    <Bold>SugarDesk</Bold> is a SugarCRM .NET integration studio built with WPF Modern UI (mui) framework. It highlights different Modern UI MVVM implementations.
                         It uses SugarCRM database schema and REST API as input sources. 
                 </Paragraph>
 
@@ -26,7 +26,7 @@
                 <List>
                     <ListItem>
                         <Paragraph>
-                           Prism 6 - integrating Unity Prism 6 with Modern UI - using Prism 6 modularity, view model location and IOC using Unity.
+                           Prism 6 - integrating Unity Prism 6 with Modern UI - using Prism 6 Modularity, ViewModelLocation, EventAggregator and IOC using Unity.
                         </Paragraph>
                     </ListItem>
                     <ListItem>
@@ -48,7 +48,8 @@
                     </ListItem>
                     <ListItem>
                         <Paragraph>
-                           SugarCRM Restful CRUD demonstration - userSugarCRM Restful CRUD implemented previously @  ...
+                            SugarCRM Restful CRUD demonstration - uses SugarCRM Restful CRUD implementation:
+                            https://github.com/mattkol/SugarSharpClient
                         </Paragraph>
                     </ListItem>
                     <ListItem>

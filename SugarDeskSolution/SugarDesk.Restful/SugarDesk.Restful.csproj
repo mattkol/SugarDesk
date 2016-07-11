@@ -116,7 +116,6 @@
     <Compile Include="ViewModels\ReadAllViewModel.cs" />
     <Compile Include="ViewModels\ReadByIdViewModel.cs" />
     <Compile Include="ViewModels\ReadByPageViewModel.cs" />
-    <Compile Include="ViewModels\ReadViewModel.cs" />
     <Compile Include="ViewModels\RestfulViewModel.cs" />
     <Compile Include="ViewModels\UpdateViewModel.cs" />
     <Compile Include="Views\AddCredentialContentView.xaml.cs">

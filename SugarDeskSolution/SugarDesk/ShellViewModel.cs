@@ -7,10 +7,10 @@
 namespace SugarDesk
 {
     using System;
-    using Prism.Mvvm;
     using FirstFloor.ModernUI.Presentation;
     using Interfaces;
-
+    using Prism.Mvvm;
+    
     /// <summary>
     /// This class represents ShellViewModel class.
     /// </summary>
@@ -19,7 +19,7 @@ namespace SugarDesk
         /// <summary>
         /// Initializes a new instance of the <see cref="ShellViewModel"/> class.
         /// </summary>
-        /// <param name="navigationLinkService">The navigarion service.</param>
+        /// <param name="navigationLinkService">The navigation service.</param>
         public ShellViewModel(INavigationLinkService navigationLinkService)
         {
             MenuLinkGroups = navigationLinkService.LinkGroupCollection;
@@ -35,6 +35,5 @@ namespace SugarDesk
         /// Gets or sets current content source relative url.
         /// </summary>
         public Uri ContentSourceUrl { get; set; }
-        
     }
 }

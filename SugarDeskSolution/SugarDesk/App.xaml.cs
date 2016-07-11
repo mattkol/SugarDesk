@@ -15,23 +15,36 @@ namespace SugarDesk
     /// </summary>
     public partial class App 
     {
-        protected override void OnStartup(StartupEventArgs e)
+        /// <summary>
+        /// On starup function.
+        /// </summary>
+        /// <param name="eventArgs">StartupEventArgs object.</param>
+        protected override void OnStartup(StartupEventArgs eventArgs)
         {
-            AppDomain.CurrentDomain.UnhandledException +=
-                         new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-            base.OnStartup(e);
+            base.OnStartup(eventArgs);
 
             var bootstrapper = new Bootstrapper();
             bootstrapper.Run();
         }
 
-        void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        /// <summary>
+        /// Applicatio cuurent domain unhandled exception.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="eventArgs">UnhandledExceptionEventArgs object.</param>
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs eventArgs)
         {
-            var exception = e.ExceptionObject as Exception;
+            var exception = eventArgs.ExceptionObject as Exception;
             MessageBox.Show(exception.Message, "Uncaught Thread Exception", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        /// <summary>
+        /// Applicatio dispatcher unhandled exception.
+        /// </summary>
+        /// <param name="sender">Sender object.</param>
+        /// <param name="eventArgs">DispatcherUnhandledExceptionEventArgs object.</param>
         private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs eventArgs)
         {
             string message = "An error as occured!";
@@ -44,7 +57,6 @@ namespace SugarDesk
                 {
                     message = exception.Message;
                 }
-
             }
 
             MessageBox.Show(message, "Application Error");
@@ -53,6 +65,5 @@ namespace SugarDesk
             var logger = new Log4NetLogger(typeof(App));
             logger.Error(message, exception);
         }
-
     }
 }

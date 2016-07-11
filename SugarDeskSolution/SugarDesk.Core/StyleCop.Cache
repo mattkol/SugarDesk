@@ -6,7 +6,7 @@
   <sourcecode name="DocumentReaderBehavor.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-07 21:48:58.477</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -29,7 +29,7 @@
   <sourcecode name="WebBrowserSourceBehaviour.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-07 21:48:58.453</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -52,7 +52,7 @@
   <sourcecode name="BindingProxy.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-07 21:49:28.953</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -75,7 +75,7 @@
   <sourcecode name="BoolToVisibilityConverter.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-07 21:52:37.241</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -98,7 +98,7 @@
   <sourcecode name="EnumMatchToBooleanConverter.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-07 21:53:45.044</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -121,7 +121,7 @@
   <sourcecode name="EnumToGridRowHeightConverter.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-07 21:54:11.250</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -144,7 +144,7 @@
   <sourcecode name="EnumOptionType.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-05 15:52:23.267</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -167,7 +167,7 @@
   <sourcecode name="EnumToGridRowPercentHeightConverter.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-07 21:55:30.362</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -190,7 +190,7 @@
   <sourcecode name="GridPercentType.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-05 15:54:23.117</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -213,7 +213,7 @@
   <sourcecode name="INavigationLinksGroup.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-05 16:39:07.751</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -236,7 +236,7 @@
   <sourcecode name="MenuLinkInfo.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-07 21:33:11.250</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -259,7 +259,7 @@
   <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-07-07 21:45:00.994</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -282,7 +282,7 @@
   <sourcecode name="Resources.Designer.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-05-29 09:18:24.905</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -305,7 +305,7 @@
   <sourcecode name=".NETFramework,Version=v4.5.AssemblyAttributes.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-01-07 16:17:09.008</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
@@ -328,7 +328,7 @@
   <sourcecode name="Settings.Designer.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
-      <settingsFile>2016-07-07 21:59:02.569</settingsFile>
+      <settingsFile>2016-07-10 14:20:43.782</settingsFile>
       <sourceFile>2016-05-29 09:18:25.023</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>

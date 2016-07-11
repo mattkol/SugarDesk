@@ -10,6 +10,9 @@ namespace SugarDesk
     using Core;
     using Core.Interfaces;
 
+    /// <summary>
+    /// This class represents NavigationLinksGroup class.
+    /// </summary>
     public class NavigationLinksGroup : INavigationLinksGroup
     {
         /// <summary>
@@ -42,5 +45,3 @@ namespace SugarDesk
         public List<MenuLinkInfo> MenuLinkInfos { get; set; }
     }
 }
-
-

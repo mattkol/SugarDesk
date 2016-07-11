@@ -15,16 +15,33 @@ namespace SugarDesk
     using Prism.Modularity;
     using Prism.Unity;
 
-    class Bootstrapper : UnityBootstrapper
+    /// <summary>
+    /// This class represents Bootstrapper class.
+    /// </summary>
+    public class Bootstrapper : UnityBootstrapper
     {
+        /// <summary>
+        /// The folder location for modules.
+        /// </summary>
         private const string ModulesFolder = @".\modules";
+
+        /// <summary>
+        /// This navigation service object.
+        /// </summary>
         private INavigationLinkService _navigationLinkService = null;
- 
+
+        /// <summary>
+        /// Creates the shell (main window).
+        /// </summary>
+        /// <returns>The shell dependency object.</returns>
         protected override DependencyObject CreateShell()
         {
             return Container.Resolve<Shell>();
         }
 
+        /// <summary>
+        /// Configure container.
+        /// </summary>
         protected override void ConfigureContainer()
         {
             base.ConfigureContainer();
@@ -34,9 +51,13 @@ namespace SugarDesk
                 // Register the link collection that is required in ShellViewModel constructor
                 Container.RegisterInstance(_navigationLinkService);
             }
+
             RegisterTypeIfMissing(typeof(ShellViewModel), typeof(ShellViewModel), true);
         }
 
+        /// <summary>
+        /// Initialize shell.
+        /// </summary>
         protected override void InitializeShell()
         {
             base.InitializeShell();
@@ -45,11 +66,19 @@ namespace SugarDesk
             Application.Current.MainWindow.Show();
         }
 
+        /// <summary>
+        /// Creates the module catalog.
+        /// </summary>
+        /// <returns>The module catalog.</returns>
         protected override IModuleCatalog CreateModuleCatalog()
         {
             return new DirectoryModuleCatalog() { ModulePath = ModulesFolder };
         }
 
+        /// <summary>
+        /// Configure the module catalogs.
+        /// Extracts all navigation settings for all modules.
+        /// </summary>
         protected override void ConfigureModuleCatalog()
         {
             // Dynamic Modules are copied to a directory as part of a post-build step.
@@ -93,6 +122,12 @@ namespace SugarDesk
             //  moduleCatalog.AddModule(typeof(Local Module ));
         }
 
+        /// <summary>
+        /// Process the filters.
+        /// </summary>
+        /// <param name="typeObj">The type of object to filter.</param>
+        /// <param name="criteriaObj">Filter criteria.</param>
+        /// <returns>True or false.</returns>
         private bool InterfaceFilter(Type typeObj, object criteriaObj)
         {
             return typeObj.ToString() == criteriaObj.ToString();

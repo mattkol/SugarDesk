@@ -4,56 +4,59 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System.Linq;
-using FirstFloor.ModernUI.Presentation;
-using Prism.Events;
-using SugarDesk.Restful.Helpers;
-using SugarDesk.Restful.Models;
-
 namespace SugarDesk.Restful.ViewModels
 {
+    using FirstFloor.ModernUI.Presentation;
+    using FirstFloor.ModernUI.Windows.Controls;
     using Microsoft.Practices.Unity;
-    using Core.Infrastructure.Converters;
-
+    using Prism.Events;
+    
     /// <summary>
     /// This class represents DeleteViewModel class.
     /// </summary>
     public class DeleteViewModel : BaseViewModel
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DeleteViewModel"/> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="container">The Prism Unity container.</param>
         public DeleteViewModel(IEventAggregator eventAggregator, IUnityContainer container)
             : base(eventAggregator, container)
         {
             SendCommand = new RelayCommand(Send, CanSend);
         }
 
+        /// <summary>
+        /// Gets the send command.
+        /// </summary>
         public RelayCommand SendCommand { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the reponse.
+        /// </summary>
         public string Response { get; set; }
 
-        private async void Send(object parameter)
+        /// <summary>
+        /// Sends request to SugarCRM Rest API.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
+        private void Send(object parameter)
         {
-            ExpandPaneOption = EnumOptionType.Two;
-            ResponseViewOption = EnumOptionType.One;
-            EnableResponseControls = false;
-
-            var restRequest = new RestRequest();
-            restRequest.Account = CurrentSugarCrmAccount;
-            restRequest.Type = ModelInfoSelected.Type;
-            restRequest.ModuleName = ModelInfoSelected.ModelName;
-            restRequest.Id = Identifier;
-            restRequest.SelectFields = IsSelectFieldChecked;
-            restRequest.SelectedFields = SelectedFieldsItems.ToList();
-
-            var response = await SugarCrmApiRestful.GetById(restRequest);
-
-            RequestJson = response.JsonRawRequest;
-            ResponseJson = response.JsonRawResponse;
-
-            Response = string.Format("Module: {0} with Id:{1} successfully deleted!", ModelInfoSelected.ModelName, response.Id);
-
-            ResponseViewOption = EnumOptionType.Two;
-            EnableResponseControls = true;
+            var dlg = new ModernDialog
+            {
+                Title = "Delete Model",
+                Content = "Work in progress ..."
+            };
+            dlg.Buttons = new[] { dlg.OkButton, dlg.CancelButton };
+            dlg.ShowDialog();
         }
 
+        /// <summary>
+        /// Can send request to SugarCRM Rest API.
+        /// </summary>
+        /// <param name="parameter">The command parameter.</param>
+        /// <returns>True or false.</returns>
         private bool CanSend(object parameter)
         {
             return CanSend();
