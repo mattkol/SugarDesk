@@ -17,7 +17,7 @@
 
     <mui:ModernWindow.TitleLinks>
         <mui:Link DisplayName="settings" Source="/Pages/SettingsPage.xaml" />
-        <mui:Link DisplayName="help" Source="https://github.com/mattkol/wpf-lite-poco-gen" />
+        <mui:Link DisplayName="help" Source="https://github.com/mattkol/SugarDesk" />
     </mui:ModernWindow.TitleLinks>
 </mui:ModernWindow>
 
