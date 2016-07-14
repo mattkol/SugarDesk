@@ -1,3 +1,0 @@
-Name, Url
-"Demo Url 1", "http://185.101.218.187/sugar/service/v4_1/rest.php"
-"Demo Url 2", "http://191.101.224.189/sugar/service/v4_1/rest.php"

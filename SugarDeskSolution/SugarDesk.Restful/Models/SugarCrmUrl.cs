@@ -6,8 +6,6 @@
 
 namespace SugarDesk.Restful.Models
 {
-    using Biggy.Core;
-
     /// <summary>
     /// This class represents SugarCrmUrl class.
     /// </summary>
@@ -16,7 +14,6 @@ namespace SugarDesk.Restful.Models
         /// <summary>
         /// Gets or sets the SugarCRM url name.
         /// </summary>
-        [PrimaryKey(Auto: false)]
         public string Name { get; set; }
 
         /// <summary>

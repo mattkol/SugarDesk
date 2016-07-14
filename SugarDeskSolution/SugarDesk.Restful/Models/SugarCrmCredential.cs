@@ -7,7 +7,6 @@
 namespace SugarDesk.Restful.Models
 {
     using System;
-    using Biggy.Core;
 
     /// <summary>
     /// This class represents SugarCrmCredential class.
@@ -17,7 +16,6 @@ namespace SugarDesk.Restful.Models
         /// <summary>
         /// Gets or sets the SugarCRM credential name.
         /// </summary>
-        [PrimaryKey(Auto: false)]
         public string Name { get; set; }
 
         /// <summary>

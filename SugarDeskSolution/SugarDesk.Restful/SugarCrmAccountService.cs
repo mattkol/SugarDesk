@@ -10,9 +10,8 @@ namespace SugarDesk.Restful
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using Biggy.Core;
-    using Biggy.Data.Json;
     using Models;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// This class represents SugarCrmAccountService class.
@@ -22,12 +21,12 @@ namespace SugarDesk.Restful
         /// <summary>
         /// The csv file name containing SugarCRM urls data.
         /// </summary>
-        private const string SugarCrmUrlsFile = "sugarcrm_url_list.txt";
+        private const string SugarCrmUrlsFile = "sugarcrm_url_list.json";
 
         /// <summary>
         /// The csv file name containing SugarCRM credentials data.
         /// </summary>
-        private const string SugarCrmCredentialsFile = "sugarcrm_credential_list.txt";
+        private const string SugarCrmCredentialsFile = "sugarcrm_credential_list.json";
 
         /// <summary>
         /// The singleton private instance of SugarCrmAccountService.
@@ -37,60 +36,35 @@ namespace SugarDesk.Restful
         /// <summary>
         /// The list that holds SugarCrmUrl json objects.
         /// </summary>
-        private readonly BiggyList<SugarCrmUrl> _sugarCrmUrlsList;
+        private readonly List<SugarCrmUrl> _sugarCrmUrlsList;
 
         /// <summary>
         /// The list that holds SugarCrmCredential json objects.
         /// </summary>
-        private readonly BiggyList<SugarCrmCredential> _sugarCrmCredentialList;
+        private readonly List<SugarCrmCredential> _sugarCrmCredentialList;
         
         /// <summary>
         /// Prevents a default instance of the <see cref="SugarCrmAccountService" /> class from being created.
         /// </summary>
         private SugarCrmAccountService()
         {
-            var urlStore = new JsonStore<SugarCrmUrl>();
-            var credentialStore = new JsonStore<SugarCrmCredential>();
-            _sugarCrmUrlsList = new BiggyList<SugarCrmUrl>(urlStore);
-            _sugarCrmCredentialList = new BiggyList<SugarCrmCredential>(credentialStore);
+            string jsonUrls = File.ReadAllText(SugarCrmUrlsFile);
+            string jsonCreds = File.ReadAllText(SugarCrmCredentialsFile);
 
-            if (_sugarCrmUrlsList.Count <= 0)
+            if (!string.IsNullOrEmpty(jsonUrls) && !string.IsNullOrEmpty(jsonCreds))
             {
-                var urlList = File.ReadAllLines(SugarCrmUrlsFile)
-                                  .Skip(1)
-                                  .Select(x => x.Split(','))
-                                  .Select(x => new
-                                  {
-                                      Name = x[0].Trim().TrimStart('\"').TrimEnd('\"'),
-                                      Url = x[1].Trim().TrimStart('\"').TrimEnd('\"')
-                                  });
-
-                foreach (var url in urlList)
-                {
-                    _sugarCrmUrlsList.Add(new SugarCrmUrl { Name = url.Name, Url = url.Url }); 
-                }
+                _sugarCrmUrlsList = JsonConvert.DeserializeObject<List<SugarCrmUrl>>(jsonUrls);
+                _sugarCrmCredentialList = JsonConvert.DeserializeObject<List<SugarCrmCredential>>(jsonCreds);
             }
 
-            if (_sugarCrmCredentialList.Count <= 0)
+            if (_sugarCrmUrlsList == null)
             {
-                var credentialList = File.ReadAllLines(SugarCrmCredentialsFile)
-                                  .Skip(1)
-                                  .Select(x => x.Split(','))
-                                  .Select(x => new
-                                  {
-                                      Name = x[0].Trim().TrimStart('\"').TrimEnd('\"'),
-                                      Username = x[1].Trim().TrimStart('\"').TrimEnd('\"'),
-                                      Password = x[2].Trim().TrimStart('\"').TrimEnd('\"'),
-                                      UrlName = x[3].Trim().TrimStart('\"').TrimEnd('\"')
-                                  });
+                _sugarCrmUrlsList = new List<SugarCrmUrl>();
+            }
 
-                foreach (var cred in credentialList)
-                {
-                    _sugarCrmCredentialList.Add(new SugarCrmCredential
-                    {
-                        Name = cred.Name, Username = cred.Username, Password = cred.Password, UrlName = cred.UrlName
-                    });
-                }
+            if (_sugarCrmCredentialList == null)
+            {
+                _sugarCrmCredentialList = new List<SugarCrmCredential>();
             }
         }
 
@@ -146,7 +120,9 @@ namespace SugarDesk.Restful
 
             if (urlAlreadyAdded == null)
             {
-                _sugarCrmUrlsList.Add(url); 
+                _sugarCrmUrlsList.Add(url);
+                string jsonUrls = JsonConvert.SerializeObject(_sugarCrmUrlsList);
+                File.WriteAllText(SugarCrmUrlsFile, jsonUrls);
             }
         }
 
@@ -167,6 +143,8 @@ namespace SugarDesk.Restful
             if (credentialAlreadyAdded == null)
             {
                 _sugarCrmCredentialList.Add(credential);
+                string jsonCreds = JsonConvert.SerializeObject(_sugarCrmCredentialList);
+                File.WriteAllText(SugarCrmCredentialsFile, jsonCreds);
             }
         }
 
@@ -185,7 +163,10 @@ namespace SugarDesk.Restful
             var url = _sugarCrmUrlsList.FirstOrDefault(x => string.Equals(x.Name, name, StringComparison.OrdinalIgnoreCase));
             if (url != null)
             {
-                return _sugarCrmUrlsList.Remove(url);
+                bool result = _sugarCrmUrlsList.Remove(url);
+                string jsonUrls = JsonConvert.SerializeObject(_sugarCrmUrlsList);
+                File.WriteAllText(SugarCrmUrlsFile, jsonUrls);
+                return result;
             }
 
             return false;
@@ -206,7 +187,10 @@ namespace SugarDesk.Restful
             credential = _sugarCrmCredentialList.FirstOrDefault(x => x.Equals(credential));
             if (credential != null)
             {
-                return _sugarCrmCredentialList.Remove(credential);
+                bool result = _sugarCrmCredentialList.Remove(credential);
+                string jsonCreds = JsonConvert.SerializeObject(_sugarCrmCredentialList);
+                File.WriteAllText(SugarCrmCredentialsFile, jsonCreds);
+                return result;
             }
 
             return false;

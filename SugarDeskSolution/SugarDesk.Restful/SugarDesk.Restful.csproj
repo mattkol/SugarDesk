@@ -33,14 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Biggy, Version=1.0.5468.21366, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Biggy.Core.0.1.0.1\lib\net40\Biggy.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Biggy.Data.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Biggy.Data.Json.0.1.0.1\lib\net40\Biggy.Data.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.2.15.0.0\lib\net45\CsvHelper.dll</HintPath>
       <Private>True</Private>
