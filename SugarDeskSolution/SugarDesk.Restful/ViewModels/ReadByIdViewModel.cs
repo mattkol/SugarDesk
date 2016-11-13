@@ -17,7 +17,7 @@ namespace SugarDesk.Restful.ViewModels
     /// <summary>
     /// This class represents ReadByIdViewModel class.
     /// </summary>
-    public class ReadByIdViewModel : BaseViewModel
+    public class ReadByIdViewModel : RestfulViewModelBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReadByIdViewModel"/> class.

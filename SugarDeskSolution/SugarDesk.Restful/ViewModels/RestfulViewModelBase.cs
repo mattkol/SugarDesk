@@ -19,12 +19,12 @@ namespace SugarDesk.Restful.ViewModels
     using Microsoft.Practices.Unity;
     using Models;
     using Prism.Events;
-    using Prism.Mvvm;
-    
+    using Core.Infrastructure.Base;
+
     /// <summary>
-    /// This class represents RestViewModel class.
+    /// This class represents RestfulViewModelBase class.
     /// </summary>
-    public abstract class BaseViewModel : BindableBase
+    public abstract class RestfulViewModelBase : ViewModelBase
     {
         /// <summary>
         /// The event aggregator
@@ -52,11 +52,11 @@ namespace SugarDesk.Restful.ViewModels
         private List<ModuleData> _moduleDataItems;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseViewModel"/> class.
+        /// Initializes a new instance of the <see cref="RestfulViewModelBase"/> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="container">The Prism Unity container.</param>
-        protected BaseViewModel(IEventAggregator eventAggregator, IUnityContainer container)
+        protected RestfulViewModelBase(IEventAggregator eventAggregator, IUnityContainer container)
         {
             _eventAggregator = eventAggregator;
             _container = container;
@@ -154,6 +154,11 @@ namespace SugarDesk.Restful.ViewModels
         /// Gets or sets the selected field object collection.
         /// </summary>
         public ObservableCollection<ListBoxItem> SelectedFieldsItems { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected field object.
+        /// </summary>
+        public ListBoxItem SelectSelectedFieldItem { get; set; }
 
         /// <summary>
         /// Gets or sets the DataGrid DataTable source.

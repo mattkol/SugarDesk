@@ -13,11 +13,12 @@ namespace SugarDesk.Restful.ViewModels
     using Microsoft.Practices.Unity;
     using Models;
     using Prism.Events;
-    
+    using Validators;
+
     /// <summary>
     /// This class represents ReadAllViewModel class.
     /// </summary>
-    public class ReadAllViewModel : BaseViewModel
+    public class ReadAllViewModel : RestfulViewModelBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReadAllViewModel"/> class.
@@ -27,6 +28,7 @@ namespace SugarDesk.Restful.ViewModels
         public ReadAllViewModel(IEventAggregator eventAggregator, IUnityContainer container)
             : base(eventAggregator, container)
         {
+            Validator = new ReadAllViewModelValidator(this);
             SendCommand = new RelayCommand(Send, CanSend);
         }
 

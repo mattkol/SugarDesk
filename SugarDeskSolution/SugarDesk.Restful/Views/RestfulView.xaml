@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SugarDesk.Restful.Views.RestfulView"
+﻿<core:ViewBase x:Class="SugarDesk.Restful.Views.RestfulView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,6 +8,7 @@
              xmlns:mui="clr-namespace:FirstFloor.ModernUI.Windows.Controls;assembly=FirstFloor.ModernUI"
              xmlns:presentation="clr-namespace:FirstFloor.ModernUI.Presentation;assembly=FirstFloor.ModernUI"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
+             xmlns:core="clr-namespace:SugarDesk.Core.Infrastructure.Base;assembly=SugarDesk.Core"
              xmlns:interactivity="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
@@ -47,8 +48,8 @@
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </ComboBox>
-                        <TextBox Text="{Binding Path=Username,  Mode=TwoWay}"/>
-                        <TextBox Text="{Binding Path=Password,  Mode=TwoWay}"/>
+                        <TextBox Text="{Binding Path=Username, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                        <TextBox Text="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
                         <Button Content="Del" ToolTip="Delete credential" Command="{Binding Path=DeleteCredentialCommand}" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                         <Button Content="Add" ToolTip="Add credential" Command="{Binding Path=AddCredentialCommand}" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                     </st:AutoGrid>
@@ -89,4 +90,4 @@
         <!-- End main grid-->
 
     </Grid>
-</UserControl>
+</core:ViewBase>

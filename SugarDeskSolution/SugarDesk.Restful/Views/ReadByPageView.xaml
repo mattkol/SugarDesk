@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="SugarDesk.Restful.Views.ReadByPageView"
+﻿<core:ViewBase x:Class="SugarDesk.Restful.Views.ReadByPageView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
+             xmlns:core="clr-namespace:SugarDesk.Core.Infrastructure.Base;assembly=SugarDesk.Core"
              xmlns:mui="clr-namespace:FirstFloor.ModernUI.Windows.Controls;assembly=FirstFloor.ModernUI"
              xmlns:presentation="clr-namespace:FirstFloor.ModernUI.Presentation;assembly=FirstFloor.ModernUI"
              xmlns:st="clr-namespace:AutoGrid;assembly=SpicyTaco.AutoGrid"
@@ -266,4 +267,4 @@
     </Grid>
     <!-- End main grid-->
 
-</UserControl>
+</core:ViewBase>

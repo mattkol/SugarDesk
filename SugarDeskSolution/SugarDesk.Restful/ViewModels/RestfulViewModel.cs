@@ -23,11 +23,13 @@ namespace SugarDesk.Restful.ViewModels
     using Prism.Events;
     using Prism.Mvvm;
     using SugarCrm.RestApiCalls;
+    using Core.Infrastructure.Base;
+    using Validators;
 
     /// <summary>
     /// This class represents RestfulViewModel class.
     /// </summary>
-    public class RestfulViewModel : BindableBase
+    public class RestfulViewModel : ViewModelBase
     {
         /// <summary>
         /// The event aggregator
@@ -66,6 +68,8 @@ namespace SugarDesk.Restful.ViewModels
             GridRowType = EnumOptionType.Two;
             GetModuleInfoList();
             LoadDefaultSugarCrmAccounts();
+
+            Validator = new RestfulViewModelValidator(this);
         }
 
         /// <summary>

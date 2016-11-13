@@ -14,7 +14,7 @@ namespace SugarDesk.Restful.ViewModels
     /// <summary>
     /// This class represents DeleteViewModel class.
     /// </summary>
-    public class DeleteViewModel : BaseViewModel
+    public class DeleteViewModel : RestfulViewModelBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteViewModel"/> class.

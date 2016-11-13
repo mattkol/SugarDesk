@@ -24,7 +24,7 @@ namespace SugarDesk.Restful.ViewModels
     /// <summary>
     /// This class represents CreateViewModel class.
     /// </summary>
-    public class CreateViewModel : BaseViewModel
+    public class CreateViewModel : RestfulViewModelBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateViewModel"/> class.
