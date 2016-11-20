@@ -12,6 +12,7 @@ namespace SugarDesk.Restful.Helpers
     using System.Data;
     using System.Linq;
     using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// This class represents JsonStringExtensions class.
@@ -33,7 +34,11 @@ namespace SugarDesk.Restful.Helpers
             bool columnsAdded = false;
             foreach (JObject jobject in jarr.Children<JObject>())
             {
-                object tempObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jobject.ToString(), type);
+                var settings = new JsonSerializerSettings();
+                DeserializerExceptionsContractResolver resolver = DeserializerExceptionsContractResolver.Instance;
+                resolver.JsonObjectToDeserialize = jobject;
+                settings.ContractResolver = resolver;
+                object tempObject = JsonConvert.DeserializeObject(jobject.ToString(), type, settings);
 
                 var propertyDescriptors = new List<PropertyDescriptor>();
                 if (selectFieldsOnly)
@@ -86,7 +91,11 @@ namespace SugarDesk.Restful.Helpers
             var data = new DataTable();
             JObject jobject = JObject.Parse(json);
 
-            object tempObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jobject.ToString(), type);
+            var settings = new JsonSerializerSettings();
+            DeserializerExceptionsContractResolver resolver = DeserializerExceptionsContractResolver.Instance;
+            resolver.JsonObjectToDeserialize = jobject;
+            settings.ContractResolver = resolver;
+            object tempObject = JsonConvert.DeserializeObject(jobject.ToString(), type, settings);
 
             var propertyDescriptors = new List<PropertyDescriptor>();
             if (selectFieldsOnly)

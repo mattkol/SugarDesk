@@ -12,7 +12,8 @@ namespace SugarDesk.Restful.Helpers
     using System.IO;
     using System.Linq;
     using Models;
-    
+    using System.Text;
+
     /// <summary>
     /// This class represents DataTableExtensions class.
     /// </summary>
@@ -49,6 +50,33 @@ namespace SugarDesk.Restful.Helpers
                 object[] values = strLines[i].Split(',');
                 dataTable.Rows.Add(values);
             }
+
+            return dataTable;
+        }
+
+        /// <summary>
+        /// Convert model headers to DataTable object.
+        /// </summary>
+        /// <param name="dataTable">Datatabe object to be extended.</param>
+        /// <param name="properties">Model properties.</param>
+        /// <returns>DataTable object</returns>
+        public static DataTable FromHeaders(this DataTable dataTable, List<ModelProperty> properties)
+        {
+            StringBuilder builder = new StringBuilder(); 
+
+            foreach (var property in properties)
+            {
+                if (property != null)
+                {
+                    dataTable.Columns.Add(property.Name, typeof(string));
+                    Type type = Nullable.GetUnderlyingType(property.Type) ?? property.Type;
+                    builder.Append(type.Name + ",");
+                }
+            }
+
+            string types = builder.ToString().TrimEnd(',');
+            string[] values = types.Split(',');
+            dataTable.Rows.Add(values);
 
             return dataTable;
         }

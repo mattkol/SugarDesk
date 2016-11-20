@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
              xmlns:core="clr-namespace:SugarDesk.Core.Infrastructure.Base;assembly=SugarDesk.Core"
+             xmlns:mui="clr-namespace:FirstFloor.ModernUI.Windows.Controls;assembly=FirstFloor.ModernUI"
              xmlns:st="clr-namespace:AutoGrid;assembly=SpicyTaco.AutoGrid"
              xmlns:converters="clr-namespace:SugarDesk.Core.Infrastructure.Converters;assembly=SugarDesk.Core"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
@@ -71,129 +72,59 @@
 
                             <!--  Grid view -->
                             <Grid Grid.Row="0">
+                                <st:AutoGrid Rows="Auto,10,*" Columns="*" ChildMargin="3">
+                                    <st:AutoGrid Rows="*" Columns="*,50,250" ChildMargin="3">
+                                        <st:AutoGrid Rows="Auto" Columns="120,*" ChildMargin="3">
+                                            <Label Content="SugarCRM Module:" HorizontalAlignment="Right"/>
+                                            <ComboBox ItemsSource="{Binding Path=ModelInfoItems}"  Width="280" DisplayMemberPath="ModelName" SelectedIndex="{Binding Path=SelectedIndexModelName}" SelectedItem="{Binding Path=ModelInfoSelected}" HorizontalAlignment="Left" >
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <command:InvokeCommandAction  Command="{Binding Mode=OneWay, Path=ModuleSelectionChangedCommand}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ComboBox>
 
-                                <st:AutoGrid Rows="*" Columns="*,50,250" ChildMargin="3">
-                                    <st:AutoGrid Rows="Auto" Columns="120,*" ChildMargin="3">
-                                        <Label Content="SugarCRM Module:" HorizontalAlignment="Right"/>
-                                        <ComboBox ItemsSource="{Binding Path=ModelInfoItems}"  Width="280" DisplayMemberPath="ModelName" SelectedIndex="{Binding Path=SelectedIndexModelName}" SelectedItem="{Binding Path=ModelInfoSelected}" HorizontalAlignment="Left" >
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="SelectionChanged">
-                                                    <command:InvokeCommandAction  Command="{Binding Mode=OneWay, Path=ModuleSelectionChangedCommand}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ComboBox>
-                                        
-                                        <Label Content="Add data" />
-                                        <RadioButton Content="Import CSV file (single, multiple entries)"  IsChecked="{Binding Path=CreateOrUpdateEntriesOption, Mode=TwoWay, Converter={StaticResource EnumConverter}, ConverterParameter=One}"  />
-                                        <Label />
-                                        <RadioButton Content="Add single entry"  IsChecked="{Binding Path=CreateOrUpdateEntriesOption, Mode=TwoWay, Converter={StaticResource EnumConverter}, ConverterParameter=Two}"  />
-
-                                        <!--  Add data options -->
-                                        <Label />
-                                        <Grid>
-                                            <!-- Add data option grid-->
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition>
-                                                    <RowDefinition.Height>
-                                                        <MultiBinding Converter="{StaticResource EnumRowGridConverter}">
-                                                            <Binding  Path="CreateOrUpdateEntriesOption" />
-                                                            <Binding  Source="{x:Static converters:EnumOptionType.One}" />
-                                                        </MultiBinding>
-                                                    </RowDefinition.Height>
-                                                </RowDefinition>
-                                                <RowDefinition>
-                                                    <RowDefinition.Height>
-                                                        <MultiBinding Converter="{StaticResource EnumRowGridConverter}">
-                                                            <Binding  Path="CreateOrUpdateEntriesOption" />
-                                                            <Binding  Source="{x:Static converters:EnumOptionType.Two}" />
-                                                        </MultiBinding>
-                                                    </RowDefinition.Height>
-                                                </RowDefinition>
-                                            </Grid.RowDefinitions>
-
-                                            <Grid Grid.Row="0">
-                                                <st:AutoGrid Rows="*" Columns="*" ChildMargin="3">
-                                                    <st:AutoGrid Rows="Auto" Columns="Auto,Auto" ChildMargin="3">
-                                                        <Button Content="Get Template" ToolTip="Download sample template. &#x0a;Template will have only headers (field names)." 
-                                                            Command="{Binding Path=GetTemplateCommand}" Width="Auto" HorizontalAlignment="Left"/>
-                                                        <Button Content="Import File" ToolTip="Import comma-value separated (cvs) data file &#x0a;for single or multiple SugarCRM module entries.&#x0a;First row must be the headers(field names)." 
-                                                            Command="{Binding Path=ImportCvsFileCommand}" Width="Auto" HorizontalAlignment="Left"/>
-                                                    </st:AutoGrid>
-                                                    <DataGrid 
-                                                        IsReadOnly="True"
-                                                        RenderOptions.ClearTypeHint="Enabled"
-                                                        TextOptions.TextFormattingMode="Display"
-                                                        SelectionUnit="FullRow"
-                                                        AutoGenerateColumns="True" 
-                                                        GridLinesVisibility="All"
-                                                        ScrollViewer.CanContentScroll="True" 
-                                                        ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-                                                        ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                         Height="400"
-                                                        ItemsSource="{Binding Path=ModuleFromCsvItems}">
-                                                    </DataGrid>
+                                            <Label Content="Add data" />
+                                            <!--  Add data options -->
+                                            <st:AutoGrid Rows="Auto" Columns="Auto" ChildMargin="3">
+                                                <st:AutoGrid Rows="Auto,Auto,Auto" Columns="Auto,20,Auto" ChildMargin="3">
+                                                    <mui:BBCodeBlock LinkNavigator="{Binding ImportLinkNavigator}" BBCode="[url=cmd://ImportFromFileCommand|Excel]Import Excel[/url]"  ToolTip="Import from Excel file - (.xlsx)." Width="Auto" />
+                                                    <Label Width="10"/>
+                                                    <mui:BBCodeBlock LinkNavigator="{Binding ImportLinkNavigator}" BBCode="[url=cmd://ImportFromFileCommand|ExcelTemplate]Get Excel Template[/url]"  ToolTip="Get Excel import file template - (.xlsx)." Width="Auto" />
+                                                    <mui:BBCodeBlock LinkNavigator="{Binding ImportLinkNavigator}" BBCode="[url=cmd://ImportFromFileCommand|CSV]Import CSV[/url]" ToolTip="Import from CSV file - (.csv)." Width="Auto" />
+                                                    <Label Width="10"/>
+                                                    <mui:BBCodeBlock LinkNavigator="{Binding ImportLinkNavigator}" BBCode="[url=cmd://ImportFromFileCommand|CsvTemplate]Get CSV Template[/url]"  ToolTip="Get CSV import file template - (.csv)." Width="Auto" />
+                                                    <mui:BBCodeBlock LinkNavigator="{Binding ImportLinkNavigator}" BBCode="[url=cmd://ImportFromFileCommand|Form]Import Form[/url]"  ToolTip="Import data using form." Width="Auto" />
                                                 </st:AutoGrid>
-                                            </Grid>
+                                            </st:AutoGrid>
+                                            <!-- End: data option grid -->
 
-                                            <Grid Grid.Row="1" IsEnabled="{Binding EnableSingleDataEntryControls}">
-                                                <st:AutoGrid Rows="*" Columns="*" ChildMargin="3">
-                                                    <st:AutoGrid Rows="Auto" Columns="220,Auto">
-                                                        <ComboBox ItemsSource="{Binding Path=FieldItems}" DisplayMemberPath="Name" SelectedIndex="{Binding Path=SelectedIndexFieldItem}" SelectedItem="{Binding Path=SelectedFieldItem}" >
-                                                        </ComboBox>
-                                                        <Button Content="Add" ToolTip="Add a module field." Command="{Binding Path=AddFieldItem2Command}" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
-                                                    </st:AutoGrid>
-                                                    <DataGrid 
-                                                            RenderOptions.ClearTypeHint="Enabled"
-                                                            TextOptions.TextFormattingMode="Display"
-                                                            SelectionUnit="FullRow"
-                                                            CanUserAddRows="False"
-                                                            AutoGenerateColumns="False"
-                                                            GridLinesVisibility="All"
-                                                            ScrollViewer.CanContentScroll="True" 
-                                                            ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-                                                            ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                            HorizontalAlignment="Left" VerticalAlignment="Top"
-                                                            Height="400"
-                                                            Visibility="{Binding ShowSelectFieldDataGrid, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Hidden}"
-                                                            SelectedItem="{Binding Path=SelectedModuleDataItem}"
-                                                            ItemsSource="{Binding Path=ModuleDataItems}">
-                                                            <DataGrid.Resources>
-                                                                <converters:BindingProxy x:Key="Proxy" Data="{Binding}" />
-                                                            </DataGrid.Resources>
-                                                            <DataGrid.Columns>
-                                                                <DataGridTextColumn Header="Field"
-                                                                    Binding="{Binding FieldName}" IsReadOnly="True" Width="80" />
-                                                                <DataGridTextColumn Header="Value"
-                                                                    Binding="{Binding Value}" Width="*" />
-                                                            <DataGridTextColumn Header="Type"
-                                                                    Binding="{Binding Type}"  IsReadOnly="True" Width="70" />
-                                                            <DataGridTemplateColumn>
-                                                                    <DataGridTemplateColumn.CellTemplate>
-                                                                        <DataTemplate>
-                                                                            <Button
-                                                                            Content="del"
-                                                                            ToolTip="Select"
-                                                                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DeleteFieldItem2Command}"
-                                                                            WindowChrome.IsHitTestVisibleInChrome="True" >
-                                                                        </Button>
-                                                                    </DataTemplate>
-                                                                </DataGridTemplateColumn.CellTemplate>
-                                                            </DataGridTemplateColumn>
-                                                        </DataGrid.Columns>
-                                                    </DataGrid>
-                                                </st:AutoGrid>
-                                            </Grid>
-                                        </Grid>
-                                        <!-- End: data option grid -->
+                                        </st:AutoGrid>
+
+                                        <Label />
+
+                                        <Button Content="Send" ToolTip="Send request toSugarCRM." Command="{Binding Path=SendCommand}" Height="30" Width="70" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Style="{StaticResource SendButton}" />
 
                                     </st:AutoGrid>
-
+                                    
                                     <Label />
-
-                                    <Button Content="Send" ToolTip="Send request toSugarCRM." Command="{Binding Path=SendCommand}" Height="30" Width="70" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Style="{StaticResource SendButton}" />
-
+                                    <!--  Grid view -->
+                                    <Grid>
+                                        <DataGrid 
+                                                    IsReadOnly="True"
+                                                    RenderOptions.ClearTypeHint="Enabled"
+                                                    TextOptions.TextFormattingMode="Display"
+                                                    SelectionUnit="FullRow"
+                                                    AutoGenerateColumns="True" 
+                                                    GridLinesVisibility="All"
+                                                    ScrollViewer.CanContentScroll="True" 
+                                                    ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                    ItemsSource="{Binding Path=ModuleItems}">
+                                        </DataGrid>
+                                    </Grid>
+                                    <!--  End: Grid view -->
                                 </st:AutoGrid>
-
 
                             </Grid>
                             <!--  End: Grid view -->

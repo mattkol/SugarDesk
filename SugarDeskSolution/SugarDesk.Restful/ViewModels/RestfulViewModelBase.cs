@@ -20,6 +20,11 @@ namespace SugarDesk.Restful.ViewModels
     using Models;
     using Prism.Events;
     using Core.Infrastructure.Base;
+    using Microsoft.Win32;
+    using Helpers;
+    using FirstFloor.ModernUI.Windows.Controls;
+    using System.Diagnostics;
+    using Dialogs;
 
     /// <summary>
     /// This class represents RestfulViewModelBase class.
@@ -77,6 +82,14 @@ namespace SugarDesk.Restful.ViewModels
             DeleteFieldItemCommand = new RelayCommand(DeleteFieldItem);
             DeleteFieldItem2Command = new RelayCommand(DeleteFieldItem2);
             ModuleSelectionChangedCommand = new RelayCommand(ModuleSelectionChanged);
+            ImportFromFileCommand = new RelayCommand(ImportFromFile);
+            ExportToFileCommand = new RelayCommand(ExportToFile);
+
+            ImportLinkNavigator = new DefaultLinkNavigator();
+            ImportLinkNavigator.Commands.Add(new Uri("cmd://ImportFromFileCommand", UriKind.Absolute), ImportFromFileCommand);
+
+            ExportLinkNavigator = new DefaultLinkNavigator();
+            ExportLinkNavigator.Commands.Add(new Uri("cmd://ExportToFileCommand", UriKind.Absolute), ExportToFileCommand);
 
             ExpandPaneOption = EnumOptionType.One;
             IsSelectFieldChecked = false;
@@ -119,6 +132,26 @@ namespace SugarDesk.Restful.ViewModels
         /// Gets the event module selection changed command.
         /// </summary>
         public RelayCommand ModuleSelectionChangedCommand { get; private set; }
+
+        /// <summary>
+        /// Gets the import to file command.
+        /// </summary>
+        public RelayCommand ImportFromFileCommand { get; private set; }
+
+        /// <summary>
+        /// Gets the export to file command.
+        /// </summary>
+        public RelayCommand ExportToFileCommand { get; private set; }
+
+        /// <summary>
+        /// Gets the import link navigator command.
+        /// </summary>
+        public ILinkNavigator ImportLinkNavigator { get; private set; }
+
+        /// <summary>
+        /// Gets the export link navigator command.
+        /// </summary>
+        public ILinkNavigator ExportLinkNavigator { get; private set; }
 
         /// <summary>
         /// Gets or sets the current SugarCRM account.
@@ -286,6 +319,239 @@ namespace SugarDesk.Restful.ViewModels
                 }
 
                 _expandPaneOption = value;
+            }
+        }
+
+        private void ImportFromFile(object parameter)
+        {
+            if (parameter == null)
+            {
+                return;
+            }
+
+            string importType = parameter.ToString().ToUpper();
+            string filter = string.Empty;
+            switch (importType)
+            {
+                case "EXCEL":
+                    importType = importType.ToLower();
+                    filter = "Excel Files(*.xlsx)|*.xlsx|All(*.*)|*";
+                    ImportDataFromExcelFile();
+                    break;
+                case "CSV":
+                    importType = importType.ToLower();
+                    filter = "Csv Files(*.csv)|*.csv|All(*.*)|*";
+                    ImportDataFromCsvFile();
+                    break;
+                case "EXCELTEMPLATE":
+                    importType = importType.ToLower();
+                    filter = "Csv Files(*.csv)|*.csv|All(*.*)|*";
+                    GetExcelImportTemplate();
+                    break;
+                case "CSVTEMPLATE":
+                    importType = importType.ToLower();
+                    filter = "Csv Files(*.csv)|*.csv|All(*.*)|*";
+                    GetCsvImportTemplate();
+                    break;
+                case "FORM":
+                    ImportDataFromFrom();
+                    break;
+                default:
+                    return;
+            }
+        }
+
+        private void ExportToFile(object parameter)
+        {
+            if (parameter == null)
+            {
+                return;
+            }
+
+            string exportType = parameter.ToString().ToUpper();
+            string filter = string.Empty;
+            switch (exportType)
+            {
+                case "EXCEL":
+                    exportType = exportType.ToLower();
+                    filter = "Excel Files(*.xlsx)|*.xlsx|All(*.*)|*";
+                    break;
+                case "CSV":
+                    exportType = exportType.ToLower();
+                    filter = "Csv Files(*.csv)|*.csv|All(*.*)|*";
+                    break;
+                default:
+                    return;
+            }
+
+            string excelFile = ModelInfoSelected.ModelName + "_" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+            var dialog = new SaveFileDialog()
+            {
+                FileName = excelFile,
+                Filter = filter
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                excelFile = dialog.FileName;
+                bool exportResult = false;
+                string title = string.Empty;
+
+                if (exportType == "excel")
+                {
+                    exportResult = ExcelProvider.Export(ModuleItems, excelFile);
+                    title = "Export To Excel";
+                }
+                else
+                {
+                    exportResult = CsvProvider.Export(ModuleItems, excelFile);
+                    title = "Export To Csv";
+                }
+
+                BBCodeBlock codeBlock = new BBCodeBlock();
+                if (exportResult)
+                {
+                    codeBlock.BBCode = string.Format("Succesfully exported {0} model data to {1}.\nFile: {2}.\n[color=Green]Open file?[/color]", ModelInfoSelected.ModelName, exportType, excelFile);
+
+                    var dlg = new ModernDialog
+                    {
+                        Title = title,
+                        Content = codeBlock
+                    };
+                    dlg.Buttons = new[] { dlg.YesButton, dlg.NoButton };
+                    bool? result = dlg.ShowDialog();
+                    if (result != null && result.Value)
+                    {
+                        Process.Start(excelFile);
+                    }
+
+                }
+                else
+                {
+                    codeBlock.BBCode = string.Format("Error exporting {0} model data to {1}.\nFile: {2}.\n[color=Red]Please try again.[/color]", ModelInfoSelected.ModelName, exportType, excelFile);
+                    var dlg = new ModernDialog
+                    {
+                        Title = title,
+                        Content = codeBlock
+                    };
+                    dlg.Buttons = new[] { dlg.OkButton };
+                    dlg.ShowDialog();
+                }
+            }
+        }
+
+        private void ImportDataFromExcelFile()
+        {
+            var dialog = new OpenFileDialog()
+            {
+                Filter = "Excel Files(*.xlsx)|*.xlsx|All(*.*)|*"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                DataTable tempTable;
+                bool importResult = ExcelProvider.Import(out tempTable, dialog.FileName);
+
+                BBCodeBlock codeBlock = new BBCodeBlock();
+                if (importResult)
+                {
+                    codeBlock.BBCode = string.Format("Succesfully imported excel {0} model data.\nFile: {1}.\n[color=Green]Load data?[/color]", ModelInfoSelected.ModelName, dialog.FileName);
+
+                    var dlg = new ModernDialog
+                    {
+                        Title = "Import Excel Data",
+                        Content = codeBlock
+                    };
+                    dlg.Buttons = new[] { dlg.YesButton, dlg.NoButton };
+                    bool? result = dlg.ShowDialog();
+                    if (result != null && result.Value)
+                    {
+                        ModuleItems = tempTable;
+                    }
+
+                }
+                else
+                {
+                    codeBlock.BBCode = string.Format("Error importing excel {0} model data.\nFile: {1}.\n[color=Red]Please try again.[/color]", ModelInfoSelected.ModelName, dialog.FileName);
+                    var dlg = new ModernDialog
+                    {
+                        Title = "Import Excel Data",
+                        Content = codeBlock
+                    };
+                    dlg.Buttons = new[] { dlg.OkButton };
+                    dlg.ShowDialog();
+                }
+            }
+        }
+
+        private void ImportDataFromCsvFile()
+        {
+        }
+
+        private void GetExcelImportTemplate()
+        {
+            string excelFileTemplate = ModelInfoSelected.ModelName + "_Template_" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+            var dialog = new SaveFileDialog()
+            {
+                FileName = excelFileTemplate,
+                Filter = "Excel Files(*.xlsx)|*.xlsx|All(*.*)|*"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                DataTable tempTable = (new DataTable()).FromHeaders(ModelInfoSelected.ModelProperties);
+                bool exportResult = ExcelProvider.Export(tempTable, dialog.FileName);
+
+                BBCodeBlock codeBlock = new BBCodeBlock();
+                if (exportResult)
+                {
+                    codeBlock.BBCode = string.Format("Succesfully imported excel {0} model data template.\nFile: {1}.\n[color=Green]Open file?[/color]", ModelInfoSelected.ModelName, dialog.FileName);
+
+                    var dlg = new ModernDialog
+                    {
+                        Title = "Import Excel Template",
+                        Content = codeBlock
+                    };
+                    dlg.Buttons = new[] { dlg.YesButton, dlg.NoButton };
+                    bool? result = dlg.ShowDialog();
+                    if (result != null && result.Value)
+                    {
+                        Process.Start(dialog.FileName);
+                    }
+
+                }
+                else
+                {
+                    codeBlock.BBCode = string.Format("Error importing excel {0} model data template.\nFile: {1}.\n[color=Red]Please try again.[/color]", ModelInfoSelected.ModelName, dialog.FileName);
+                    var dlg = new ModernDialog
+                    {
+                        Title = "Import Excel Template",
+                        Content = codeBlock
+                    };
+                    dlg.Buttons = new[] { dlg.OkButton };
+                    dlg.ShowDialog();
+                }
+            }
+        }
+
+        private void GetCsvImportTemplate()
+        {
+        }
+
+        private void ImportDataFromFrom()
+        {
+            var formDataViewModel = new FormDataViewModel(ModelInfoSelected.ModelProperties);
+
+            var dlg = new ModernDialog
+            {
+                Title = "Add Data Form",
+                Content = new FormDataContent(formDataViewModel)
+            };
+            dlg.Buttons = new[] { dlg.OkButton, dlg.CancelButton };
+            dlg.ShowDialog();
+
+            if (dlg.MessageBoxResult == MessageBoxResult.OK)
+            {
             }
         }
 

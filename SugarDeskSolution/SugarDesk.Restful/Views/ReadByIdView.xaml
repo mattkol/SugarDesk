@@ -249,9 +249,15 @@
                         <Label />
 
                         <!-- View selector -->
-                        <st:AutoGrid Rows="Auto,Auto" Columns="Auto" IsEnabled="{Binding EnableResponseControls}">
+                        <st:AutoGrid Rows="Auto,Auto,30,Auto" Columns="Auto" IsEnabled="{Binding EnableResponseControls}">
                             <RadioButton Content="Grid"  IsChecked="{Binding Path=ResponseViewOption, Mode=TwoWay, Converter={StaticResource EnumConverter}, ConverterParameter=Two}" />
                             <RadioButton Content="Json"  IsChecked="{Binding Path=ResponseViewOption, Mode=TwoWay, Converter={StaticResource EnumConverter}, ConverterParameter=Three}"  />
+                            <Label Width="10"/>
+                            <st:AutoGrid Rows="Auto,Auto,Auto" Columns="Auto">
+                                <Label Content="Exports" HorizontalAlignment="Left" Width="Auto"/>
+                                <mui:BBCodeBlock LinkNavigator="{Binding ExportLinkNavigator}" BBCode="[url=cmd://ExportToFileCommand|Excel]To Excel[/url]"  ToolTip="Export to Excel file - (.xlsx)." Width="Auto" />
+                                <mui:BBCodeBlock LinkNavigator="{Binding ExportLinkNavigator}" BBCode="[url=cmd://ExportToFileCommand|CSV]To CSV[/url]"  ToolTip="Export to CSV file - (.csv)." Width="Auto" />
+                            </st:AutoGrid>
                         </st:AutoGrid>
                         <!-- End view selector -->
 

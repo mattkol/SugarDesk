@@ -16,6 +16,8 @@ namespace SugarDesk.Core.Infrastructure.Base
     using FirstFloor.ModernUI.Presentation;
     using Validators;
     using System.Runtime.CompilerServices;
+    using System.Windows;
+    using System.Windows.Media;
 
     /// <summary>
     /// This class represents ViewModelBase class.
@@ -28,6 +30,9 @@ namespace SugarDesk.Core.Infrastructure.Base
         protected new event PropertyChangedEventHandler PropertyChanged;
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
         protected IModelValidator Validator { get; set; }
+        protected FrameworkElement ZoomableView { get; set; }
+
+        public Transform ZoomLayoutTransform { get; set; }
 
         protected ValidationErrorsContainer<string> ErrorsContainer
         {
@@ -58,12 +63,18 @@ namespace SugarDesk.Core.Infrastructure.Base
         public ViewModelBase()
         {
             OnLoadedCommand = new RelayCommand(OnLoaded);
+            OnPreviewKeyDownCommand = new RelayCommand(OnPreviewKeyDown);
+            OnPreviewKeyUpCommand = new RelayCommand(OnPreviewKeyUp);
+            OnPreviewMouseWheelCommand = new RelayCommand(OnPreviewMouseWheel);
         }
 
         /// <summary>
         /// Gets the delete url command.
         /// </summary>
         public RelayCommand OnLoadedCommand { get; private set; }
+        public RelayCommand OnPreviewKeyDownCommand { get; private set; }
+        public RelayCommand OnPreviewKeyUpCommand { get; private set; }
+        public RelayCommand OnPreviewMouseWheelCommand { get; private set; }
 
         public void OnErrorsChanged(string propertyName)
         {
@@ -102,9 +113,38 @@ namespace SugarDesk.Core.Infrastructure.Base
             }
         }
 
-        void OnLoaded(object parameter)
+
+        private void OnLoaded(object parameter)
         {
+            if (ZoomableView == null)
+            {
+                if (parameter != null)
+                {
+                    if (parameter is FrameworkElement)
+                    {
+                        ZoomableView = (FrameworkElement) parameter;
+                        ZoomableView.Focusable = true;
+                    }
+                }
+            }
+
             Validate();
         }
+
+        #region Zooming
+
+        private void OnPreviewKeyDown(object parameter)
+        {
+        }
+
+        private void OnPreviewKeyUp(object parameter)
+        {
+        }
+
+        private void OnPreviewMouseWheel(object parameter)
+        {
+        }
+
+        #endregion
     }
 }
