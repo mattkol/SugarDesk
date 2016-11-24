@@ -21,7 +21,6 @@ namespace SugarDesk.Restful.ViewModels
     using Models;
     using Newtonsoft.Json;
     using Prism.Events;
-    using Prism.Mvvm;
     using SugarCrm.RestApiCalls;
     using Core.Infrastructure.Base;
     using Validators;

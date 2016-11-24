@@ -109,6 +109,7 @@
     <Compile Include="Dialogs\AddCredentialContent.cs" />
     <Compile Include="Dialogs\AddUrlContent.cs" />
     <Compile Include="Dialogs\FormDataContent.cs" />
+    <Compile Include="Dialogs\FormDataModernDialog.cs" />
     <Compile Include="Helpers\CsvProvider.cs" />
     <Compile Include="Helpers\DataTableExtensions.cs" />
     <Compile Include="Helpers\DateTimeValueProvider.cs" />
@@ -117,6 +118,8 @@
     <Compile Include="Helpers\JsonStringExtensions.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Messages\AccountMessage.cs" />
+    <Compile Include="Messages\EnableButtonMessage.cs" />
+    <Compile Include="Models\FormModuleData.cs" />
     <Compile Include="Models\ListBoxItem.cs" />
     <Compile Include="Models\ModelInfo.cs" />
     <Compile Include="Models\ModelProperty.cs" />

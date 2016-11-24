@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\Actions\InvokeCommandWithParamAction.cs" />
+    <Compile Include="Infrastructure\Base\ModelBase.cs" />
     <Compile Include="Infrastructure\Base\ViewBase.cs" />
     <Compile Include="Infrastructure\Base\ViewModelBase.cs" />
     <Compile Include="Infrastructure\Behaviors\DocumentReaderBehavor.cs" />

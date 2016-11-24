@@ -24,6 +24,6 @@ namespace SugarDesk.Restful.Models
         /// <summary>
         /// Gets or sets the C# property name.
         /// </summary>
-        public string Type { get; set; }
+        public string TypeName { get; set; }
     }
 }

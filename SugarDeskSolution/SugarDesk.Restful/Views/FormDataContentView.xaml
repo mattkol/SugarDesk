@@ -4,30 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="clr-namespace:FirstFloor.ModernUI.Windows.Controls;assembly=FirstFloor.ModernUI"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:interactivity="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
              xmlns:local="clr-namespace:SugarDesk.Restful.Views"
              xmlns:converters="clr-namespace:SugarDesk.Core.Infrastructure.Converters;assembly=SugarDesk.Core"
+             xmlns:st="clr-namespace:AutoGrid;assembly=SpicyTaco.AutoGrid"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Width="500" Height="400">
-        <ScrollViewer HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  IsEnabled="{Binding Path=IsSelectFieldChecked}">
-            <DataGrid 
-            RenderOptions.ClearTypeHint="Enabled"
-            TextOptions.TextFormattingMode="Display"
-            SelectionUnit="FullRow"
-            AutoGenerateColumns="False" 
-            GridLinesVisibility="All"
-            ScrollViewer.CanContentScroll="True" 
-            ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-            ScrollViewer.VerticalScrollBarVisibility="Auto"
-            ItemsSource="{Binding Path=ModuleDataItems}">
-                <DataGrid.Columns>
-                    <mui:DataGridCheckBoxColumn Header="Add" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=TwoWay}" Width="Auto"/>
-                    <mui:DataGridTextColumn Header="Property Name"  Binding="{Binding Path=FieldName}" Width="Auto" IsReadOnly="True" />
-                    <mui:DataGridTextColumn Header="Value"  Binding="{Binding Path=Value, StringFormat={}{0}°C}" MinWidth="300"  />
-                    <mui:DataGridTextColumn Header="Property Type"  Binding="{Binding Path=Type}" Width="Auto" IsReadOnly="True"  />
-                </DataGrid.Columns>
-            </DataGrid>
-        </ScrollViewer>
+    <Grid Width="Auto" Height="Auto">
+        <st:AutoGrid Rows="Auto,10,*" Columns="*">
+            <st:AutoGrid Rows="Auto" Columns="Auto,*,Auto,30"  IsEnabled="{Binding Path=IsSelectFieldChecked}">
+                <mui:BBCodeBlock BBCode="{Binding Path=BBCodeModelInfo}" />
+                <Label Width="Auto"/>
+                <mui:BBCodeBlock LinkNavigator="{Binding ClearDataLinkNavigator}" BBCode="[url=cmd://ClearDataCommand]Clear Data[/url]"  ToolTip="Clear current input data." Width="Auto" />
+                <Label Width="10"/>
+            </st:AutoGrid>
+            <Label />
+            <ScrollViewer HorizontalContentAlignment="Left" HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  IsEnabled="{Binding Path=IsSelectFieldChecked}">
+                <DataGrid 
+                    RenderOptions.ClearTypeHint="Enabled"
+                    TextOptions.TextFormattingMode="Display"
+                    SelectionUnit="FullRow"
+                    AutoGenerateColumns="False" 
+                    GridLinesVisibility="All"
+                    RowHeight="25"
+                    CanUserAddRows="False"
+                    ScrollViewer.CanContentScroll="True" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    ItemsSource="{Binding Path=FormModuleDataItems}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectedCellsChanged">
+                            <interactivity:InvokeCommandAction Command="{Binding Mode=OneWay, Path=DataSelectedCellsChangedCommand2}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <DataGrid.Columns>
+                        <mui:DataGridCheckBoxColumn Header="Add" Binding="{Binding Path=IsSelected, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="Auto"/>
+                        <mui:DataGridTextColumn Header="Name"  Binding="{Binding Path=FieldName}" Width="Auto" IsReadOnly="True" />
+                        <mui:DataGridTextColumn Header="Value"  Binding="{Binding Path=Value, Mode=TwoWay, ValidatesOnDataErrors=True}" MinWidth="200"  />
+                        <mui:DataGridTextColumn Header="Type"  Binding="{Binding  Path=TypeName}" Width="Auto" IsReadOnly="True"  />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </st:AutoGrid>
     </Grid>
 </UserControl>
 

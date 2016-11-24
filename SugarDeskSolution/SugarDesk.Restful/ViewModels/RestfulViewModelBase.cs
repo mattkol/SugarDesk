@@ -540,11 +540,11 @@ namespace SugarDesk.Restful.ViewModels
 
         private void ImportDataFromFrom()
         {
-            var formDataViewModel = new FormDataViewModel(ModelInfoSelected.ModelProperties);
+            var formDataViewModel = new FormDataViewModel(_eventAggregator, ModelInfoSelected.ModelName, ModelInfoSelected.ModelProperties);
 
-            var dlg = new ModernDialog
+            var dlg = new FormDataModernDialog(_eventAggregator)
             {
-                Title = "Add Data Form",
+                Title = "Input Data Form",
                 Content = new FormDataContent(formDataViewModel)
             };
             dlg.Buttons = new[] { dlg.OkButton, dlg.CancelButton };
@@ -650,7 +650,7 @@ namespace SugarDesk.Restful.ViewModels
                 {
                     var moduleData = new ModuleData();
                     moduleData.FieldName = SelectedFieldItem.Name;
-                    moduleData.Type = (Nullable.GetUnderlyingType(SelectedFieldItem.Type) ?? SelectedFieldItem.Type).Name;
+                    moduleData.TypeName = (Nullable.GetUnderlyingType(SelectedFieldItem.Type) ?? SelectedFieldItem.Type).Name;
 
                     _moduleDataItems.Add(moduleData);
                     ModuleDataItems = new ObservableCollection<ModuleData>(_moduleDataItems);
