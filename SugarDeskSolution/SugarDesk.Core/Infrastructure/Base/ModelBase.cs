@@ -8,16 +8,9 @@ namespace SugarDesk.Core.Infrastructure.Base
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Linq;
-    using FluentValidation.Results;
     using Prism.Mvvm;
-    using FirstFloor.ModernUI.Presentation;
-    using Validators;
     using System.Runtime.CompilerServices;
-    using System.Windows;
-    using System.Windows.Media;
 
     /// <summary>
     /// This class represents ModelBase class.

@@ -55,6 +55,31 @@ namespace SugarDesk.Restful.Helpers
         }
 
         /// <summary>
+        /// Convert csv string to DataTable object.
+        /// </summary>
+        /// <param name="dataTable">Datatabe object to be extended.</param>
+        /// <param name="formData">Form data.</param>
+        /// <returns>DataTable object</returns>
+        public static DataTable FromFormData(this DataTable dataTable, List<FormModuleData> formData)
+        {
+            if ((formData == null) || (formData.Count == 0))
+            {
+                return dataTable;
+            }
+
+            foreach (FormModuleData item in formData)
+            {
+                dataTable.Columns.Add(item.FieldName, Nullable.GetUnderlyingType(item.Type) ?? item.Type);
+            }
+
+            // get  data
+            object[] values = formData.Select(x => x.Value).ToArray();
+            dataTable.Rows.Add(values);
+
+            return dataTable;
+        }
+
+        /// <summary>
         /// Convert model headers to DataTable object.
         /// </summary>
         /// <param name="dataTable">Datatabe object to be extended.</param>

@@ -1859,6 +1859,9 @@
   <project key="1257609164">
     <configuration>DEBUG;TRACE</configuration>
   </project>
+  <project key="-44382921">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
   <sourcecode name="Bootstrapper.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
@@ -2319,11 +2322,11 @@
       </violation>
     </violations>
   </sourcecode>
-  <sourcecode name="SettingsPage.xaml.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="Home.xaml.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
       <settingsFile>2016-07-10 14:20:31.805</settingsFile>
-      <sourceFile>2016-07-10 14:45:35.425</sourceFile>
+      <sourceFile>2016-07-10 14:45:35.441</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-855010722</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -2353,14 +2356,11 @@
       </violation>
     </violations>
   </sourcecode>
-  <project key="-44382921">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
-  <sourcecode name="Home.xaml.cs" parser="StyleCop.CSharp.CsParser">
+  <sourcecode name="SettingsPage.xaml.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
       <settingsFile>2016-07-10 14:20:31.805</settingsFile>
-      <sourceFile>2016-07-10 14:43:46.364</sourceFile>
+      <sourceFile>2016-07-10 14:45:35.425</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-855010722</StyleCop.CSharp.DocumentationRules.FilesHashCode>

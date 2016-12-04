@@ -17,15 +17,17 @@ namespace SugarDesk.Restful.ViewModels
     using FirstFloor.ModernUI.Windows.Navigation;
     using Prism.Events;
     using Messages;
+    using Helpers;
 
     /// <summary>
     /// This class represents AddCredentialViewModel class.
     /// </summary>
     public class FormDataViewModel : BindableBase
     {
-        private const string NullValue = "null";
-        List<FormModuleData> emptyDataItems;
-  
+        private List<FormModuleData> selectedModuleDataItems;
+        private List<FormModuleData> emptyDataItems;
+        private List<ModelProperty> properties;
+
         /// <summary>
         /// The event aggregator
         /// </summary>
@@ -42,6 +44,7 @@ namespace SugarDesk.Restful.ViewModels
 
             List<FormModuleData> dataItems = new List<FormModuleData>();
             emptyDataItems = new List<FormModuleData>();
+            this.properties = properties;
 
             if (properties != null)
             {
@@ -50,9 +53,8 @@ namespace SugarDesk.Restful.ViewModels
                     Type nullableType = Nullable.GetUnderlyingType(property.Type);
                     bool typeIsNullable = nullableType != null;
                     Type type = nullableType ?? property.Type;
-                    string initValue = typeIsNullable ? NullValue : string.Empty;
-                    dataItems.Add(new FormModuleData() { IsSelected = false,  FieldName = property.Name, Value = initValue, Type = property.Type, TypeName = type.Name, IsNullable = typeIsNullable });
-                    emptyDataItems.Add(new FormModuleData() { IsSelected = false, FieldName = property.Name, Value = initValue, Type = property.Type, TypeName = type.Name, IsNullable = typeIsNullable });
+                    dataItems.Add(new FormModuleData(eventAggregator) { IsSelected = false,  FieldName = property.Name, Value = string.Empty, Type = property.Type, TypeName = type.Name, IsNullable = typeIsNullable });
+                    emptyDataItems.Add(new FormModuleData(eventAggregator) { IsSelected = false, FieldName = property.Name, Value = string.Empty, Type = property.Type, TypeName = type.Name, IsNullable = typeIsNullable });
                 }
             }
 
@@ -60,17 +62,25 @@ namespace SugarDesk.Restful.ViewModels
             FormModuleDataItems = new ObservableCollection<FormModuleData>(dataItems);
 
             ClearDataCommand = new RelayCommand(ClearData);
-            DataSelectedCellsChangedCommand = new RelayCommand(DataSelectedCellsChanged);
-
             ClearDataLinkNavigator = new DefaultLinkNavigator();
             ClearDataLinkNavigator.Commands.Add(new Uri("cmd://ClearDataCommand", UriKind.Absolute), ClearDataCommand);
+
+            _eventAggregator.GetEvent<UpdateMessage>().Subscribe(EnableButton);
         }
 
         /// <summary>
         /// Gets or sets the SugarCRM module data item collection.
         /// </summary>
         public ObservableCollection<FormModuleData> FormModuleDataItems { get; set; }
-       
+
+        public DataTable FormData
+        {
+            get
+            {
+                return (new DataTable()).FromFormData(selectedModuleDataItems);
+            }
+        }
+
         /// <summary>
         /// Gets or sets the model info.
         /// </summary>
@@ -83,11 +93,6 @@ namespace SugarDesk.Restful.ViewModels
         public DataTable Data { get; set; }
 
         /// <summary>
-        /// Gets the datagrid cell selection changed command.
-        /// </summary>
-        public RelayCommand DataSelectedCellsChangedCommand { get; private set; }
-
-        /// <summary>
         /// Gets the export to file command.
         /// </summary>
         public RelayCommand ClearDataCommand { get; private set; }
@@ -97,18 +102,19 @@ namespace SugarDesk.Restful.ViewModels
         /// </summary>
         public ILinkNavigator ClearDataLinkNavigator { get; private set; }
 
-
-        private void DataSelectedCellsChanged(object parameter)
+        private void EnableButton(bool update)
         {
             bool enableOkButton = false;
             if (FormModuleDataItems != null)
             {
-                List<FormModuleData> list = FormModuleDataItems.Where(x => x.IsSelected ).ToList();
+                List<FormModuleData> list = FormModuleDataItems.Where(x => (x.IsSelected && x.IsValid)).ToList();
 
-                if (list != null)
+                if ((list != null) && (list.Count > 0))
                 {
-                    enableOkButton = list.All(x => x.IsValid);
+                    enableOkButton = true;
                 }
+
+                selectedModuleDataItems = list;
             }
 
             _eventAggregator.GetEvent<EnableButtonMessage>().Publish(enableOkButton);
@@ -119,6 +125,5 @@ namespace SugarDesk.Restful.ViewModels
         {
             FormModuleDataItems = new ObservableCollection<FormModuleData>(emptyDataItems);
         }
-
     }
 }

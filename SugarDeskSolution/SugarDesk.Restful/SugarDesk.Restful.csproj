@@ -119,6 +119,7 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Messages\AccountMessage.cs" />
     <Compile Include="Messages\EnableButtonMessage.cs" />
+    <Compile Include="Messages\UpdateMessage.cs" />
     <Compile Include="Models\FormModuleData.cs" />
     <Compile Include="Models\ListBoxItem.cs" />
     <Compile Include="Models\ModelInfo.cs" />

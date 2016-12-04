@@ -7,14 +7,31 @@
 namespace SugarDesk.Restful.Models
 {
     using Core.Infrastructure.Base;
+    using Messages;
+    using Prism.Events;
+    using Prism.Mvvm;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
 
     public class FormModuleData : ModelBase
     {
-        private const string NullValue = "null";
+        /// <summary>
+        /// The event aggregator
+        /// </summary>
+        private readonly IEventAggregator _eventAggregator;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormModuleData"/> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        public FormModuleData(IEventAggregator eventAggregator)
+        {
+            _eventAggregator = eventAggregator;
+        }
+            
         public bool IsSelected { get; set; }
+
         /// <summary>
         /// Gets or sets the C# property name.
         /// </summary>
@@ -41,15 +58,9 @@ namespace SugarDesk.Restful.Models
         {
             get
             {
-                bool isNullValue = Value.ToString().ToLower() == NullValue;
-                if (IsNullable && (EmptyValue || isNullValue))
-                {
-                    return true;
-                }
-
                 if (EmptyValue)
                 {
-                    return false;
+                    return IsNullable;
                 }
 
                 switch(TypeName.ToLower())
@@ -71,16 +82,20 @@ namespace SugarDesk.Restful.Models
             }
         } 
 
-        protected override void Validate()
+        public string PropertyFormat
         {
-            List<string> errors = new List<string>();
-            if (IsSelected && !IsValid)
+            get
             {
-                errors.Add("errors");
+                return string.Format("[color=gray]Property Name:{0}[/color]", FieldName);
             }
+        }
 
-            ErrorsContainer.SetErrors(nameof(Value), errors);
-            OnErrorsChanged(nameof(Value));
+        public string TypeNameFormat
+        {
+            get
+            {
+                return string.Format("[color=gray]Type:{0}[/color]", TypeName);
+            }
         }
 
         private bool EmptyValue
@@ -99,6 +114,37 @@ namespace SugarDesk.Restful.Models
 
                 return false;
             }
+        }
+
+        protected override void Validate()
+        {
+            List<string> errors = new List<string>();
+            if (IsSelected && !IsValid)
+            {
+                switch (TypeName.ToLower())
+                {
+                    case "string":
+                        errors.Add(string.Format("{0}\ncannot\nbe empty!", FieldName));
+                        break;
+                    case "int32":
+                        errors.Add(string.Format("\"{0}\"\nis not\nvalid!", Value));
+                        break;
+                    case "sbyte":
+                        errors.Add(string.Format("\"{0}\"\nis not\nvalid!", Value));
+                        break;
+                    case "datetime":
+                        errors.Add(string.Format("\"{0}\"\nis not\na valid date!", Value));
+                        break;
+                    default:
+                        errors.Add(string.Format("\"{0}\"\nis not\na valid!", Value));
+                        break;
+                }
+            }
+
+            ErrorsContainer.SetErrors(nameof(Value), errors);
+            OnErrorsChanged(nameof(Value));
+
+            _eventAggregator.GetEvent<UpdateMessage>().Publish(true);
         }
     }
 }

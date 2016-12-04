@@ -552,6 +552,7 @@ namespace SugarDesk.Restful.ViewModels
 
             if (dlg.MessageBoxResult == MessageBoxResult.OK)
             {
+                ModuleItems = formDataViewModel.FormData;
             }
         }
 

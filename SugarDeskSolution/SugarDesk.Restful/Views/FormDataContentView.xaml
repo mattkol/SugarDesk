@@ -27,22 +27,40 @@
                     SelectionUnit="FullRow"
                     AutoGenerateColumns="False" 
                     GridLinesVisibility="All"
-                    RowHeight="25"
                     CanUserAddRows="False"
                     ScrollViewer.CanContentScroll="True" 
                     ScrollViewer.HorizontalScrollBarVisibility="Auto" 
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                     ItemsSource="{Binding Path=FormModuleDataItems}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectedCellsChanged">
-                            <interactivity:InvokeCommandAction Command="{Binding Mode=OneWay, Path=DataSelectedCellsChangedCommand2}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="FontStyle"  Value="Normal"/>
+                            <Setter Property="Foreground" Value="Black" />
+                        </Style>
+                    </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <mui:DataGridCheckBoxColumn Header="Add" Binding="{Binding Path=IsSelected, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="Auto"/>
-                        <mui:DataGridTextColumn Header="Name"  Binding="{Binding Path=FieldName}" Width="Auto" IsReadOnly="True" />
-                        <mui:DataGridTextColumn Header="Value"  Binding="{Binding Path=Value, Mode=TwoWay, ValidatesOnDataErrors=True}" MinWidth="200"  />
-                        <mui:DataGridTextColumn Header="Type"  Binding="{Binding  Path=TypeName}" Width="Auto" IsReadOnly="True"  />
+                        <mui:DataGridCheckBoxColumn Header="Add" Binding="{Binding Path=IsSelected, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="Auto">
+                            <DataGridCheckBoxColumn.ElementStyle>
+                                <Style TargetType="CheckBox"/>
+                            </DataGridCheckBoxColumn.ElementStyle>
+                        </mui:DataGridCheckBoxColumn>
+                        <DataGridTemplateColumn Header="Add Value">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <st:AutoGrid Rows="Auto" Columns="Auto" ChildMargin="3">
+                                        <st:AutoGrid Rows="Auto" Columns="Auto,280,120" ChildMargin="3">
+                                            <Label Width="Auto" HorizontalAlignment="Left" Content="Value:"/>
+                                            <st:AutoGrid Rows="Auto,Auto,Auto" Columns="275" ChildMargin="3">
+                                                <TextBox Text="{Binding Path=Value, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="50" />
+                                                <mui:BBCodeBlock Width="Auto" Margin="0" HorizontalAlignment="Left" BBCode="{Binding Path=PropertyFormat}" />
+                                                <mui:BBCodeBlock Width="Auto" Margin="0" HorizontalAlignment="Left" BBCode="{Binding Path=TypeNameFormat}" />
+                                            </st:AutoGrid>
+                                            <CheckBox Margin="5,0,0,0" IsChecked="{Binding Path=IsNullable}" Content="Nullable" IsEnabled="False"/>
+                                        </st:AutoGrid>
+                                    </st:AutoGrid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>

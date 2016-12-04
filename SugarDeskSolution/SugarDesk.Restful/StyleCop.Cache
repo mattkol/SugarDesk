@@ -978,7 +978,7 @@
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
       <settingsFile>2016-07-10 14:21:25.353</settingsFile>
-      <sourceFile>2016-11-20 16:10:01.392</sourceFile>
+      <sourceFile>2016-12-03 20:43:28.214</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-855010722</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -1017,8 +1017,18 @@
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementDocumentationMustBeSpelledCorrectly" ruleCheckId="SA1650">
+        <context>The documentation text within the summary tag contains incorrectly spelled words: csv</context>
+        <line>63</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementDocumentationMustBeSpelledCorrectly" ruleCheckId="SA1650">
         <context>The documentation text within the param tag contains incorrectly spelled words: Datatabe</context>
         <line>63</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementDocumentationMustBeSpelledCorrectly" ruleCheckId="SA1650">
+        <context>The documentation text within the param tag contains incorrectly spelled words: Datatabe</context>
+        <line>88</line>
         <warning>False</warning>
       </violation>
     </violations>
@@ -1483,11 +1493,34 @@
     </timestamps>
     <violations />
   </sourcecode>
+  <sourcecode name="UpdateMessage.cs" parser="StyleCop.CSharp.CsParser">
+    <timestamps>
+      <styleCop>2016-07-05 15:41:45.684</styleCop>
+      <settingsFile>2016-07-10 14:21:25.353</settingsFile>
+      <sourceFile>2016-12-02 23:18:16.057</sourceFile>
+      <parser>2016-07-05 15:41:45.684</parser>
+      <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
+      <StyleCop.CSharp.DocumentationRules.FilesHashCode>-855010722</StyleCop.CSharp.DocumentationRules.FilesHashCode>
+      <StyleCop.CSharp.LayoutRules>2016-07-05 15:41:45.684</StyleCop.CSharp.LayoutRules>
+      <StyleCop.CSharp.LayoutRules.FilesHashCode>0</StyleCop.CSharp.LayoutRules.FilesHashCode>
+      <StyleCop.CSharp.MaintainabilityRules>2016-07-05 15:41:45.684</StyleCop.CSharp.MaintainabilityRules>
+      <StyleCop.CSharp.MaintainabilityRules.FilesHashCode>0</StyleCop.CSharp.MaintainabilityRules.FilesHashCode>
+      <StyleCop.CSharp.NamingRules>2016-07-05 15:41:45.684</StyleCop.CSharp.NamingRules>
+      <StyleCop.CSharp.NamingRules.FilesHashCode>0</StyleCop.CSharp.NamingRules.FilesHashCode>
+      <StyleCop.CSharp.OrderingRules>2016-07-05 15:41:45.684</StyleCop.CSharp.OrderingRules>
+      <StyleCop.CSharp.OrderingRules.FilesHashCode>0</StyleCop.CSharp.OrderingRules.FilesHashCode>
+      <StyleCop.CSharp.ReadabilityRules>2016-07-05 15:41:45.684</StyleCop.CSharp.ReadabilityRules>
+      <StyleCop.CSharp.ReadabilityRules.FilesHashCode>0</StyleCop.CSharp.ReadabilityRules.FilesHashCode>
+      <StyleCop.CSharp.SpacingRules>2016-07-05 15:41:45.684</StyleCop.CSharp.SpacingRules>
+      <StyleCop.CSharp.SpacingRules.FilesHashCode>0</StyleCop.CSharp.SpacingRules.FilesHashCode>
+    </timestamps>
+    <violations />
+  </sourcecode>
   <sourcecode name="FormModuleData.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
       <settingsFile>2016-07-10 14:21:25.353</settingsFile>
-      <sourceFile>2016-11-24 15:43:50.079</sourceFile>
+      <sourceFile>2016-12-03 19:41:21.602</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-855010722</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -1507,89 +1540,79 @@
     <violations>
       <violation namespace="StyleCop.CSharp.OrderingRules" rule="SystemUsingDirectivesMustBePlacedBeforeOtherUsingDirectives" ruleCheckId="SA1208">
         <context>System using directives must be placed before all other using directives.</context>
-        <line>10</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The class must have a documentation header.</context>
         <line>13</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The field must have a documentation header.</context>
-        <line>15</line>
+        <context>The class must have a documentation header.</context>
+        <line>17</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The property must have a documentation header.</context>
-        <line>17</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.LayoutRules" rule="ElementsMustBeSeparatedByBlankLine" ruleCheckId="SA1516">
-        <context>Adjacent elements must be separated by a blank line.</context>
-        <line>21</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.LayoutRules" rule="ElementDocumentationHeaderMustBePrecededByBlankLine" ruleCheckId="SA1514">
-        <context>A documentation header must be preceded by a blank line or must be the first item in its scope.</context>
-        <line>18</line>
+        <line>33</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementDocumentationMustBeSpelledCorrectly" ruleCheckId="SA1650">
         <context>The documentation text within the summary tag contains incorrectly spelled words: nullable</context>
-        <line>31</line>
+        <line>48</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="PropertySummaryDocumentationMustMatchAccessors" ruleCheckId="SA1623">
         <context>The property's documentation summary text must begin with: Gets or sets a value indicating whether</context>
-        <line>31</line>
+        <line>48</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The property must have a documentation header.</context>
-        <line>38</line>
+        <line>55</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The property must have a documentation header.</context>
-        <line>40</line>
+        <line>57</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.SpacingRules" rule="KeywordsMustBeSpacedCorrectly" ruleCheckId="SA1000">
         <context>The spacing around the keyword 'switch' is invalid.</context>
-        <line>55</line>
-        <index>1643</index>
-        <endIndex>1648</endIndex>
-        <startLine>55</startLine>
+        <line>66</line>
+        <index>1983</index>
+        <endIndex>1988</endIndex>
+        <startLine>66</startLine>
         <startColumn>17</startColumn>
-        <endLine>55</endLine>
+        <endLine>66</endLine>
         <endColumn>22</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The method must have a documentation header.</context>
-        <line>74</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustAppearInTheCorrectOrder" ruleCheckId="SA1201">
-        <context>All methods must be placed after all properties.</context>
-        <line>86</line>
+        <context>The property must have a documentation header.</context>
+        <line>85</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The property must have a documentation header.</context>
-        <line>86</line>
+        <line>93</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
+        <context>The property must have a documentation header.</context>
+        <line>101</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.SpacingRules" rule="KeywordsMustBeSpacedCorrectly" ruleCheckId="SA1000">
         <context>The spacing around the keyword 'if' is invalid.</context>
-        <line>95</line>
-        <index>2865</index>
-        <endIndex>2866</endIndex>
-        <startLine>95</startLine>
+        <line>110</line>
+        <index>3252</index>
+        <endIndex>3253</endIndex>
+        <startLine>110</startLine>
         <startColumn>17</startColumn>
-        <endLine>95</endLine>
+        <endLine>110</endLine>
         <endColumn>18</endColumn>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
+        <context>The method must have a documentation header.</context>
+        <line>119</line>
         <warning>False</warning>
       </violation>
     </violations>
@@ -2253,7 +2276,7 @@
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
       <settingsFile>2016-07-10 14:21:25.353</settingsFile>
-      <sourceFile>2016-11-24 17:58:36.119</sourceFile>
+      <sourceFile>2016-12-03 20:49:53.281</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-855010722</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -2296,80 +2319,64 @@
         <line>18</line>
         <warning>False</warning>
       </violation>
-      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
-        <context>The code must not contain multiple blank lines in a row.</context>
-        <line>79</line>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBeOrderedAlphabeticallyByNamespace" ruleCheckId="SA1210">
+        <context>Using directives must be sorted alphabetically by the namespaces.</context>
+        <line>19</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
         <context>The code must not contain multiple blank lines in a row.</context>
-        <line>100</line>
+        <line>89</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
         <context>The code must not contain multiple blank lines in a row.</context>
-        <line>117</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.LayoutRules" rule="ClosingCurlyBracketsMustNotBePrecededByBlankLine" ruleCheckId="SA1508">
-        <context>A closing curly bracket must not be preceded by a blank line.</context>
         <line>123</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The field must have a documentation header.</context>
-        <line>26</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The field must have a documentation header.</context>
-        <line>27</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.MaintainabilityRules" rule="AccessModifierMustBeDeclared" ruleCheckId="SA1400">
-        <context>The field must have an access modifier.</context>
         <line>27</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.OrderingRules" rule="InstanceReadonlyElementsMustAppearBeforeInstanceNonReadonlyElements" ruleCheckId="SA1215">
         <context>All non-static readonly private fields must be placed before all non-static non-readonly private fields.</context>
-        <line>32</line>
+        <line>34</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
+        <context>The field must have a documentation header.</context>
+        <line>28</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
+        <context>The field must have a documentation header.</context>
+        <line>29</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementParameterDocumentationMustMatchElementParameters" ruleCheckId="SA1612">
         <context>The param tags in the documentation header must match the element's parameter list.</context>
-        <line>39</line>
+        <line>41</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementParametersMustBeDocumented" ruleCheckId="SA1611">
         <context>The documentation header must contain param tags matching the element's parameter list.</context>
-        <line>39</line>
+        <line>41</line>
         <warning>False</warning>
       </violation>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementDocumentationMustBeSpelledCorrectly" ruleCheckId="SA1650">
-        <context>The documentation text within the summary tag contains incorrectly spelled words: datagrid</context>
-        <line>88</line>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
+        <context>The property must have a documentation header.</context>
+        <line>76</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The method must have a documentation header.</context>
-        <line>101</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.SpacingRules" rule="ClosingParenthesisMustBeSpacedCorrectly" ruleCheckId="SA1009">
-        <context>Invalid spacing around the closing parenthesis.</context>
-        <line>106</line>
-        <index>4397</index>
-        <endIndex>4397</endIndex>
-        <startLine>106</startLine>
-        <startColumn>88</startColumn>
-        <endLine>106</endLine>
-        <endColumn>88</endColumn>
+        <line>105</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The method must have a documentation header.</context>
-        <line>118</line>
+        <line>124</line>
         <warning>False</warning>
       </violation>
     </violations>
@@ -2378,7 +2385,7 @@
     <timestamps>
       <styleCop>2016-07-05 15:41:45.684</styleCop>
       <settingsFile>2016-07-10 14:21:25.353</settingsFile>
-      <sourceFile>2016-11-24 17:15:54.613</sourceFile>
+      <sourceFile>2016-12-03 20:36:46.993</sourceFile>
       <parser>2016-07-05 15:41:45.684</parser>
       <StyleCop.CSharp.DocumentationRules>2016-07-05 15:41:45.684</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-855010722</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -2493,7 +2500,7 @@
       </violation>
       <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
         <context>All private methods must be placed after all protected methods.</context>
-        <line>562</line>
+        <line>563</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
@@ -2543,7 +2550,7 @@
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementDocumentationMustBeSpelledCorrectly" ruleCheckId="SA1650">
         <context>The documentation text within the param tag contains incorrectly spelled words: opject</context>
-        <line>698</line>
+        <line>699</line>
         <warning>False</warning>
       </violation>
     </violations>
