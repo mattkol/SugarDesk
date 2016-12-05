@@ -6,11 +6,13 @@
 
 namespace SugarDesk.Restful.ViewModels
 {
+    using Core.Infrastructure.Converters;
     using FirstFloor.ModernUI.Presentation;
-    using FirstFloor.ModernUI.Windows.Controls;
+    using Helpers;
     using Microsoft.Practices.Unity;
+    using Models;
     using Prism.Events;
-    
+
     /// <summary>
     /// This class represents DeleteViewModel class.
     /// </summary>
@@ -41,15 +43,25 @@ namespace SugarDesk.Restful.ViewModels
         /// Sends request to SugarCRM Rest API.
         /// </summary>
         /// <param name="parameter">The command parameter.</param>
-        private void Send(object parameter)
+        private async void Send(object parameter)
         {
-            var dlg = new ModernDialog
-            {
-                Title = "Delete Model",
-                Content = "Work in progress ..."
-            };
-            dlg.Buttons = new[] { dlg.OkButton, dlg.CancelButton };
-            dlg.ShowDialog();
+            ExpandPaneOption = EnumOptionType.Two;
+            ResponseViewOption = EnumOptionType.One;
+            EnableResponseControls = false;
+
+            var restRequest = new RestRequest();
+            restRequest.Account = CurrentSugarCrmAccount;
+            restRequest.ModelInfo = ModelInfoSelected;
+            restRequest.Id = Identifier;
+
+            RestResponse response = await SugarCrmApiRestful.Delete(restRequest);
+
+            ModuleItems = null;
+            RequestJson = response.JsonRawRequest;
+            ResponseJson = response.JsonRawResponse;
+
+            ResponseViewOption = response.Failure ? EnumOptionType.Three : EnumOptionType.Two;
+            EnableResponseControls = true;
         }
 
         /// <summary>

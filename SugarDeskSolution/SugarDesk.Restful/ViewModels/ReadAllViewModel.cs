@@ -49,8 +49,7 @@ namespace SugarDesk.Restful.ViewModels
 
             var restRequest = new RestRequest();
             restRequest.Account = CurrentSugarCrmAccount;
-            restRequest.Type = ModelInfoSelected.Type;
-            restRequest.ModuleName = ModelInfoSelected.ModelName;
+            restRequest.ModelInfo = ModelInfoSelected;
             restRequest.MaxResult = MaxResultSelected;
             restRequest.SelectFields = IsSelectFieldChecked;
             restRequest.SelectedFields = SelectedFieldsItems.ToList();

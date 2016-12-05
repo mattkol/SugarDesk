@@ -20,6 +20,7 @@ namespace SugarDesk.Restful.ViewModels
     using Models;
     using Prism.Events;
     using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
+    using Helpers;
 
     /// <summary>
     /// This class represents CreateViewModel class.
@@ -166,15 +167,25 @@ namespace SugarDesk.Restful.ViewModels
         /// Sends request to SugarCRM Rest API.
         /// </summary>
         /// <param name="parameter">The command parameter.</param>
-        private void Send(object parameter)
+        private async void Send(object parameter)
         {
-            var dlg = new ModernDialog
-            {
-                Title = "Create Model",
-                Content = "Work in progress ..."
-            };
-            dlg.Buttons = new[] { dlg.OkButton, dlg.CancelButton };
-            dlg.ShowDialog();
+            ExpandPaneOption = EnumOptionType.Two;
+            ResponseViewOption = EnumOptionType.One;
+            EnableResponseControls = false;
+
+            var restRequest = new RestRequest();
+            restRequest.Account = CurrentSugarCrmAccount;
+            restRequest.ModelInfo = ModelInfoSelected;
+            restRequest.Data = ModuleItems;
+
+            RestResponse response = await SugarCrmApiRestful.Create(restRequest);
+
+            ModuleItems = null;
+            RequestJson = response.JsonRawRequest;
+            ResponseJson = response.JsonRawResponse;
+
+            ResponseViewOption = response.Failure ? EnumOptionType.Three : EnumOptionType.Two;
+            EnableResponseControls = true;
         }
 
         /// <summary>

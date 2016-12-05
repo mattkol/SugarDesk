@@ -13,6 +13,10 @@ namespace SugarDesk.Restful.Helpers
     using System.Linq;
     using Models;
     using System.Text;
+    using Newtonsoft.Json.Linq;
+    using System.Reflection;
+    using SugarCrm.RestApiCalls;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// This class represents DataTableExtensions class.
@@ -104,6 +108,87 @@ namespace SugarDesk.Restful.Helpers
             dataTable.Rows.Add(values);
 
             return dataTable;
+        }
+
+        /// <summary>
+        /// Converts a DataTable to a list with generic objects.
+        /// </summary>
+        /// <typeparam name="T">Generic object</typeparam>
+        /// <param name="dataTable">DataTable</param>
+        /// <param name="modelInfo">Model properties.</param>
+        /// <returns>List with generic objects</returns>
+        public static List<object> ToObjects(this DataTable dataTable, ModelInfo modelInfo, out List<string>selectedFields) 
+        {
+            List<object> entityList = new List<object>();
+            List<string> propertyNames = modelInfo.ModelProperties.Select(x => x.Name).ToList();
+            List<ModelProperty> properties = modelInfo.ModelProperties;
+
+            selectedFields = new List<string>();
+
+            try
+            {
+                foreach (DataRow dataRow in dataTable.AsEnumerable())
+                {
+                    JObject jobject = new JObject();
+                    try
+                    {
+                        foreach (DataColumn column in dataTable.Columns)
+                        {
+                            string columnName = column.ColumnName.Trim();
+                            if (propertyNames.Contains(columnName))
+                            {
+                                ModelProperty property = modelInfo.ModelProperties.FirstOrDefault(x => x.Name.ToLower() == columnName.ToLower());
+                                if (property != null)
+                                {
+                                    jobject.Add(property.JsonName, JToken.FromObject(dataRow[column]));
+                                    selectedFields.Add(property.JsonName);
+                                }
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+
+                    object entity = JsonConvert.DeserializeObject(jobject.ToString(), modelInfo.Type);
+                    entityList.Add(entity);
+                }
+
+                return entityList;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Convert datatable to Json Array object.
+        /// </summary>
+        /// <param name="properties">Model properties.</param>
+        /// <returns>DataTable object</returns>
+        public static JArray ToJson(this DataTable dataTable)
+        {
+            JArray jarrayData = new JArray();
+
+            if (dataTable == null)
+            {
+                return jarrayData;
+            }
+
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                JObject row = new JObject();
+                foreach (DataColumn column in dataTable.Columns)
+                {
+                    row.Add(column.ColumnName.Trim(), JToken.FromObject(dataRow[column]));
+                }
+
+                jarrayData.Add(row);
+            }
+
+            return jarrayData;
         }
     }
 }

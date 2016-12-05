@@ -13,7 +13,10 @@ namespace SugarDesk.Restful.Helpers
     using Models;
     using Newtonsoft.Json.Linq;
     using SugarCrm.RestfulCRUD;
-    
+    using SugarCrm.RestApiCalls;
+    using System.Net;
+    using System;
+
     /// <summary>
     /// This class represents SugarCrmApiRestful class.
     /// </summary>
@@ -31,7 +34,7 @@ namespace SugarDesk.Restful.Helpers
                     var response = new RestResponse();
 
                     var request = new SugarRestRequest();
-                    request.ModuleName = restRequest.ModuleName;
+                    request.ModuleName = restRequest.ModelInfo.ModelName;
                     request.Url = restRequest.Account.Url;
                     request.Username = restRequest.Account.Username;
                     request.Password = restRequest.Account.Password;
@@ -71,7 +74,7 @@ namespace SugarDesk.Restful.Helpers
                         }
 
                         response.Data = sugarRestResponse.Content.ToDynamicObjects(
-                            restRequest.Type, selectedProperties, selectedFieldsOnly);
+                            restRequest.ModelInfo.Type, selectedProperties, selectedFieldsOnly);
 
                         response.JsonRawRequest = JToken.Parse(
                             sugarRestResponse.JsonRawRequest).ToString(Newtonsoft.Json.Formatting.Indented);
@@ -96,7 +99,7 @@ namespace SugarDesk.Restful.Helpers
                 var response = new RestResponse();
 
                 var request = new SugarRestRequest();
-                request.ModuleName = restRequest.ModuleName;
+                request.ModuleName = restRequest.ModelInfo.ModelName;
                 request.Url = restRequest.Account.Url;
                 request.Username = restRequest.Account.Username;
                 request.Password = restRequest.Account.Password;
@@ -137,7 +140,7 @@ namespace SugarDesk.Restful.Helpers
                         selectedProperties = properties.Select(x => x.Name).ToList();
                     }
 
-                    response.Data = sugarRestResponse.Content.ToDynamicObjects(restRequest.Type, selectedProperties, selectedFieldsOnly);
+                    response.Data = sugarRestResponse.Content.ToDynamicObjects(restRequest.ModelInfo.Type, selectedProperties, selectedFieldsOnly);
                     response.JsonRawRequest = JToken.Parse(sugarRestResponse.JsonRawRequest).ToString(Newtonsoft.Json.Formatting.Indented);
                     response.JsonRawResponse = JToken.Parse(sugarRestResponse.JsonRawResponse).ToString(Newtonsoft.Json.Formatting.Indented);
                 }
@@ -158,7 +161,7 @@ namespace SugarDesk.Restful.Helpers
                 var response = new RestResponse();
 
                 var request = new SugarRestRequest();
-                request.ModuleName = restRequest.ModuleName;
+                request.ModuleName = restRequest.ModelInfo.ModelName;
                 request.Url = restRequest.Account.Url;
                 request.Username = restRequest.Account.Username;
                 request.Password = restRequest.Account.Password;
@@ -193,10 +196,141 @@ namespace SugarDesk.Restful.Helpers
                         selectedProperties = properties.Select(x => x.Name).ToList();
                     }
 
-                    response.Data = sugarRestResponse.Content.ToDynamicObject(restRequest.Type, selectedProperties, selectedFieldsOnly);
+                    response.Data = sugarRestResponse.Content.ToDynamicObject(restRequest.ModelInfo.Type, selectedProperties, selectedFieldsOnly);
                     response.JsonRawRequest = JToken.Parse(sugarRestResponse.JsonRawRequest).ToString(Newtonsoft.Json.Formatting.Indented);
                     response.JsonRawResponse = JToken.Parse(sugarRestResponse.JsonRawResponse).ToString(Newtonsoft.Json.Formatting.Indented);
                 }
+
+                return response;
+            });
+        }
+
+        /// <summary>
+        /// This Create request.
+        /// </summary>
+        /// <param name="restRequest">SugarCRM Rest request parameters.</param>
+        /// <returns>The task response object.</returns>
+        public static Task<RestResponse> Create(RestRequest restRequest)
+        {
+            return Task.Run(() =>
+            {
+                var response = new RestResponse();
+
+                var request = new SugarRestRequest();
+                request.ModuleName = restRequest.ModelInfo.ModelName;
+                request.Url = restRequest.Account.Url;
+                request.Username = restRequest.Account.Username;
+                request.Password = restRequest.Account.Password;
+
+                var client = new SugarRestClient();
+
+                List<string> selectedFields;
+                List<object> dataList = restRequest.Data.ToObjects(restRequest.ModelInfo, out selectedFields);
+                request.Options.SelectFields = selectedFields;
+
+                if (dataList == null)
+                {
+                    return response;
+                }
+
+                SugarRestResponse sugarRestResponse = new SugarRestResponse();
+                if (dataList.Count == 1)
+                {
+                    request.Data = dataList;
+                    sugarRestResponse = client.Insert(request);
+                    response.Id = sugarRestResponse.Id;
+                }
+                else
+                {
+                    request.Data = dataList;
+                    sugarRestResponse = client.Inserts(request);
+                }
+
+
+                try
+                {
+                    response.JsonRawRequest = JToken.Parse(sugarRestResponse.JsonRawRequest).ToString(Newtonsoft.Json.Formatting.Indented);
+                }
+                catch (Exception exception)
+                {
+                    response.Failure = true;
+                    response.JsonRawRequest = exception.Message;
+                }
+
+                if (sugarRestResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    try
+                    {
+                        response.JsonRawResponse = JToken.Parse(sugarRestResponse.JsonRawResponse).ToString(Newtonsoft.Json.Formatting.Indented);
+                    }
+                    catch (Exception exception)
+                    {
+                        response.Failure = true;
+                        response.JsonRawResponse = exception.Message;
+                    }
+                }
+                else
+                {
+                    response.Failure = true;
+
+                    if (sugarRestResponse.Error != null)
+                    {
+                        response.JsonRawResponse = sugarRestResponse.Error.Message;
+                    }
+                    else
+                    {
+                        response.JsonRawResponse = "An error occurs processing request!";
+                    }
+
+                }
+
+                return response;
+            });
+        }
+
+        /// <summary>
+        /// This Update request.
+        /// </summary>
+        /// <param name="restRequest">SugarCRM Rest request parameters.</param>
+        /// <returns>The task response object.</returns>
+        public static Task<RestResponse> Update(RestRequest restRequest)
+        {
+            return Task.Run(() =>
+            {
+                var response = new RestResponse();
+
+                var request = new SugarRestRequest();
+                request.ModuleName = restRequest.ModelInfo.ModelName;
+                request.Url = restRequest.Account.Url;
+                request.Username = restRequest.Account.Username;
+                request.Password = restRequest.Account.Password;
+
+                var client = new SugarRestClient();
+
+                List<string> selectedFields;
+                List<object> dataList = restRequest.Data.ToObjects(restRequest.ModelInfo, out selectedFields);
+                request.Options.SelectFields = selectedFields;
+
+                if (dataList == null)
+                {
+                    return response;
+                }
+
+                SugarRestResponse sugarRestResponse = new SugarRestResponse();
+                if (dataList.Count == 1)
+                {
+                    request.Data = dataList;
+                    sugarRestResponse = client.Update(request);
+                    response.Id = sugarRestResponse.Id;
+                }
+                else
+                {
+                    request.Data = dataList;
+                    sugarRestResponse = client.Updates(request);
+                }
+
+                response.JsonRawRequest = JToken.Parse(sugarRestResponse.JsonRawRequest).ToString(Newtonsoft.Json.Formatting.Indented);
+                response.JsonRawResponse = JToken.Parse(sugarRestResponse.JsonRawResponse).ToString(Newtonsoft.Json.Formatting.Indented);
 
                 return response;
             });
@@ -214,7 +348,7 @@ namespace SugarDesk.Restful.Helpers
                 var response = new RestResponse();
 
                 var request = new SugarRestRequest();
-                request.ModuleName = restRequest.ModuleName;
+                request.ModuleName = restRequest.ModelInfo.ModelName;
                 request.Url = restRequest.Account.Url;
                 request.Username = restRequest.Account.Username;
                 request.Password = restRequest.Account.Password;

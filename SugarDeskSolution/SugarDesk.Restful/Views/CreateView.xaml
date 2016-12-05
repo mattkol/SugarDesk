@@ -219,8 +219,13 @@
 
                                 <!--  Json View -->
                                 <Grid Grid.Row="2" Margin="10">
-                                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-                                        <TextBlock Text="{Binding ResponseJson}" Width="Auto" TextWrapping="Wrap" />
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                        <st:AutoGrid Rows="Auto,Auto,Auto,Auto" Columns="Auto" ChildMargin="3">
+                                            <Label HorizontalContentAlignment="Left" HorizontalAlignment="Left" Content="Request:" />
+                                            <TextBlock Text="{Binding RequestJson}" Width="Auto" TextWrapping="Wrap" />
+                                            <Label HorizontalContentAlignment="Left" HorizontalAlignment="Left" Content="Response:" />
+                                            <TextBlock Text="{Binding ResponseJson}" Width="Auto" TextWrapping="Wrap" />
+                                        </st:AutoGrid>
                                     </ScrollViewer>
                                 </Grid>
                                 <!--  End Json View -->

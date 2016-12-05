@@ -24,6 +24,11 @@ namespace SugarDesk.Restful.Models
         }
 
         /// <summary>
+        /// Gets or sets succes status.
+        /// </summary>
+        public bool Failure { get; set; }
+
+        /// <summary>
         /// Gets or sets data.
         /// </summary>
         public DataTable Data { get; set; }
