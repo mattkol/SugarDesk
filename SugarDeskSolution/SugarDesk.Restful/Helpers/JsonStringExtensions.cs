@@ -17,7 +17,7 @@ namespace SugarDesk.Restful.Helpers
     /// <summary>
     /// This class represents JsonStringExtensions class.
     /// </summary>
-    public static class JsonStringExtensions 
+    public static class JsonStringExtensions
     {
         /// <summary>
         /// Converts json string to dynamic object collections datatable.

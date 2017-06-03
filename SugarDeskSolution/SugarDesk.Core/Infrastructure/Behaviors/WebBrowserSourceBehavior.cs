@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="WebBrowserSourceBehaviour.cs" company="SugarDesk WPF MVVM Studio">
+// <copyright file="WebBrowserSourceBehavior.cs" company="SugarDesk WPF MVVM Studio">
 // Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
 // </copyright>
 // -----------------------------------------------------------------------
@@ -11,9 +11,9 @@ namespace SugarDesk.Core.Infrastructure.Behaviors
     using System.Windows.Controls;
 
     /// <summary>
-    /// This class represents WebBrowserSourceBehaviour class.
+    /// This class represents WebBrowserSourceBehavior class.
     /// </summary>
-    public static class WebBrowserSourceBehaviour
+    public static class WebBrowserSourceBehavior
     {
         /// <summary>
         /// Create the web browser source attached property.
@@ -22,7 +22,7 @@ namespace SugarDesk.Core.Infrastructure.Behaviors
                                                     DependencyProperty.RegisterAttached(
                                                     "WebBrowserSource",
                                                     typeof(object),
-                                                    typeof(WebBrowserSourceBehaviour),
+                                                    typeof(WebBrowserSourceBehavior),
                                                     new PropertyMetadata(WebBrowserSourceChanged));
 
         /// <summary>

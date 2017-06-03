@@ -14,8 +14,6 @@ namespace SugarDesk.Restful.Helpers
     using Models;
     using System.Text;
     using Newtonsoft.Json.Linq;
-    using System.Reflection;
-    using SugarCrm.RestApiCalls;
     using Newtonsoft.Json;
 
     /// <summary>

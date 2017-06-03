@@ -6,8 +6,6 @@
 
 namespace SugarDesk.Restful.Models
 {
-    using SugarCrm.RestApiCalls;
-    using System;
     using System.Collections.Generic;
     using System.Data;
 

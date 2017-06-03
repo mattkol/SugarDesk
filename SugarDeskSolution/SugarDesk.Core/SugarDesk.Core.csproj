@@ -70,12 +70,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\VisualChildFinder.cs" />
     <Compile Include="Infrastructure\Actions\InvokeCommandWithParamAction.cs" />
     <Compile Include="Infrastructure\Base\ModelBase.cs" />
     <Compile Include="Infrastructure\Base\ViewBase.cs" />
     <Compile Include="Infrastructure\Base\ViewModelBase.cs" />
-    <Compile Include="Infrastructure\Behaviors\DocumentReaderBehavor.cs" />
-    <Compile Include="Infrastructure\Behaviors\WebBrowserSourceBehaviour.cs" />
+    <Compile Include="Infrastructure\Behaviors\DocumentReaderBehavior.cs" />
+    <Compile Include="Infrastructure\Behaviors\HyperlinkBehavior.cs" />
+    <Compile Include="Infrastructure\Behaviors\WebBrowserSourceBehavior.cs" />
     <Compile Include="Infrastructure\Converters\BindingProxy.cs" />
     <Compile Include="Infrastructure\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Infrastructure\Converters\EnumMatchToBooleanConverter.cs" />

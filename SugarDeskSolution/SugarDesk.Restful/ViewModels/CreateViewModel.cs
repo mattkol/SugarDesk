@@ -14,7 +14,6 @@ namespace SugarDesk.Restful.ViewModels
     using Core.Infrastructure.Converters;
     using CsvHelper;
     using FirstFloor.ModernUI.Presentation;
-    using FirstFloor.ModernUI.Windows.Controls;
     using Microsoft.Practices.Unity;
     using Microsoft.Win32;
     using Models;

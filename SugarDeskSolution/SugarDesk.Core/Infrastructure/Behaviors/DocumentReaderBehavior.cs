@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="DocumentReaderBehavor.cs" company="SugarDesk WPF MVVM Studio">
+// <copyright file="DocumentReaderBehavior.cs" company="SugarDesk WPF MVVM Studio">
 // Copyright (c) SugarDesk WPF MVVM Studio. All rights reserved. 
 // </copyright>
 // -----------------------------------------------------------------------
@@ -10,9 +10,9 @@ namespace SugarDesk.Core.Infrastructure.Behaviors
     using System.Windows.Documents;
 
     /// <summary>
-    /// This class represents DocumentReaderBehavor class.
+    /// This class represents DocumentReaderBehavior class.
     /// </summary>
-    public static class DocumentReaderBehavor
+    public static class DocumentReaderBehavior
     {
         /// <summary>
         /// Create the document reader attached property.
@@ -21,7 +21,7 @@ namespace SugarDesk.Core.Infrastructure.Behaviors
                                                 DependencyProperty.RegisterAttached(
                                                 "DocumentReader",
                                                 typeof(object),
-                                                typeof(DocumentReaderBehavor),
+                                                typeof(DocumentReaderBehavior),
                                                 new PropertyMetadata(DocumentReaderChanged));
 
         /// <summary>

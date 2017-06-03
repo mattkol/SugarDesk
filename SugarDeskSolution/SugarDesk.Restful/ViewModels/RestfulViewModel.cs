@@ -21,9 +21,10 @@ namespace SugarDesk.Restful.ViewModels
     using Models;
     using Newtonsoft.Json;
     using Prism.Events;
-    using SugarCrm.RestApiCalls;
     using Core.Infrastructure.Base;
     using Validators;
+    using System.IO;
+    using Newtonsoft.Json.Linq;
 
     /// <summary>
     /// This class represents RestfulViewModel class.
@@ -364,16 +365,23 @@ namespace SugarDesk.Restful.ViewModels
         {
             var modelInfos = new List<ModelInfo>();
 
-            var types = from type in typeof(ModulePropertyAttribute).Assembly.GetTypes()
-                        where Attribute.IsDefined(type, typeof(ModulePropertyAttribute))
+            string mainAssemblyFolder = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            string sugarRestSharpDll = Path.Combine(mainAssemblyFolder, "SugarRestSharp.dll");
+            Assembly assembly = Assembly.LoadFrom(sugarRestSharpDll);
+            object attrObj = assembly.CreateInstance("SugarRestSharp.ModulePropertyAttribute");
+            Type attrType = attrObj.GetType();
+
+            var types = from type in attrType.Assembly.GetTypes()
+                        where Attribute.IsDefined(type, attrType)
                         select type;
 
             foreach (var type in types)
             {
-                object[] classAttrs = type.GetCustomAttributes(typeof(ModulePropertyAttribute), false);
+                object[] classAttrs = type.GetCustomAttributes(attrType, false);
                 if (classAttrs.Length == 1)
                 {
-                    string modelName = ((ModulePropertyAttribute)classAttrs[0]).ModuleName;
+                    JToken jToken = JToken.FromObject(classAttrs[0]);
+                    string modelName = jToken.Value<string>("ModuleName");
                     var modelInfo = new ModelInfo();
                     modelInfo.ModelName = modelName;
                     modelInfo.Type = type;
